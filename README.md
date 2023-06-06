@@ -1,13 +1,20 @@
-# parking-management
+# Parking Management Project
 
-Initialize Project
+Parking management design using artificial intelligence for study purposes.
 
-yarn init -y
 
-Install TypeScript
+## Developers
 
-yarn add typescript @types/node -D
+- [@CodeVsk](https://www.github.com/codevsk)
 
-Initialize Typescript
 
-npx tsc --init
+## Stacks
+
+**Front-end:** React
+
+**Back-end:** Node, Express, Python, Django
+
+**Infrastructure** Docker, Kubernetes
+
+**Database** PostgreSQL
+
