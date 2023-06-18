@@ -1,5 +1,11 @@
 # Parking Management Dashboard (Backend)
 
+**Drive Domain Design (DDD), Clean-Architecture, SOLID**
+
+## Stacks
+
+**Back-end:** Node, Express, Prisma
+
 ### Initialize Project
 
 ```bash

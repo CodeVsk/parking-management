@@ -2,11 +2,9 @@
 
 Parking management design using artificial intelligence for study purposes.
 
-
 ## Developers
 
 - [@CodeVsk](https://www.github.com/codevsk)
-
 
 ## Stacks
 
@@ -17,4 +15,3 @@ Parking management design using artificial intelligence for study purposes.
 **Infrastructure** Docker, Kubernetes
 
 **Database** PostgreSQL
-
