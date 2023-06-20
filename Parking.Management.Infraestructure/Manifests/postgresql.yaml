@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: parking-management
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: parking-management-postgresql
+  name: parking-management-postgresql
+  namespace: parking-management
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    k8s-app: parking-management-postgresql
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: parking-management-postgresql-pv-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp/data"
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: parking-management-postgresql-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: parking-management-postgresql
+  name: parking-management-postgresql
+  namespace: parking-management
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: parking-management-postgresql
+  template:
+    metadata:
+      labels:
+        k8s-app: parking-management-postgresql
+    spec:
+      containers:
+        - name: parking-management-postgresql
+          image: bitnami/postgresql:latest
+          env:
+            - name: POSTGRESQL_USERNAME
+              value: pm_dev
+            - name: POSTGRESQL_PASSWORD
+              value: pm_dev
+            - name: POSTGRESQL_DATABASE
+              value: ParkingManagement
+            - name: POSTGRESQL_PORT
+              value: 5432
