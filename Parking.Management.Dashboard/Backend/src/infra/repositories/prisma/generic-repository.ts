@@ -1,4 +1,4 @@
-import { GenericRepository } from "../../../data/contracts";
+import { GenericRepository } from "../../../domain/contracts";
 
 export class PrismaGenericRepository implements GenericRepository {
   async findById(id: string) {

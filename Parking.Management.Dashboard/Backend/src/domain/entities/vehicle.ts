@@ -5,6 +5,7 @@ type VehicleProps = {
   type: string;
   plate: string;
   userId: string;
+  collegeId: string;
   createdAt: Date;
   updatedAt: Date;
 };

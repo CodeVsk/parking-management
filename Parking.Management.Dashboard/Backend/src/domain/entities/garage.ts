@@ -3,7 +3,6 @@ import { Entity } from "../../core/domain/entity";
 type GarageProps = {
   vehicleId: string;
   status: number;
-  garageNoteId: string;
 
   userEntryId: string;
   entryTime: Date;
