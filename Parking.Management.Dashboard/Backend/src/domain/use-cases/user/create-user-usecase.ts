@@ -31,10 +31,12 @@ export class CreateUserUseCase {
     status,
     collegeId,
     birthdate,
-  }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseRequest> {
+  }: CreateUserUseCaseRequest): Promise<string> {
+    //Promise<CreateUserUseCaseRequest>
     const userAlreadyExist = await this.genericRepository.findById(rg);
 
     if (userAlreadyExist) {
+      return userAlreadyExist;
     }
 
     return null;
