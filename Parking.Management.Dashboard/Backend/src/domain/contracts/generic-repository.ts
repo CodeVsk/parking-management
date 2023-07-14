@@ -1,3 +1,3 @@
 export interface GenericRepository {
-  findById(id: string): Promise<null>;
+  findById(id: string): Promise<string>;
 }
