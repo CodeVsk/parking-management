@@ -75,4 +75,4 @@ spec:
             - name: POSTGRESQL_DATABASE
               value: ParkingManagement
             - name: POSTGRESQL_PORT
-              value: 5432
+              value: "5432"
