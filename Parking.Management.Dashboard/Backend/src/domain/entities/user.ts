@@ -14,6 +14,12 @@ type UserProps = {
   status: boolean;
   collegeId: string;
   birthdate: Date;
+  role: Role;
 };
+
+enum Role {
+  STUDENT,
+  EMPLOYEE,
+}
 
 export class User extends Entity<UserProps> {}
