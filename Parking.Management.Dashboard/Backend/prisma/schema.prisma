@@ -9,3 +9,35 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model College {
+  id        String         @id @default(uuid())
+  name      String
+  address   String
+  city      String
+  campus    String
+  user      User[]         @relation(name: "iUser")
+}
+
+model User {
+    id          String      @id @default(uuid())
+    name        String?
+    email       String      @unique
+    phone       String?
+    address     String?
+    rg          String      @unique
+    cpf         String      @unique
+    gender      String?
+    course      String?
+    enrollment  String?
+    status      Boolean     @default(false)
+    birthdate   DateTime
+    role        Role        @default(STUDENT)
+    college     College     @relation(name: "iUser", fields: [collegeId], references: [id])
+    collegeId   String
+}
+
+enum Role {
+  STUDENT
+  EMPLOYEE
+}
