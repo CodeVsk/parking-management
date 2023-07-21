@@ -1,6 +1,8 @@
 import { Entity } from "../../core/domain/entity";
 
 type GarageProps = {
+  collegeid: string;
+
   vehicleId: string;
   status: number;
 

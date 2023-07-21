@@ -1,5 +1,5 @@
 import { Entity } from "../../core/domain/entity";
-import { College } from "./college";
+import { Roles } from "../enums/roles";
 
 type UserProps = {
   name: string;
@@ -14,12 +14,7 @@ type UserProps = {
   status: boolean;
   collegeId: string;
   birthdate: Date;
-  role: Role;
+  role: Roles;
 };
-
-enum Role {
-  STUDENT,
-  EMPLOYEE,
-}
 
 export class User extends Entity<UserProps> {}
