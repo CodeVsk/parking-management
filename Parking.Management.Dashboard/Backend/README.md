@@ -29,3 +29,32 @@
 ```bash
     yarn prisma init
 ```
+
+### Possible project folder structure in Domain Driven Design (DDD)
+
+```bash
+    src/
+    |-- domain/
+    |   |-- entities/
+    |   |-- value-objects/
+    |   |-- enums/
+    |   |-- aggregates/
+    |   |-- services/
+    |-- application/
+    |   |-- use-cases/
+    |   |-- interfaces/
+    |   |-- dtos/
+    |   |-- services/
+    |   |-- mappers/
+    |   |-- validators/
+    |-- infrastructure/
+    |   |-- persistence/
+    |   |-- external-services/
+    |-- interfaces/
+    |   |-- controllers/
+    |   |-- routes/
+    |   |-- middlewares/
+    |-- utils/
+    |-- tests/
+
+```
