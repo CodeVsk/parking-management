@@ -11,30 +11,109 @@ datasource db {
 }
 
 model College {
-  id        String         @id @default(uuid())
-  name      String
-  address   String
-  city      String
-  campus    String
-  user      User[]         @relation(name: "iUser")
+  id      String @id @default(uuid())
+  name    String
+  address String
+  city    String
+  campus  String
+
+  // FK keys relations
+  user    User[]    @relation(name: "iUser")
+  garage  Garage[]  @relation(name: "iGarage")
+  vehicle Vehicle[] @relation(name: "iVehicle")
 }
 
 model User {
-    id          String      @id @default(uuid())
-    name        String?
-    email       String      @unique
-    phone       String?
-    address     String?
-    rg          String      @unique
-    cpf         String      @unique
-    gender      String?
-    course      String?
-    enrollment  String?
-    status      Boolean     @default(false)
-    birthdate   DateTime
-    role        Role        @default(STUDENT)
-    college     College     @relation(name: "iUser", fields: [collegeId], references: [id])
-    collegeId   String
+  id         String   @id @default(uuid())
+  name       String?
+  email      String   @unique
+  phone      String?
+  address    String?
+  rg         String   @unique
+  cpf        String   @unique
+  gender     String?
+  course     String?
+  enrollment String?
+  status     Boolean  @default(false)
+  birthdate  DateTime
+  role       Role     @default(STUDENT)
+
+  //FK keys relations
+  garageEntry     Garage[] @relation(name: "iGarageEntry")
+  garageDeparture Garage[] @relation(name: "iGarageDeparture")
+
+  vehicle            Vehicle[]            @relation(name: "iVehicle")
+  vehicleResponsible VehicleResponsible[] @relation(name: "iVehicleResponsible")
+  college            College              @relation(name: "iUser", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  collegeId          String
+}
+
+model Garage {
+  id String @id @default(uuid())
+
+  status String
+
+  entryTime DateTime
+
+  departureTime DateTime
+
+  //FK keys relations
+  userEntry   User   @relation(name: "iGarageEntry", fields: [userEntryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userEntryId String
+
+  userDeparture   User   @relation(name: "iGarageDeparture", fields: [userDepartureId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userDepartureId String
+
+  college   College @relation(name: "iGarage", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  collegeId String
+
+  vehicle   Vehicle @relation(name: "iGarage", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicleId String
+}
+
+model Vehicle {
+  id        String   @id @default(uuid())
+  model     String
+  type      String
+  plate     String
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+
+  //FK keys relations
+  user   User   @relation(name: "iVehicle", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userId String
+
+  college   College @relation(name: "iVehicle", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  collegeId String
+
+  garage Garage[] @relation(name: "iGarage")
+
+  vehicleResponsible VehicleResponsible[] @relation(name: "iVehicleResponsible")
+  VehicleNote        VehicleNote[]        @relation(name: "iVehicleNote")
+}
+
+model VehicleResponsible {
+  id        String   @id @default(uuid())
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+
+  //FK keys relations
+  user   User   @relation(name: "iVehicleResponsible", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userId String
+
+  vehicle   Vehicle @relation(name: "iVehicleResponsible", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicleId String
+}
+
+model VehicleNote {
+  id          String   @id @default(uuid())
+  description String
+  createAt    DateTime
+  updatedAt   DateTime @updatedAt
+
+  //FK keys relations
+  vehicle   Vehicle @relation(name: "iVehicleNote", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicleId String
 }
 
 enum Role {
