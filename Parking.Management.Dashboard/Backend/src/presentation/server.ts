@@ -1,4 +1,4 @@
-import { app, env } from "./config";
+import { app, env } from "../infra/config";
 
 const { port } = env;
 

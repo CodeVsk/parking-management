@@ -1,13 +1,11 @@
 import { Entity } from "../../core/domain/entity";
 
-type VehicleProps = {
+export class Vehicle extends Entity {
   model: string;
   type: string;
   plate: string;
   userId: string;
   collegeId: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export class Vehicle extends Entity<VehicleProps> {}
+  created_at: Date;
+  updated_at: Date;
+}

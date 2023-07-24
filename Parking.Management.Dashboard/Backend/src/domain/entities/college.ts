@@ -1,10 +1,10 @@
 import { Entity } from "../../core/domain/entity";
 
-type CollegeProps = {
+export class College extends Entity {
   name: string;
   address: string;
   city: string;
   campus: string;
-};
-
-export class College extends Entity<CollegeProps> {}
+  created_at?: Date;
+  updated_at?: Date;
+}

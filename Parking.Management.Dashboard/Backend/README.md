@@ -15,7 +15,7 @@
 ### Install TypeScript, Prisma, Dotenv & Express
 
 ```bash
-    yarn add prisma typescript @types/node @types/express -D
+    yarn add prisma @prisma/client typescript @types/node @types/express -D
 ```
 
 ### Initialize Typescript

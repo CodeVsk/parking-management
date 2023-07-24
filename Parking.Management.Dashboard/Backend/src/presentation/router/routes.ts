@@ -6,8 +6,8 @@ export const setupRoutes = (app: Express): void => {
   const router = Router();
   app.use("/api", router);
 
-  const filepath = join(__dirname, "/../routes");
+  const filepath = join(__dirname, "./routes");
   readdirSync(filepath).map(async (filename) => {
-    (await import(`../routes/${filename}`)).default(router);
+    (await import(`./routes/${filename}`)).default(router);
   });
 };
