@@ -9,11 +9,11 @@ export class CreateCollegeUseCase {
   ) {}
 
   async execute(data: CollegeDto): Promise<CollegeDto> {
-    const collegeModel = this.collegeMapper.toEntitie(data);
+    const collegeModel = this.collegeMapper.mapper(data);
 
     const result = await this.collegeRepository.create(collegeModel);
 
-    const collegeDto = this.collegeMapper.toDto(result);
+    const collegeDto = this.collegeMapper.mapper(result);
 
     return collegeDto;
   }
