@@ -17,4 +17,12 @@ export class CollegeMapper {
 
     return dto;
   }
+
+  mapper(data: College | CollegeDto): College | CollegeDto {
+    const entitie: College | CollegeDto = {
+      ...data,
+    };
+
+    return entitie;
+  }
 }
