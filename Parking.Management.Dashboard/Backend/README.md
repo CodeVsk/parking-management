@@ -30,6 +30,12 @@
     yarn prisma init
 ```
 
+### Create Prisma Migration
+
+```bash
+    yarn prisma migrate dev
+```
+
 ### Possible project folder structure in Domain Driven Design (DDD)
 
 ```bash
