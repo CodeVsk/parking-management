@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "set NODE_ENV=development&& ts-node-dev --respawn --exit-child --transpile-only --ignore-watch node_modules src/main/server.ts"
+    "dev": "set NODE_ENV=development&& ts-node-dev --respawn --exit-child --transpile-only --ignore-watch node_modules src/presentation/server.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
