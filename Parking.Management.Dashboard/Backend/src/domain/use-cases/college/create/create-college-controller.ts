@@ -10,10 +10,10 @@ import { CollegeDto } from "../../../../application/dtos/college-dto";
 export class CreateCollegeController {
   constructor(private createCollegeUseCase: CreateCollegeUseCase) {}
 
-  async handle(request: Request): Promise<HttpResponse<string>> {
-    const data: CollegeDto = request.body;
-
+  async handle(request: Request): Promise<HttpResponse<CollegeDto>> {
     try {
+      const data: CollegeDto = request.body;
+
       const result = await this.createCollegeUseCase.execute(data);
 
       return ok(result);
