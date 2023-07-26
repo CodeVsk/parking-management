@@ -12,10 +12,10 @@
     yarn init -y
 ```
 
-### Install TypeScript, Prisma, Dotenv & Express
+### Install TypeScript, Prisma, Dotenv, Express, Jest
 
 ```bash
-    yarn add prisma @prisma/client typescript @types/node @types/express -D
+    yarn add prisma @prisma/client typescript @types/node @types/express jest @swc/core @swc/jest @types/jest -D
 ```
 
 ### Initialize Typescript
@@ -36,31 +36,14 @@
     yarn prisma migrate dev
 ```
 
-### Possible project folder structure in Domain Driven Design (DDD)
+### Initialize Jest
 
 ```bash
-    src/
-    |-- domain/
-    |   |-- entities/
-    |   |-- value-objects/
-    |   |-- enums/
-    |   |-- aggregates/
-    |   |-- services/
-    |-- application/
-    |   |-- use-cases/
-    |   |-- interfaces/
-    |   |-- dtos/
-    |   |-- services/
-    |   |-- mappers/
-    |   |-- validators/
-    |-- infrastructure/
-    |   |-- persistence/
-    |   |-- external-services/
-    |-- interfaces/
-    |   |-- controllers/
-    |   |-- routes/
-    |   |-- middlewares/
-    |-- utils/
-    |-- tests/
+    yarn jest --init
+```
 
+### Run Jest Test
+
+```bash
+    yarn test
 ```
