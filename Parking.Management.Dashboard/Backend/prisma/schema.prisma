@@ -58,7 +58,7 @@ model User {
 
 model Garage {
   id            String   @id @default(uuid())
-  status        String
+  status        Status   @default(INSIDE)
   entryTime     DateTime
   departureTime DateTime
   created_at    DateTime @default(now())
@@ -134,4 +134,10 @@ model VehicleNote {
 enum Role {
   STUDENT
   EMPLOYEE
+}
+
+enum Status {
+  INSIDE
+  OUTSIDE
+  STOLEN
 }

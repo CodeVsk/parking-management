@@ -1,14 +1,23 @@
+import { Result } from "../../core/domain/result";
+
 export type HttpResponse<T = any> = {
   statusCode: number;
-  data: T;
+  data?: T;
+  message?: string;
 };
+
+export const unauthorized = (message: string): HttpResponse => ({
+  statusCode: 401,
+  message: message,
+});
 
 export const error = (error: Error): HttpResponse => ({
   statusCode: 500,
-  data: error.stack,
+  message: error.stack,
 });
 
-export const ok = (data: any): HttpResponse => ({
+export const ok = (result: Result<any>): HttpResponse => ({
   statusCode: 200,
-  data,
+  data: result.content,
+  message: result.message,
 });

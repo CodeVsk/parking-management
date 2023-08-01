@@ -1,13 +1,17 @@
+import { Prisma, Status } from "@prisma/client";
 import { Entity } from "../../core/domain/entity";
 
-export class Garage extends Entity {
-  status: number;
-  collegeid: string;
+export class Garage
+  extends Entity
+  implements Prisma.GarageUncheckedCreateInput
+{
+  status: Status;
+  entryTime: Date;
+  departureTime: Date;
+  collegeId: string;
   vehicleId: string;
   userEntryId: string;
   userDepartureId: string;
-  entryTime: Date;
-  departureTime: Date;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }

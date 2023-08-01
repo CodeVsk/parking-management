@@ -6,6 +6,6 @@ export class Vehicle extends Entity {
   plate: string;
   userId: string;
   collegeId: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
