@@ -11,8 +11,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      USERNAME_DOCKER: ${{ secrets.DOCKERHUB_USERNAME }}
+
     steps:
       - uses: actions/checkout@v3
   
@@ -23,7 +22,7 @@ jobs:
             password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Build the Docker image
-        run: docker build ./Parking.Management.Dashboard/Backend --file Dockerfile --tag  $USERNAME_DOCKER/backend-pm:${{ env.GITHUB_SHA }}
+        run: docker build ./Parking.Management.Dashboard/Backend --file Dockerfile --tag  codevsk/backend-pm:${{ env.GITHUB_SHA }}
 
       - name: Push Docker image
-        run: docker push  $USERNAME_DOCKER/backend-pm:${{ env.GITHUB_SHA }}
+        run: docker push  codevsk/backend-pm:${{ env.GITHUB_SHA }}
