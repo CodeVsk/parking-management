@@ -22,7 +22,7 @@ jobs:
             password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Build the Docker image
-        run: docker build ./Parking.Management.Dashboard/Backend --file Dockerfile --tag  ${{ secrets.DOCKERHUB_USERNAME }}/backend-pm:$(date +%s)
+        run: docker build ./Parking.Management.Dashboard/Backend --file Dockerfile --tag  ${{ secrets.DOCKERHUB_USERNAME }}/backend-pm:${{ env.GITHUB_SHA }}
 
       - name: Push Docker image
-        run: docker push  ${{ secrets.DOCKERHUB_USERNAME }}/backend-pm:latest
+        run: docker push  ${{ secrets.DOCKERHUB_USERNAME }}/backend-pm:${{ env.GITHUB_SHA }}
