@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { Entity } from "../../core/domain/entity";
 import { UserRoles } from "../enums/user-roles";
+import { UserPermissions } from "../enums/user-permissions";
 
 export class User extends Entity implements Prisma.UserUncheckedCreateInput {
   name: string;
@@ -16,6 +17,7 @@ export class User extends Entity implements Prisma.UserUncheckedCreateInput {
   collegeId: string;
   birthdate: Date;
   role: UserRoles;
+  permissions: UserPermissions;
   created_at?: Date;
   updated_at?: Date;
 }
