@@ -28,21 +28,22 @@ model College {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String?
-  email      String   @unique
-  phone      String?
-  address    String?
-  rg         String   @unique
-  cpf        String   @unique
-  gender     String?
-  course     String?
-  enrollment String?
-  status     Boolean  @default(false)
-  birthdate  DateTime
-  role       Role     @default(STUDENT)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id          String     @id @default(uuid())
+  name        String?
+  email       String     @unique
+  phone       String?
+  address     String?
+  rg          String     @unique
+  cpf         String     @unique
+  gender      String?
+  course      String?
+  enrollment  String?
+  status      Boolean    @default(false)
+  birthdate   DateTime
+  role        Role       @default(STUDENT)
+  permissions Permission @default(DEFAULT)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
 
   //FK keys relations
   garageEntry     Garage[] @relation(name: "iGarageEntry")
@@ -134,6 +135,11 @@ model VehicleNote {
 enum Role {
   STUDENT
   EMPLOYEE
+}
+
+enum Permission {
+  DEFAULT
+  ADMIN
 }
 
 enum Status {
