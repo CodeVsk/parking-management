@@ -1,8 +1,8 @@
 export class Result<T> {
-  readonly content: T;
-  readonly message: string;
+  readonly content?: T;
+  readonly message?: string;
 
-  constructor(content: T, message: string) {
+  constructor(content?: T | null, message?: string) {
     this.content = content;
     this.message = message;
   }
