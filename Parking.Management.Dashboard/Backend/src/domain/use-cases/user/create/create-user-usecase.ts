@@ -1,11 +1,11 @@
-import { UserRepository } from "../../../contracts";
+import { IUserRepository } from "../../../contracts";
 import { UserDto } from "../../../../application/dtos/user-dto";
 import { UserMapper } from "../../../../application/mappers/user-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class CreateUserUseCase {
   constructor(
-    private userRepository: UserRepository,
+    private userRepository: IUserRepository,
     private userMapper: UserMapper
   ) {}
 

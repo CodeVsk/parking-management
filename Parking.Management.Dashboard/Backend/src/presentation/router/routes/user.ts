@@ -1,13 +1,23 @@
 import { Router } from "express";
 import { adaptRoute } from "../../../infra/adapters/express-router-adapter";
-import { createCollegeController } from "../../../domain/use-cases/college/create";
-import { updateCollegeController } from "../../../domain/use-cases/college/update";
-import { findByIdCollegeController } from "../../../domain/use-cases/college/find-by-id";
-import { deleteCollegeController } from "../../../domain/use-cases/college/delete";
+//import { authMiddleware } from "@/infra/factory/auth-factory";
+import { deleteUserController } from "@/domain/use-cases/user/delete";
+import { createUserController } from "@/domain/use-cases/user/create";
+import { updateUserController } from "@/domain/use-cases/user/update";
+import { findByIdUserController } from "@/domain/use-cases/user/find-by-id";
+import { AuthProvider } from "@/infra/providers";
+import { AuthMiddleware } from "@/infra/http/middleware/auth-middleware";
 
 export default (router: Router): void => {
-  router.get("/college/:id", adaptRoute(findByIdCollegeController));
-  router.put("/college", adaptRoute(updateCollegeController));
-  router.post("/college", adaptRoute(createCollegeController));
-  router.delete("/college/:id", adaptRoute(deleteCollegeController));
+  const provider = new AuthProvider();
+  const authMiddleware = new AuthMiddleware(provider);
+
+  router.get("/user/:id", adaptRoute(findByIdUserController));
+  router.put("/user", adaptRoute(updateUserController));
+  router.post(
+    "/user",
+    //(req, res, next) => authMiddleware.execute(req, res, next),
+    adaptRoute(createUserController)
+  );
+  router.delete("/user/:id", adaptRoute(deleteUserController));
 };
