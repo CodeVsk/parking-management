@@ -1,6 +1,6 @@
 import "./sidebar.css";
 import { personsImgs } from "../../utils/images";
-import { navigationLinks } from "../../data/data";
+import { LinksNavegacao } from "../../data/data";
 
 const Sidebar = () => {
   return (
@@ -14,12 +14,12 @@ const Sidebar = () => {
       <nav className="navegacao">
         <ul className="nav-lista">
           {
-            navigationLinks.map((navigationLink) => (
-              <li className="nav-item" key={navigationLink.id}>
+            LinksNavegacao.map((LinkNavegacao) => (
+              <li className="nav-item" key={LinkNavegacao.id}>
                 <a href="#" className="{`nav-link`">
-                  <img src={ navigationLink.image } className="nav-link-icone" 
-                  alt= {navigationLink.title} />
-                  <span className="nav-link-text">{navigationLink.title}</span>
+                  <img src={ LinkNavegacao.imagem } className="nav-link-icone" 
+                  alt= {LinkNavegacao.nome} />
+                  <span className="nav-link-text">{LinkNavegacao.nome}</span>
                 </a>
               </li>
             ))
