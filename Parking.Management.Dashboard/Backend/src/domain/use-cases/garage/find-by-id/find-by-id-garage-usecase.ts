@@ -1,11 +1,11 @@
-import { GarageRepository } from "../../../contracts";
+import { IGarageRepository } from "../../../contracts";
 import { GarageDto } from "../../../../application/dtos/garage-dto";
 import { GarageMapper } from "../../../../application/mappers/garage-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class FindByIdGarageUseCase {
   constructor(
-    private garageRepository: GarageRepository,
+    private garageRepository: IGarageRepository,
     private garageMapper: GarageMapper
   ) {}
 

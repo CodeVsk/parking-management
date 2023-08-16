@@ -1,7 +1,9 @@
-export * from "./entity-dto";
-export * from "./college-dto";
-export * from "./garage-dto";
-export * from "./user-dto";
-export * from "./vehicle-dto";
-export * from "./vehicle-note-dto";
-export * from "./vehicle-responsible-dto";
+export * from "@/application/dtos/entity-dto";
+export * from "@/application/dtos/college-dto";
+export * from "@/application/dtos/garage-dto";
+export * from "@/application/dtos/user-dto";
+export * from "@/application/dtos/vehicle-dto";
+export * from "@/application/dtos/vehicle-note-dto";
+export * from "@/application/dtos/vehicle-responsible-dto";
+
+export * from "@/application/dtos/user-login-dto";

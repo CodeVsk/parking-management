@@ -1,11 +1,11 @@
-import { VehicleResponsibleRepository } from "../../../contracts";
+import { IVehicleResponsibleRepository } from "../../../contracts";
 import { VehicleResponsibleDto } from "../../../../application/dtos/vehicle-responsible-dto";
 import { VehicleResponsibleMapper } from "../../../../application/mappers/vehicle-responsible-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class CreateVehicleResponsibleUseCase {
   constructor(
-    private vehicleResponsibleRepository: VehicleResponsibleRepository,
+    private vehicleResponsibleRepository: IVehicleResponsibleRepository,
     private vehicleResponsibleMapper: VehicleResponsibleMapper
   ) {}
 

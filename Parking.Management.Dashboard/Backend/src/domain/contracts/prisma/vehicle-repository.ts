@@ -1,6 +1,6 @@
 import { Vehicle } from "../../entities";
 
-export interface VehicleRepository {
+export interface IVehicleRepository {
   create(user: Vehicle): Promise<Vehicle>;
   update(user: Vehicle): Promise<Vehicle>;
   delete(id: string): Promise<Vehicle>;

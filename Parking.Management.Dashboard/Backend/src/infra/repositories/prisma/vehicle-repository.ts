@@ -1,8 +1,8 @@
-import { VehicleRepository } from "../../../domain/contracts";
+import { IVehicleRepository } from "../../../domain/contracts";
 import { Vehicle } from "../../../domain/entities";
 import { prisma } from "../../database/Prisma";
 
-export class PrismaVehicleRepository implements VehicleRepository {
+export class PrismaVehicleRepository implements IVehicleRepository {
   async create(vehicle: Vehicle): Promise<Vehicle> {
     const result = await prisma.vehicle.create({
       data: {

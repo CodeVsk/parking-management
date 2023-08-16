@@ -12,4 +12,5 @@ if (envFound.error) {
 
 export const env = {
   port: process.env.SERVER_PORT,
+  jwt_secret: process.env.JWT_SECRET,
 };
