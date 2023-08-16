@@ -1,11 +1,11 @@
-import { VehicleRepository } from "../../../contracts";
+import { IVehicleRepository } from "../../../contracts";
 import { VehicleDto } from "../../../../application/dtos/vehicle-dto";
 import { VehicleMapper } from "../../../../application/mappers/vehicle-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class FindByIdVehicleUseCase {
   constructor(
-    private vehicleRepository: VehicleRepository,
+    private vehicleRepository: IVehicleRepository,
     private vehicleMapper: VehicleMapper
   ) {}
 

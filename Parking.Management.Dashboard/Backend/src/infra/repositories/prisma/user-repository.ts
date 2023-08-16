@@ -1,8 +1,8 @@
-import { UserRepository } from "../../../domain/contracts/prisma/user-repository";
+import { IUserRepository } from "../../../domain/contracts/prisma/user-repository";
 import { User } from "../../../domain/entities";
 import { prisma } from "../../database/Prisma";
 
-export class PrismaUserRepository implements UserRepository {
+export class PrismaUserRepository implements IUserRepository {
   async create(user: User): Promise<User> {
     const result = await prisma.user.create({
       data: {

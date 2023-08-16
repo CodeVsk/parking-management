@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { AuthUserUseCase } from "./auth-user-usecase";
+import { AuthRegisterUseCase } from "./auth-register-usecase";
 import {
   HttpResponse,
   error,
@@ -7,14 +7,14 @@ import {
 } from "../../../../application/protocols/http";
 import { UserDto } from "../../../../application/dtos/user-dto";
 
-export class AuthUserController {
-  constructor(private authUserUseCase: AuthUserUseCase) {}
+export class AuthRegisterController {
+  constructor(private authRegisterUseCase: AuthRegisterUseCase) {}
 
   async handle(request: Request): Promise<HttpResponse<UserDto>> {
     try {
       const data: UserDto = request.body;
 
-      const result = await this.authUserUseCase.execute(data);
+      const result = await this.authRegisterUseCase.execute(data);
 
       return ok(result);
     } catch (err) {
