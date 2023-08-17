@@ -3,8 +3,6 @@ import cv2
 # Captura de vídeo 
 vid = cv2.VideoCapture(0)
 
-#Variável que detecta uma possível tecla
-key = cv2.waitKey(1) & 0xFF
 
 #Loop infinito para a câmera rodar
 while(True):
@@ -14,10 +12,14 @@ while(True):
         
     #Mostra o frame
     cv2.imshow('frame', frame)
+    
+    #Variável que detecta uma possível tecla
+    key = cv2.waitKey(1) & 0xFF
 
-    #Se a tecla 's' for pressionada, tira uma scrre    
+    #Se a tecla 's' for pressionada, tira uma scrre
     if key == ord('s'):
-        cv2.imwrite('image.jpg', frame)	
+        cv2.imwrite('image.jpg', frame)
+    #Tecla 'q' encerra a execução	
     elif key == ord('q'):
         break
 
