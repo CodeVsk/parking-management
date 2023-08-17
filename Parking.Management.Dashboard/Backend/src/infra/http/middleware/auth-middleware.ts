@@ -24,6 +24,8 @@ export class AuthMiddleware {
 
     const isAdmin: boolean = this.authProvider.isAdmin(token);
 
+    console.log(isAdmin);
+
     if (isAdmin) {
       next();
     }
