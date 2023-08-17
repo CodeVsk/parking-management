@@ -1,0 +1,146 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotation {
+    0% {--gradient-angle: 0deg;}
+    100% {--gradient-angle: 360deg;}
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0c192c;
+    position: relative;
+    z-index: 0;
+}
+
+.container-form {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #0f1f36;
+    padding: 3rem;
+    position: relative;
+}
+
+.form::after {
+    filter: blur(3.5rem);
+}
+
+.form::before, .form::after {
+    content: " ";
+    z-index: -1;
+    position: absolute;
+    inset: -0.5rem;
+    border-radius: inherit;
+    background: conic-gradient(from var(--gradient-angle), #21d4fd, #b721ff, #21d4fd);
+    animation: rotation 10s linear infinite;
+}
+
+.form-header {
+    margin-bottom: 3rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.title h1{
+    color: white;
+}
+
+.title h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background: linear-gradient(to left, #21d4fd, #b721ff);
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.input-box input {
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    background-color: #162e4e;
+    color: white;
+    width: 300px;
+}
+
+.input-box input:hover {
+    background: #0c192c;
+}
+
+.input-box input:focus-visible {
+    outline: 1px solid white;
+    background: #0c192c;
+}
+
+.input-box input::placeholder {
+    color: white;
+}
+
+.input-box label, 
+.gender-title h6 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.continue-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    margin-top: 1rem;
+    border: none;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(to left, #21d4fd, #b721ff);
+    color: white;
+}
+
+.continue-button:hover {
+    background: linear-gradient(to left, rgb(33, 213, 253, 0.5), rgb(183, 33, 255, 0.5));
+}
