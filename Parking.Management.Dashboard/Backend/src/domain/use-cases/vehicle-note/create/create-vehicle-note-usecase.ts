@@ -1,11 +1,11 @@
-import { VehicleNoteRepository } from "../../../contracts";
+import { IVehicleNoteRepository } from "../../../contracts";
 import { VehicleNoteDto } from "../../../../application/dtos/vehicle-note-dto";
 import { VehicleNoteMapper } from "../../../../application/mappers/vehicle-note-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class CreateVehicleNoteUseCase {
   constructor(
-    private vehicleNoteRepository: VehicleNoteRepository,
+    private vehicleNoteRepository: IVehicleNoteRepository,
     private vehicleNoteMapper: VehicleNoteMapper
   ) {}
 

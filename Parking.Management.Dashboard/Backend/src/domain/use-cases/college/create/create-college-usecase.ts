@@ -1,11 +1,11 @@
-import { CollegeRepository } from "../../../contracts";
+import { ICollegeRepository } from "../../../contracts";
 import { CollegeDto } from "../../../../application/dtos/college-dto";
 import { CollegeMapper } from "../../../../application/mappers/college-mapper";
 import { Result } from "../../../../core/domain/result";
 
 export class CreateCollegeUseCase {
   constructor(
-    private collegeRepository: CollegeRepository,
+    private collegeRepository: ICollegeRepository,
     private collegeMapper: CollegeMapper
   ) {}
 

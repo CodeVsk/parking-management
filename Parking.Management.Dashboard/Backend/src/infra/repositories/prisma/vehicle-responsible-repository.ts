@@ -1,9 +1,9 @@
-import { VehicleResponsibleRepository } from "../../../domain/contracts";
+import { IVehicleResponsibleRepository } from "../../../domain/contracts";
 import { VehicleResponsible } from "../../../domain/entities";
 import { prisma } from "../../database/Prisma";
 
 export class PrismaVehicleResponsibleRepository
-  implements VehicleResponsibleRepository
+  implements IVehicleResponsibleRepository
 {
   async create(
     vehicleResponsible: VehicleResponsible

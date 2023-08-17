@@ -1,8 +1,8 @@
-import { GarageRepository } from "../../../domain/contracts/prisma/garage-repository";
+import { IGarageRepository } from "../../../domain/contracts/prisma/garage-repository";
 import { Garage } from "../../../domain/entities";
 import { prisma } from "../../database/Prisma";
 
-export class PrismaGarageRepository implements GarageRepository {
+export class PrismaGarageRepository implements IGarageRepository {
   async create(garage: Garage): Promise<Garage> {
     const result = await prisma.garage.create({
       data: {
