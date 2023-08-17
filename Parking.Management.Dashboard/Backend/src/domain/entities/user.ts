@@ -6,6 +6,7 @@ import { UserPermissions } from "../enums/user-permissions";
 export class User extends Entity implements Prisma.UserUncheckedCreateInput {
   name: string;
   email: string;
+  password: string;
   phone: string;
   address: string;
   rg: string;
