@@ -1,6 +1,6 @@
 import { Garage } from "../../entities";
 
-export interface GarageRepository {
+export interface IGarageRepository {
   create(college: Garage): Promise<Garage>;
   update(college: Garage): Promise<Garage>;
   delete(id: string): Promise<Garage>;
