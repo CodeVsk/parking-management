@@ -1,12 +1,13 @@
 import React from "react";
-import Login from "./components/login/login";
-import ReactDOM from 'react-dom';
-import Dashboard from "./components/dashboard/dashboard";
-import TesteRouter from "./TesteRouter";
+import DashboardUser from "./pages/dashboard-user"
+import Login from "./pages/login"
+import AppRoutes from "./routes/index"
 
 function App() {
     return (
-        <TesteRouter />
+        <>
+            <AppRoutes />
+        </>
     )
 }
 

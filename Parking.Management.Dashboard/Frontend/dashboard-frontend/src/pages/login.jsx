@@ -1,20 +1,21 @@
-import './login.css'
+import React from 'react'
+import styles from '../style/login.module.css'
 import { Link } from 'react-router-dom'
 
-function Login() {
+const Login = () => {
     return (
-        <div className="container">
-            <div className="container-form">
-                <div className="form">
+        <div className={styles.container}>
+            <div className={styles.containerForm}>
+                <div className={styles.form}>
                     <form action="#">
-                        <div className="form-header">
-                            <div className="title">
+                        <div className={styles.formHeader}>
+                            <div className={styles.title}>
                                 <h1>Fazer Login</h1>
                             </div>
                         </div>
 
-                        <div className="input-group">
-                            <div className="input-box">
+                        <div className={styles.inputGroup}>
+                            <div className={styles.inputBox}>
                                 <label htmlFor="email">Email</label>
                                 <input 
                                     type="email" 
@@ -25,7 +26,7 @@ function Login() {
                                 />
                             </div>
 
-                            <div className="input-box">
+                            <div className={styles.inputBox}>
                                 <label htmlFor="password">Senha</label>
                                 <input 
                                     type="password" 
@@ -38,7 +39,7 @@ function Login() {
                         </div>
 
                         <div>
-                            <Link className='continue-button' to="/dashboard">Continuar</Link>
+                            <Link className={styles.continueButton} to="/dashboard-user">Continuar</Link>
                         </div>
                     </form>
                 </div>

@@ -27,7 +27,7 @@
     z-index: 0;
 }
 
-.container-form {
+.containerForm {
     width: 30%;
     display: flex;
     justify-content: center;
@@ -60,7 +60,7 @@
     animation: rotation 10s linear infinite;
 }
 
-.form-header {
+.formHeader {
     margin-bottom: 3rem;
     display: flex;
     text-align: center;
@@ -82,20 +82,20 @@
     border-radius: 10px;
 }
 
-.input-group {
+.inputGroup {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 0;
 }
 
-.input-box {
+.inputBox {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.1rem;
 }
 
-.input-box input {
+.inputBox input {
     margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     border: none;
@@ -106,27 +106,26 @@
     width: 300px;
 }
 
-.input-box input:hover {
+.inputBox input:hover {
     background: #0c192c;
 }
 
-.input-box input:focus-visible {
+.inputBox input:focus-visible {
     outline: 1px solid white;
     background: #0c192c;
 }
 
-.input-box input::placeholder {
+.inputBox input::placeholder {
     color: white;
 }
 
-.input-box label, 
-.gender-title h6 {
+.inputBox label {
     font-size: 0.75rem;
     font-weight: 600;
     color: white;
 }
 
-.continue-button {
+.continueButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,6 +140,6 @@
     color: white;
 }
 
-.continue-button:hover {
+.continueButton:hover {
     background: linear-gradient(to left, rgb(33, 213, 253, 0.5), rgb(183, 33, 255, 0.5));
 }
