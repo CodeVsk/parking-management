@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100vh;
+    height: 100vh;
+    color: white;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    background-color: #080d29;
+}
+
+.sidebarList {
+    width: 100%;
+    height: auto;
+}
+.sidebarList .titleRow {
+    width: 100%;
+    height: 60px;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.sidebarList .row {
+    width: 100%;
+    height: 60px;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+}
+.sidebarList .logout {
+    width: 100%;
+    height: 60px;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+}
+.sidebarList .logoutLink {
+    text-decoration: none;
+    color: white;
+}
+.sidebarList .logout:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.sidebarList .logoutLink:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.sidebarList #active {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+.sidebarList .row:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.row .icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.row .title {
+    flex: 70%;
+}

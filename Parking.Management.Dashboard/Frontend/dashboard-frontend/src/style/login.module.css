@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0c192c;
+    background-color: #080d29;
     position: relative;
     z-index: 0;
 }
@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #0f1f36;
+    background-color: #0b1238;
     padding: 3rem;
     position: relative;
 }
@@ -56,7 +56,7 @@
     position: absolute;
     inset: -0.5rem;
     border-radius: inherit;
-    background: conic-gradient(from var(--gradient-angle), #21d4fd, #b721ff, #21d4fd);
+    background: conic-gradient(from var(--gradient-angle), #ce0909, #cad80d, #ce0909);
     animation: rotation 10s linear infinite;
 }
 
@@ -76,7 +76,7 @@
     display: block;
     width: 5rem;
     height: 0.3rem;
-    background: linear-gradient(to left, #21d4fd, #b721ff);
+    background: linear-gradient(to right, #ce0909, #cad80d);
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
@@ -101,18 +101,18 @@
     border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
-    background-color: #162e4e;
+    background-color: #101952;
     color: white;
     width: 300px;
 }
 
 .inputBox input:hover {
-    background: #0c192c;
+    background: #080d29;
 }
 
 .inputBox input:focus-visible {
     outline: 1px solid white;
-    background: #0c192c;
+    background: #080d29;
 }
 
 .inputBox input::placeholder {
@@ -136,10 +136,10 @@
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
-    background: linear-gradient(to left, #21d4fd, #b721ff);
+    background: linear-gradient(to right, #ce0909, #cad80d);
     color: white;
 }
 
 .continueButton:hover {
-    background: linear-gradient(to left, rgb(33, 213, 253, 0.5), rgb(183, 33, 255, 0.5));
+    background: linear-gradient(to right, rgb(206, 9, 9, 0.5), rgb(202, 216, 13, 0.5));
 }

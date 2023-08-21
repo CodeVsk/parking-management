@@ -1,7 +1,5 @@
 import React from "react";
-import DashboardUser from "./pages/dashboard-user"
-import Login from "./pages/login"
-import AppRoutes from "./routes/index"
+import AppRoutes from "./routes/app-routes";
 
 function App() {
     return (

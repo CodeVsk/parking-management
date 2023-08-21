@@ -1,37 +1,39 @@
 import React from "react"
-import {
-    FaBars,
-    FaTh,
-} from 'react-icons/fa'
+import styles from "../style/sidebar-user.module.css"
+import { SidebarUserData } from "./sidebar-user-data"
+import { Link } from "react-router-dom"
 
 const SidebarUser = () => {
-    const menuItem = [
-        {
-            path:"/",
-            name:"Page 1",
-            icon:<FaTh />
-        },
-        {
-            path:"/page2",
-            name:"Page 2",
-            icon:<FaTh />
-        },
-        {
-            path:"/page3",
-            name:"Page 3",
-            icon:<FaTh />
-        },
-    ]
-
     return (
-        <div className="container">
-            <div className="sidebar">
-                <div className="top-section">
-                    <h1 className="logo">Logo</h1>
-                    <div className="bars">
-                        <FaBars />
-                    </div>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.sidebar}>
+                <ul className={styles.sidebarList}>
+                    <li className={styles.titleRow}>
+                        <h1>Usuário</h1>
+                    </li>
+                    {SidebarUserData.map((value, key) => {
+                        return (
+                            <li 
+                                key={key} 
+                                className={styles.row}
+                                id={window.location.pathname == value.link ? styles.active : ""}
+                                onClick={
+                                    ()=> {window.location.pathname = value.link}
+                                }
+                                >
+                                <div className={styles.icon}>
+                                    {value.icon}
+                                </div>
+                                <div className={styles.title}>
+                                    {value.title}
+                                </div>
+                            </li>
+                        )
+                    })}
+                    <li className={styles.logout}>
+                        <Link className={styles.logoutLink} to="/">Fazer Logout</Link>
+                    </li>
+                </ul>
             </div>
         </div>
     )
