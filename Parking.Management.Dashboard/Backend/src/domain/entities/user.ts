@@ -9,6 +9,8 @@ export class User extends Entity implements Prisma.UserUncheckedCreateInput {
   password: string;
   phone: string;
   address: string;
+  city: string;
+  state: string;
   rg: string;
   cpf: string;
   gender: string;

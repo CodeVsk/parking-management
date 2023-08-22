@@ -23,6 +23,7 @@ model College {
   user    User[]    @relation(name: "iUser")
   garage  Garage[]  @relation(name: "iGarage")
   vehicle Vehicle[] @relation(name: "iVehicle")
+  course  Course[]  @relation(name: "iCourse")
 
   @@map("colleges")
 }
@@ -37,7 +38,6 @@ model User {
   rg          String     @unique
   cpf         String     @unique
   gender      String?
-  course      String?
   enrollment  String?
   status      Boolean    @default(false)
   birthdate   DateTime
@@ -54,6 +54,8 @@ model User {
   vehicleResponsible VehicleResponsible[] @relation(name: "iVehicleResponsible")
   college            College              @relation(name: "iUser", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   collegeId          String
+  course             Course               @relation(name: "iUser", fields: [courseId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  courseId           String
 
   @@map("users")
 }
@@ -131,6 +133,21 @@ model VehicleNote {
   vehicleId String
 
   @@map("vehicle_notes")
+}
+
+model Course {
+  id         String   @id @default(uuid())
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  //FK keys relations
+  college   College @relation(name: "iCourse", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  collegeId String
+
+  user User[] @relation(name: "iUser")
+
+  @@map("courses")
 }
 
 enum Role {
