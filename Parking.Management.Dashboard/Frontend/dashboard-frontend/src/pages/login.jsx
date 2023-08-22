@@ -39,7 +39,7 @@ const Login = () => {
                         </div>
 
                         <div>
-                            <Link className={styles.continueButton} to="/dashboard-user">Continuar</Link>
+                            <Link className={styles.continueButton} to="/page1">Continuar</Link>
                         </div>
                     </form>
                 </div>

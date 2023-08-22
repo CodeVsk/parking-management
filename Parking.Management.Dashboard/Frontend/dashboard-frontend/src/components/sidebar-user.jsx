@@ -30,8 +30,8 @@ const SidebarUser = () => {
                             </li>
                         )
                     })}
-                    <li className={styles.logout}>
-                        <Link className={styles.logoutLink} to="/">Fazer Logout</Link>
+                    <li>
+                        <Link className={styles.logout} to="/">Fazer Logout</Link>
                     </li>
                 </ul>
             </div>

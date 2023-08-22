@@ -5,8 +5,53 @@ import SidebarUser from "../../components/sidebar-user"
 const Page1 = () => {
     return (
         <div className={styles.container}>
-            <SidebarUser />
-            <h1>Page 1</h1>
+            <div className={styles.sidebar}>
+                <SidebarUser />
+            </div>
+            <div className={styles.main}>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+                <h1>texto texto texto texto texto</h1>
+            </div>
         </div>
     )
 }
