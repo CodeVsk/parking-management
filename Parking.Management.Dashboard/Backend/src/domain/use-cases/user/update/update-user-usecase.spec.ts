@@ -23,6 +23,8 @@ describe("Create user usecase", () => {
       collegeId: "",
       birthdate: null,
       role: "EMPLOYEE",
+      permissions: "ADMIN",
+      password: "123456",
     };
 
     const response = sut.execute(dataSource);

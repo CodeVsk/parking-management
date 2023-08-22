@@ -1,24 +1,20 @@
 import { Request } from "express";
 import { FindByIdCollegeUseCase } from "./find-by-id-college-usecase";
-import {
-  HttpResponse,
-  error,
-  ok,
-} from "../../../../application/protocols/http";
+import { HttpResponse } from "@/presentation/helpers/http";
 import { CollegeDto } from "../../../../application/dtos/college-dto";
 
 export class FindByIdCollegeController {
   constructor(private findByIdCollegeUseCase: FindByIdCollegeUseCase) {}
 
-  async handle(request: Request): Promise<HttpResponse<CollegeDto>> {
+  async handle(request: Request): Promise<HttpResponse> {
     try {
       const { id } = request.params;
 
       const result = await this.findByIdCollegeUseCase.execute(id);
 
-      return ok(result);
+      return HttpResponse.ok(result);
     } catch (err) {
-      return error(err);
+      return HttpResponse.badRequest(err);
     }
   }
 }
