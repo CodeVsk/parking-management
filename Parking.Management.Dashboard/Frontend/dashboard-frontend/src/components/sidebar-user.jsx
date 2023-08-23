@@ -1,41 +1,31 @@
-import React from "react"
-import styles from "../style/sidebar-user.module.css"
-import { SidebarUserData } from "./sidebar-user-data"
-import { Link } from "react-router-dom"
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../style/sidebar-user.css"
+import Nav from "react-bootstrap/Nav";
+import { ImHome } from "react-icons/im";
 
 const SidebarUser = () => {
     return (
-        <div className={styles.container}>
-            <div className={styles.sidebar}>
-                <ul className={styles.sidebarList}>
-                    <li className={styles.titleRow}>
-                        <h1>Usuário</h1>
-                    </li>
-                    {SidebarUserData.map((value, key) => {
-                        return (
-                            <li 
-                                key={key} 
-                                className={styles.row}
-                                id={window.location.pathname == value.link ? styles.active : ""}
-                                onClick={
-                                    ()=> {window.location.pathname = value.link}
-                                }
-                                >
-                                <div className={styles.icon}>
-                                    {value.icon}
-                                </div>
-                                <div className={styles.title}>
-                                    {value.title}
-                                </div>
-                            </li>
-                        )
-                    })}
-                    <li>
-                        <Link className={styles.logout} to="/">Fazer Logout</Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            <Nav defaultActiveKey="/page1" className="flex-column">
+                <Nav.Item>
+                    <h1 className="title">Usuário</h1>
+                </Nav.Item>
+                <Nav.Link href="/page1">
+                    <ImHome className="icon-custom"/>
+                    Page 1
+                </Nav.Link>
+                <Nav.Link href="/page2">
+                    <ImHome className="icon-custom"/>
+                    Page 2
+                </Nav.Link>
+                <Nav.Link href="/page3">
+                <ImHome className="icon-custom"/>
+                    Page 3
+                </Nav.Link>
+                <Nav.Link href="/login">
+                    Fazer Logout
+                </Nav.Link>
+            </Nav>
     )
 }
 

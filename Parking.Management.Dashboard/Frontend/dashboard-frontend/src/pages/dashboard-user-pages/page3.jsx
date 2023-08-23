@@ -1,13 +1,22 @@
 import React from "react"
-import styles from "../../style/page3.module.css"
+import styles from "../../style/page3.css"
 import SidebarUser from "../../components/sidebar-user"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 const Page3 = () => {
     return (
-        <div className={styles.container}>
-            <SidebarUser />
-            <h1>Page 3</h1>
-        </div>
+        <Container fluid>
+            <Row>
+                <Col className="col-custom" md={2}>
+                    <SidebarUser />
+                </Col>
+                <Col>
+                    teste
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

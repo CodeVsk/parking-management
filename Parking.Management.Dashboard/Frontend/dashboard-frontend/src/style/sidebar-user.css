@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.col {
+    height: 100vh;
+}
+
+.col-custom{
+    background-color: #080d29;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-item {
+    color: white;
+}
+
+.nav-link:hover {
+    background-color: white;
+    color: black;
+}
+
+.title {
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.icon-custom {
+    margin-right: 30px;
+}
