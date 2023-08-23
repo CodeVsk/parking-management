@@ -8,7 +8,7 @@ export default (router: Router): void => {
   router.post("/login", adaptRoute(authLoginController));
   router.post(
     "/register",
-    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    //(req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(authRegisterController)
   );
 };

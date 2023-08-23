@@ -4,3 +4,4 @@ export * from "./garage";
 export * from "./vehicle";
 export * from "./vehicle-note";
 export * from "./vehicle-responsible";
+export * from "./course";

@@ -9,7 +9,8 @@ import {
   IsNotEmpty,
   MinLength,
 } from "class-validator";
-import { Permission, Role } from "@prisma/client";
+import { Gender, Permission, Role } from "@prisma/client";
+import { UserGender } from "@/domain/enums";
 
 export class UserDto extends EntityDto {
   @IsNotEmpty({ message: "O nome é obrigatório." })
@@ -27,17 +28,23 @@ export class UserDto extends EntityDto {
   @IsNotEmpty({ message: "O endereço é obrigatório." })
   address: string;
 
+  @IsNotEmpty({ message: "O estado é obrigatório." })
+  state: string;
+
+  @IsNotEmpty({ message: "A cidade é obrigatória." })
+  city: string;
+
   @IsNotEmpty({ message: "O rg é obrigatório." })
   rg: string;
 
   @IsNotEmpty({ message: "O cpf é obrigatório." })
   cpf: string;
 
-  @IsNotEmpty({ message: "O genêro é obrigatório." })
-  gender: string;
+  @IsEnum(Gender, { message: "O genêro é obrigatório." })
+  gender: UserGender;
 
   @IsNotEmpty({ message: "O curso é obrigatório." })
-  course: string;
+  courseId: string;
 
   @IsNotEmpty({ message: "A matricula é obrigatória." })
   enrollment: string;

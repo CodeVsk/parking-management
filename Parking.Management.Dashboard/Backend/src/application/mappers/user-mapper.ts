@@ -2,8 +2,8 @@ import { User } from "../../domain/entities";
 import { UserDto } from "../dtos";
 
 export class UserMapper {
-  mapper(data: User | UserDto): User | UserDto {
-    const entitie: User | UserDto = {
+  mapper<T, D>(data: T): D {
+    const entitie: D = {
       ...data,
     };
 
