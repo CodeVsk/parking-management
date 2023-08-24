@@ -3,14 +3,6 @@
     padding: 0;
 }
 
-.col {
-    height: 100vh;
-}
-
-.col-custom{
-    background-color: #080d29;
-}
-
 .nav-link {
     color: white;
 }
@@ -27,7 +19,8 @@
 .title {
     text-align: center;
     justify-content: center;
-    padding-bottom: 15px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .icon-custom {

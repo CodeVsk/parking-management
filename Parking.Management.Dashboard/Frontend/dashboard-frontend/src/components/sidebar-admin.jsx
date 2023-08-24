@@ -10,6 +10,10 @@ const SidebarAdmin = () => {
                 <Nav.Item>
                     <h1 className="title">Admin</h1>
                 </Nav.Item>
+                <Nav.Link href="/dashboard">
+                    <ImHome className="icon-custom"/>
+                    Dashboard
+                </Nav.Link>
                 <Nav.Link href="/cadastro-user">
                     <ImHome className="icon-custom"/>
                     Cadastrar Usuário
