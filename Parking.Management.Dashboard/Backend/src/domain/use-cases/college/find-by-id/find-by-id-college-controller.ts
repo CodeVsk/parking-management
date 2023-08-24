@@ -1,7 +1,6 @@
 import { Request } from "express";
 import { FindByIdCollegeUseCase } from "./find-by-id-college-usecase";
 import { HttpResponse } from "@/presentation/helpers/http";
-import { CollegeDto } from "../../../../application/dtos/college-dto";
 
 export class FindByIdCollegeController {
   constructor(private findByIdCollegeUseCase: FindByIdCollegeUseCase) {}
