@@ -9,7 +9,7 @@ import { authMiddleware } from "@/infra/factory/auth-factory";
 export default (router: Router): void => {
   router.get(
     "/college/:id",
-    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    //(req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdCollegeController)
   );
   router.put(

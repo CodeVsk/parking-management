@@ -8,7 +8,7 @@ export class CreateManyUserController {
 
   async handle(request: Request): Promise<HttpResponse> {
     try {
-      const data: UserDto = request.body;
+      const data: UserDto[] = request.body;
 
       const result = await this.createManyUserUseCase.execute(data);
 

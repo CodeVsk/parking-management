@@ -1,21 +1,18 @@
 import { IUserRepository } from "../../../contracts";
 import { UserDto } from "../../../../application/dtos/user-dto";
-import { UserMapper } from "../../../../application/mappers/user-mapper";
+import Mapper from "@/application/mappers";
+
 import { Result } from "../../../../core/domain/result";
+import { User } from "@/domain/entities";
 
 export class CreateManyUserUseCase {
-  constructor(
-    private userRepository: IUserRepository,
-    private userMapper: UserMapper
-  ) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: UserDto[]): Promise<Result<number>> {
-    const userModel = this.userMapper.mapper(data);
+    const userModel = await Mapper.mapArrayAsync(data, User);
 
     const result = await this.userRepository.createMany(userModel);
 
-    const userDto = this.userMapper.mapper(result);
-
-    return new Result<UserDto>(userDto, "Usuário criado com sucesso.");
+    return new Result<number>(result, "Usuários criados com sucesso.");
   }
 }

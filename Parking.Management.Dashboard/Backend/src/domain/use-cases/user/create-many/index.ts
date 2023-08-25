@@ -1,12 +1,11 @@
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
-import { UserMapper } from "../../../../application/mappers/user-mapper";
-import { CreateUserController } from "./create-many-user-controller";
-import { CreateUserUseCase } from "./create-many-user-usecase";
+import Mapper from "@/application/mappers";
+import { CreateManyUserUseCase } from "./create-many-user-usecase";
+import { CreateManyUserController } from "./create-many-user-controller";
 
 const repository = new PrismaUserRepository();
-const mapper = new UserMapper();
-const loader = new CreateUserUseCase(repository, mapper);
+const loader = new CreateManyUserUseCase(repository);
 
-const createUserController = new CreateUserController(loader);
+const createManyUserController = new CreateManyUserController(loader);
 
-export { createUserController };
+export { createManyUserController };

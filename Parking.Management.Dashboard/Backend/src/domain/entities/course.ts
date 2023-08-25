@@ -5,7 +5,6 @@ export class Course
   extends Entity
   implements Prisma.CourseUncheckedCreateInput
 {
-  id: string;
   name: string;
   created_at?: Date;
   updated_at?: Date;

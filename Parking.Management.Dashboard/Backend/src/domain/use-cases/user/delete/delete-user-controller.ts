@@ -1,7 +1,6 @@
 import { Request } from "express";
 import { DeleteUserUseCase } from "./delete-user-usecase";
 import { HttpResponse } from "@/presentation/helpers/http";
-import { UserDto } from "../../../../application/dtos/user-dto";
 
 export class DeleteUserController {
   constructor(private deleteUserUseCase: DeleteUserUseCase) {}

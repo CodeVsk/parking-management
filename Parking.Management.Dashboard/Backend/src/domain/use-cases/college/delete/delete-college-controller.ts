@@ -1,7 +1,6 @@
 import { Request } from "express";
 import { DeleteCollegeUseCase } from "./delete-college-usecase";
 import { HttpResponse } from "@/presentation/helpers/http";
-import { CollegeDto } from "../../../../application/dtos/college-dto";
 
 export class DeleteCollegeController {
   constructor(private deleteCollegeUseCase: DeleteCollegeUseCase) {}

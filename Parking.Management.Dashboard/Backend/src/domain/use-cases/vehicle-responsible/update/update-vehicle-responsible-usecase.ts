@@ -25,7 +25,7 @@ export class UpdateVehicleResponsibleUseCase {
       vehicleResponsibleModel
     );
 
-    const vehicleResponsibleDto = this.vehicleResponsibleMapper.mapper(result);
+    const vehicleResponsibleDto = this.vehicleResponsibleawait Mapper.mapper(result);
 
     return new Result<VehicleResponsibleDto>(
       vehicleResponsibleDto,
