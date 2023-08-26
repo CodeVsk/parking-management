@@ -1,12 +1,12 @@
 import React from "react";
-import AppRoutes from "./routes/app-routes";
+import MapRoutes from "./routes/router";
 
 function App() {
-    return (
-        <>
-            <AppRoutes />
-        </>
-    )
+  return (
+    <>
+      <MapRoutes />
+    </>
+  );
 }
 
 export default App;

@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.col-custom {
+    width: 250px;
+}
+
+.main {
+    background-color: #101952;
+}
