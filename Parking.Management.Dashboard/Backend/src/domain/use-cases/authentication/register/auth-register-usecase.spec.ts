@@ -5,9 +5,8 @@ import { UserLoginDto } from "@/application/dtos";
 
 describe("Auth user usecase", () => {
   it("Should be able to auth account user", async () => {
-    const provider = new AuthProvider();
     const repository = new PrismaUserRepository();
-    const sut = new AuthRegisterUseCase(provider, repository);
+    const sut = new AuthRegisterUseCase(repository);
 
     const dataSource: UserLoginDto = {
       email: "",

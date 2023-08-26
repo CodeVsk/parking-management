@@ -10,11 +10,11 @@ export class CreateVehicleUseCase {
   ) {}
 
   async execute(data: VehicleDto): Promise<Result<VehicleDto>> {
-    const vehicleModel = this.vehicleMapper.mapper(data);
+    const vehicleModel = this.vehicleawait Mapper.mapper(data);
 
     const result = await this.vehicleRepository.create(vehicleModel);
 
-    const vehicleDto = this.vehicleMapper.mapper(result);
+    const vehicleDto = this.vehicleawait Mapper.mapper(result);
 
     return new Result<VehicleDto>(
       vehicleDto,

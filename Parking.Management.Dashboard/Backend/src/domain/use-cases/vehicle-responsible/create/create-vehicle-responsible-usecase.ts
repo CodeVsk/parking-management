@@ -12,13 +12,13 @@ export class CreateVehicleResponsibleUseCase {
   async execute(
     data: VehicleResponsibleDto
   ): Promise<Result<VehicleResponsibleDto>> {
-    const vehicleResponsibleModel = this.vehicleResponsibleMapper.mapper(data);
+    const vehicleResponsibleModel = this.vehicleResponsibleawait Mapper.mapper(data);
 
     const result = await this.vehicleResponsibleRepository.create(
       vehicleResponsibleModel
     );
 
-    const vehicleResponsibleDto = this.vehicleResponsibleMapper.mapper(result);
+    const vehicleResponsibleDto = this.vehicleResponsibleawait Mapper.mapper(result);
 
     return new Result<VehicleResponsibleDto>(
       vehicleResponsibleDto,

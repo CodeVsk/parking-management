@@ -1,20 +1,18 @@
 import { IGarageRepository } from "../../../contracts";
 import { GarageDto } from "../../../../application/dtos/garage-dto";
-import { GarageMapper } from "../../../../application/mappers/garage-mapper";
 import { Result } from "../../../../core/domain/result";
+import Mapper from "@/application/mappers";
+import { Garage } from "@/domain/entities";
 
 export class CreateGarageUseCase {
-  constructor(
-    private garageRepository: IGarageRepository,
-    private garageMapper: GarageMapper
-  ) {}
+  constructor(private garageRepository: IGarageRepository) {}
 
   async execute(data: GarageDto): Promise<Result<GarageDto>> {
-    const garageModel = this.garageMapper.mapper(data);
+    const garageModel = await Mapper.map(data, Garage);
 
     const result = await this.garageRepository.create(garageModel);
 
-    const garageDto = this.garageMapper.mapper(result);
+    const garageDto = await Mapper.map(result, GarageDto);
 
     return new Result<GarageDto>(
       garageDto,
