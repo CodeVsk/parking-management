@@ -20,3 +20,8 @@ Parking management design using artificial intelligence for study purposes.
 **Infrastructure** Docker, Kubernetes
 
 **Database** PostgreSQL
+
+## Development principles
+
+**Domain Driven Design (DDD)**
+**SOLID**
