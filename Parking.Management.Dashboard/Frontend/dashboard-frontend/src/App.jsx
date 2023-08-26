@@ -1,18 +1,12 @@
-
-import './App.css'
-import Content from './layout/Content/Content'
-import Sidebar from './layout/Sidebar/Sidebar'
+import React from "react";
+import MapRoutes from "./routes/router";
 
 function App() {
-
   return (
     <>
-     <div className='app'>
-     <Sidebar/>
-     <Content/>
-     </div>
+      <MapRoutes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
