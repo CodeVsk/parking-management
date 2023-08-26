@@ -12,7 +12,7 @@ export class DeleteVehicleUseCase {
   async execute(id: string): Promise<Result<VehicleDto>> {
     const result = await this.vehicleRepository.delete(id);
 
-    const vehicleDto = this.vehicleMapper.mapper(result);
+    const vehicleDto = this.vehicleawait Mapper.mapper(result);
 
     return new Result<VehicleDto>(
       vehicleDto,

@@ -25,7 +25,9 @@ export class AuthLoginUseCase {
       return new Result("A senha inserida está incorreta.");
     }
 
-    const token = this.authProvider.generateToken(user.id);
+    const isAdmin: boolean = user.permissions == "ADMIN";
+
+    const token = this.authProvider.generateToken(user.id, isAdmin);
 
     return new Result<string>(token, "Usuário autenticado com sucesso.");
   }
