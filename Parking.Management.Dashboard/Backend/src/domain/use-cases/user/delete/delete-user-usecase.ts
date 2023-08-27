@@ -1,6 +1,6 @@
 import { IUserRepository } from "../../../contracts";
 import { UserDto } from "../../../../application/dtos/user-dto";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 
 import { Result } from "../../../../core/domain/result";
 
@@ -10,7 +10,7 @@ export class DeleteUserUseCase {
   async execute(id: string): Promise<Result<UserDto>> {
     const result = await this.userRepository.delete(id);
 
-    const userDto = await Mapper.map(result, UserDto);
+    const userDto = mapper.map(result, User, UserDto);
 
     return new Result<UserDto>(userDto, "Usuário removido com sucesso.");
   }

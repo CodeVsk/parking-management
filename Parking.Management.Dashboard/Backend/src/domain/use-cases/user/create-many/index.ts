@@ -1,5 +1,5 @@
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 import { CreateManyUserUseCase } from "./create-many-user-usecase";
 import { CreateManyUserController } from "./create-many-user-controller";
 

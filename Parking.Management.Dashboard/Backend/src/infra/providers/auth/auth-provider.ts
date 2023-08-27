@@ -28,6 +28,7 @@ export class AuthProvider implements IAuthProvider {
         token,
         env.jwt_secret
       ) as UserPayload;
+
       return decoded;
     } catch (err) {
       throw new Error("Ocorreu um erro na validação de seu token");
@@ -44,7 +45,9 @@ export class AuthProvider implements IAuthProvider {
 
       return false;
     } catch (err) {
-      throw new Error("Erro um erro na validação de seu token administrativo");
+      throw new Error(
+        "Ocorreu um erro na validação de seu token administrativo"
+      );
     }
   }
 }

@@ -4,8 +4,7 @@ import { UpdateVehicleResponsibleController } from "./update-vehicle-responsible
 import { UpdateVehicleResponsibleUseCase } from "./update-vehicle-responsible-usecase";
 
 const repository = new PrismaVehicleResponsibleRepository();
-const mapper = new VehicleResponsibleMapper();
-const loader = new UpdateVehicleResponsibleUseCase(repository, mapper);
+const loader = new UpdateVehicleResponsibleUseCase(repository);
 
 const updateVehicleResponsibleController =
   new UpdateVehicleResponsibleController(loader);

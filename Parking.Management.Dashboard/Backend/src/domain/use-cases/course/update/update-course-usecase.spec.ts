@@ -1,5 +1,5 @@
 import { CourseDto } from "../../../../application/dtos/course-dto";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 import { PrismaCourseRepository } from "../../../../infra/repositories/prisma/course-repository";
 import { UpdateCourseUseCase } from "./update-course-usecase";
 

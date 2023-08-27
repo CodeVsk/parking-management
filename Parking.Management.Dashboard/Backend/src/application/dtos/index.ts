@@ -7,3 +7,4 @@ export * from "@/application/dtos/vehicle-note-dto";
 export * from "@/application/dtos/vehicle-responsible-dto";
 export * from "@/application/dtos/course-dto";
 export * from "@/application/dtos/user-login-dto";
+export * from "@/application/dtos/authenticated-dto";

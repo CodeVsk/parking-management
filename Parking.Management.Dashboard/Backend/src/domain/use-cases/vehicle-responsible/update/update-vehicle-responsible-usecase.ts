@@ -1,12 +1,12 @@
 import { IVehicleResponsibleRepository } from "../../../contracts";
-import { VehicleResponsibleDto } from "../../../../application/dtos/vehicle-responsible-dto";
-import { VehicleResponsibleMapper } from "../../../../application/mappers/vehicle-responsible-mapper";
 import { Result } from "../../../../core/domain/result";
+import { mapper } from "@/application/mappers";
+import { VehicleResponsibleDto } from "@/application/dtos";
+import { VehicleResponsible } from "@/domain/entities";
 
 export class UpdateVehicleResponsibleUseCase {
   constructor(
-    private vehicleResponsibleRepository: IVehicleResponsibleRepository,
-    private vehicleResponsibleMapper: VehicleResponsibleMapper
+    private vehicleResponsibleRepository: IVehicleResponsibleRepository
   ) {}
 
   async execute(
@@ -25,7 +25,11 @@ export class UpdateVehicleResponsibleUseCase {
       vehicleResponsibleModel
     );
 
-    const vehicleResponsibleDto = this.vehicleResponsibleawait Mapper.mapper(result);
+    const vehicleResponsibleDto = mapper.map(
+      result,
+      VehicleResponsible,
+      VehicleResponsibleDto
+    );
 
     return new Result<VehicleResponsibleDto>(
       vehicleResponsibleDto,

@@ -4,8 +4,7 @@ import { CreateVehicleResponsibleController } from "./create-vehicle-responsible
 import { CreateVehicleResponsibleUseCase } from "./create-vehicle-responsible-usecase";
 
 const repository = new PrismaVehicleResponsibleRepository();
-const mapper = new VehicleResponsibleMapper();
-const loader = new CreateVehicleResponsibleUseCase(repository, mapper);
+const loader = new CreateVehicleResponsibleUseCase(repository);
 
 const createVehicleResponsibleController =
   new CreateVehicleResponsibleController(loader);
