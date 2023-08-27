@@ -7,32 +7,63 @@ import HomeUser from "../pages/DashboardUser/Home";
 import HomeAdmin from "../pages/DashboardAdmin/Home";
 import RegisterVehicle from "../pages/DashboardAdmin/RegisterVehicle";
 import RegisterUser from "../pages/DashboardAdmin/RegisterUser";
+import { AuthContext } from "../providers/authProvider";
 
 const MapRoutes = () => {
+  const PrivateRoute = ({ element: Component, roles, ...rest }) => {
+    const { user } = AuthContext();
+
+    if (!user) {
+      return <Redirect to="/login" />;
+    }
+
+    if (roles && !roles.includes(user.role)) {
+      return <Redirect to="/logout" />;
+    }
+
+    return <Route {...rest} render={(props) => <Component {...props} />} />;
+  };
+
   return (
     <Router>
       <Routes>
         <Route exact path="/login" element={<Login />} />
         /*User Routes*/
-        <Route path="/dashboard/user" element={<HomeUser />} />
-        <Route path="/dashboard/user/vehicle" element={<VehicleTable />} />
-        <Route
+        <PrivateRoute
+          path="/dashboard/user"
+          element={<HomeUser />}
+          roles={["DEFAULT", "ADMIN"]}
+        />
+        <PrivateRoute
+          path="/dashboard/user/vehicle"
+          element={<VehicleTable />}
+          roles={["DEFAULT", "ADMIN"]}
+        />
+        <PrivateRoute
           path="/dashboard/user/vehicle/notes"
           element={<VehicleNoteTable />}
+          roles={["DEFAULT", "ADMIN"]}
         />
-        <Route
+        <PrivateRoute
           path="/dashboard/user/vehicle/responsible"
           element={<VehicleResponsibleTable />}
+          roles={["DEFAULT", "ADMIN"]}
         />
         /*Admin Routes*/
-        <Route path="/dashboard/admin" element={<HomeAdmin />} />
-        <Route
+        <PrivateRoute
+          path="/dashboard/admin"
+          element={<HomeAdmin />}
+          roles={["DEFAULT", "ADMIN"]}
+        />
+        <PrivateRoute
           path="/dashboard/admin/register/user"
           element={<RegisterUser />}
+          roles={["DEFAULT", "ADMIN"]}
         />
-        <Route
+        <PrivateRoute
           path="/dashboard/admin/register/vehicle"
           element={<RegisterVehicle />}
+          roles={["DEFAULT", "ADMIN"]}
         />
       </Routes>
     </Router>
