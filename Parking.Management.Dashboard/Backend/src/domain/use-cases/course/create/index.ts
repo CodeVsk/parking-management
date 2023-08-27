@@ -1,5 +1,5 @@
 import { PrismaCourseRepository } from "../../../../infra/repositories/prisma/course-repository";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 import { CreateCourseController } from "./create-course-controller";
 import { CreateCourseUseCase } from "./create-course-usecase";
 

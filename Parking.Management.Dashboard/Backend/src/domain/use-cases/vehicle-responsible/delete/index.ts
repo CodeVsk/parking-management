@@ -4,8 +4,7 @@ import { DeleteVehicleResponsibleController } from "./delete-vehicle-responsible
 import { DeleteVehicleResponsibleUseCase } from "./delete-vehicle-responsible-usecase";
 
 const repository = new PrismaVehicleResponsibleRepository();
-const mapper = new VehicleResponsibleMapper();
-const loader = new DeleteVehicleResponsibleUseCase(repository, mapper);
+const loader = new DeleteVehicleResponsibleUseCase(repository);
 
 const deleteVehicleResponsibleController =
   new DeleteVehicleResponsibleController(loader);

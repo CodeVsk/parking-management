@@ -5,9 +5,8 @@ import { UpdateVehicleUseCase } from "./update-vehicle-usecase";
 
 describe("Create vehicle usecase", () => {
   it("Should be able to create a new vehicle", async () => {
-    const mapper = new VehicleMapper();
     const repository = new PrismaVehicleRepository();
-    const sut = new UpdateVehicleUseCase(repository, mapper);
+    const sut = new UpdateVehicleUseCase(repository);
 
     const dataSource: VehicleDto = {
       model: "",

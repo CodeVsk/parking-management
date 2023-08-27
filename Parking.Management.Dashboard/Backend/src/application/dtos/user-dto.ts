@@ -11,56 +11,74 @@ import {
 } from "class-validator";
 import { Gender, Permission, Role } from "@prisma/client";
 import { UserGender } from "@/domain/enums";
+import { AutoMap } from "@automapper/classes";
 
 export class UserDto extends EntityDto {
-  //@IsNotEmpty({ message: "O nome é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O nome é obrigatório." })
   name: string;
 
-  //@IsEmail({}, { message: "O email é obrigatório." })
+  @AutoMap()
+  @IsEmail({}, { message: "O email é obrigatório." })
   email: string;
 
-  //@MinLength(6, { message: "A senha é obrigatória." })
+  @AutoMap()
+  @MinLength(6, { message: "A senha é obrigatória." })
   password: string;
 
-  //@IsNotEmpty({ message: "O telefone é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O telefone é obrigatório." })
   phone: string;
 
-  //@IsNotEmpty({ message: "O endereço é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O endereço é obrigatório." })
   address: string;
 
-  // @IsNotEmpty({ message: "O estado é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O estado é obrigatório." })
   state: string;
 
-  //@IsNotEmpty({ message: "A cidade é obrigatória." })
+  @AutoMap()
+  @IsNotEmpty({ message: "A cidade é obrigatória." })
   city: string;
 
-  //@IsNotEmpty({ message: "O rg é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O rg é obrigatório." })
   rg: string;
 
-  //@IsNotEmpty({ message: "O cpf é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O cpf é obrigatório." })
   cpf: string;
 
-  //@IsEnum(Gender, { message: "O genêro é obrigatório." })
+  @AutoMap()
+  @IsEnum(Gender, { message: "O genêro é obrigatório." })
   gender: UserGender;
 
-  //@IsNotEmpty({ message: "O curso é obrigatório." })
+  @AutoMap()
+  @IsNotEmpty({ message: "O curso é obrigatório." })
   courseId: string;
 
-  //@IsNotEmpty({ message: "A matricula é obrigatória." })
+  @AutoMap()
+  @IsNotEmpty({ message: "A matricula é obrigatória." })
   enrollment: string;
 
-  //@IsBoolean({ message: "O status do usuário é obrigatório." })
+  @AutoMap()
+  @IsBoolean({ message: "O status do usuário é obrigatório." })
   status: boolean;
 
-  //@IsNotEmpty({ message: "A universidade é obrigatória." })
+  @AutoMap()
+  @IsNotEmpty({ message: "A universidade é obrigatória." })
   collegeId: string;
 
-  //@IsDateString({}, { message: "A data de aniversário é obrigatória." })
+  @AutoMap()
+  @IsDateString({}, { message: "A data de aniversário é obrigatória." })
   birthdate: Date;
 
-  //@IsEnum(Role, { message: "A função é obrigatória." })
+  @AutoMap()
+  @IsEnum(Role, { message: "A função é obrigatória." })
   role: UserRoles;
 
-  //@IsEnum(Permission, { message: "A permissão é obrigatória." })
+  @AutoMap()
+  @IsEnum(Permission, { message: "A permissão é obrigatória." })
   permissions: UserPermissions;
 }
