@@ -1,13 +1,10 @@
-import { UserDto } from "../../../../application/dtos/user-dto";
-import { UserMapper } from "../../../../application/mappers/user-mapper";
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
 import { DeleteUserUseCase } from "./delete-user-usecase";
 
 describe("Create user usecase", () => {
   it("Should be able to create a new user", async () => {
-    const mapper = new UserMapper();
     const repository = new PrismaUserRepository();
-    const sut = new DeleteUserUseCase(repository, mapper);
+    const sut = new DeleteUserUseCase(repository);
 
     const id: string = "123";
 

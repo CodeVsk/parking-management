@@ -1,24 +1,19 @@
 import { Request } from "express";
 import { DeleteCollegeUseCase } from "./delete-college-usecase";
-import {
-  HttpResponse,
-  error,
-  ok,
-} from "../../../../application/protocols/http";
-import { CollegeDto } from "../../../../application/dtos/college-dto";
+import { HttpResponse } from "@/presentation/helpers/http";
 
 export class DeleteCollegeController {
   constructor(private deleteCollegeUseCase: DeleteCollegeUseCase) {}
 
-  async handle(request: Request): Promise<HttpResponse<CollegeDto>> {
+  async handle(request: Request): Promise<HttpResponse> {
     try {
       const { id } = request.params;
 
       const result = await this.deleteCollegeUseCase.execute(id);
 
-      return ok(result);
+      return HttpResponse.ok(result);
     } catch (err) {
-      return error(err);
+      return HttpResponse.badRequest(err);
     }
   }
 }

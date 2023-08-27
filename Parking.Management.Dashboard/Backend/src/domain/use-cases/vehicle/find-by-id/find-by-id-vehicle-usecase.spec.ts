@@ -5,9 +5,8 @@ import { FindByIdVehicleUseCase } from "./find-by-id-vehicle-usecase";
 
 describe("Create vehicle usecase", () => {
   it("Should be able to create a new vehicle", async () => {
-    const mapper = new VehicleMapper();
     const repository = new PrismaVehicleRepository();
-    const sut = new FindByIdVehicleUseCase(repository, mapper);
+    const sut = new FindByIdVehicleUseCase(repository);
 
     const id: string = "123";
 

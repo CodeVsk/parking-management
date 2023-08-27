@@ -1,24 +1,20 @@
 import { Request } from "express";
 import { DeleteVehicleUseCase } from "./delete-vehicle-usecase";
-import {
-  HttpResponse,
-  error,
-  ok,
-} from "../../../../application/protocols/http";
+import { HttpResponse } from "@/presentation/helpers/http";
 import { VehicleDto } from "../../../../application/dtos/vehicle-dto";
 
 export class DeleteVehicleController {
   constructor(private deleteVehicleUseCase: DeleteVehicleUseCase) {}
 
-  async handle(request: Request): Promise<HttpResponse<VehicleDto>> {
+  async handle(request: Request): Promise<HttpResponse> {
     try {
       const { id } = request.params;
 
       const result = await this.deleteVehicleUseCase.execute(id);
 
-      return ok(result);
+      return HttpResponse.ok(result);
     } catch (err) {
-      return error(err);
+      return HttpResponse.badRequest(err);
     }
   }
 }

@@ -4,10 +4,27 @@ import { createCollegeController } from "../../../domain/use-cases/college/creat
 import { updateCollegeController } from "../../../domain/use-cases/college/update";
 import { findByIdCollegeController } from "../../../domain/use-cases/college/find-by-id";
 import { deleteCollegeController } from "../../../domain/use-cases/college/delete";
+import { authMiddleware } from "@/infra/factory/auth-factory";
 
 export default (router: Router): void => {
-  router.get("/vehicle/:id", adaptRoute(findByIdCollegeController));
-  router.put("/vehicle", adaptRoute(updateCollegeController));
-  router.post("/vehicle", adaptRoute(createCollegeController));
-  router.delete("/vehicle/:id", adaptRoute(deleteCollegeController));
+  router.get(
+    "/vehicle/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(findByIdCollegeController)
+  );
+  router.put(
+    "/vehicle",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    adaptRoute(updateCollegeController)
+  );
+  router.post(
+    "/vehicle",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    adaptRoute(createCollegeController)
+  );
+  router.delete(
+    "/vehicle/:id",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    adaptRoute(deleteCollegeController)
+  );
 };

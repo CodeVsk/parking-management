@@ -1,20 +1,18 @@
 import { ICollegeRepository } from "../../../contracts";
 import { CollegeDto } from "../../../../application/dtos/college-dto";
-import { CollegeMapper } from "../../../../application/mappers/college-mapper";
+import { mapper } from "@/application/mappers/mapper-config";
 import { Result } from "../../../../core/domain/result";
+import { College } from "@/domain/entities";
 
 export class CreateCollegeUseCase {
-  constructor(
-    private collegeRepository: ICollegeRepository,
-    private collegeMapper: CollegeMapper
-  ) {}
+  constructor(private collegeRepository: ICollegeRepository) {}
 
   async execute(data: CollegeDto): Promise<Result<CollegeDto>> {
-    const collegeModel = this.collegeMapper.mapper(data);
+    const collegeModel = mapper.map(data, CollegeDto, College);
 
     const result = await this.collegeRepository.create(collegeModel);
 
-    const collegeDto = this.collegeMapper.mapper(result);
+    const collegeDto = mapper.map(result, College, CollegeDto);
 
     return new Result<CollegeDto>(
       collegeDto,

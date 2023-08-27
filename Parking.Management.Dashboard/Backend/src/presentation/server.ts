@@ -1,4 +1,6 @@
-import { app, env } from "@/infra/config";
+import { app, env, mapper } from "@/infra/config";
+
+mapper.createMapper();
 
 const { port } = env;
 

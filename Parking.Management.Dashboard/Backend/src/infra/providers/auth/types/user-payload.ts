@@ -1,4 +1,4 @@
 export type UserPayload = {
-  id: string;
+  userId: string;
   isAdmin: boolean;
 };

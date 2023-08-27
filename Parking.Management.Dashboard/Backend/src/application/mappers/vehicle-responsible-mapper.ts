@@ -1,14 +1,10 @@
-import { VehicleResponsible } from "../../domain/entities";
+import { createMap } from "@automapper/core";
+import { mapper } from "./mapper-config";
+import { VehicleResponsible } from "@/domain/entities";
 import { VehicleResponsibleDto } from "../dtos";
 
 export class VehicleResponsibleMapper {
-  mapper(
-    data: VehicleResponsible | VehicleResponsibleDto
-  ): VehicleResponsible | VehicleResponsibleDto {
-    const entitie: VehicleResponsible | VehicleResponsibleDto = {
-      ...data,
-    };
-
-    return entitie;
+  constructor() {
+    createMap(mapper, VehicleResponsible, VehicleResponsibleDto);
   }
 }

@@ -2,14 +2,24 @@ import * as jwt from "jsonwebtoken";
 import { env } from "@/infra/config";
 import { IAuthProvider } from "@/domain/contracts";
 import { UserPayload } from "./types/user-payload";
+import { UserPermissions } from "@/domain/enums/user-permissions";
 
 export class AuthProvider implements IAuthProvider {
-  generateToken(userId: string): string {
-    const token: string = jwt.sign({ userId }, env.jwt_secret, {
-      expiresIn: "24h",
-    });
+  generateToken(userId: string, isAdmin: boolean): string {
+    try {
+      const data: UserPayload = {
+        userId,
+        isAdmin,
+      };
 
-    return token;
+      const token: string = jwt.sign(data, env.jwt_secret, {
+        expiresIn: "24h",
+      });
+
+      return token;
+    } catch (err) {
+      throw new Error("Ocorreu um erro na geração de seu token");
+    }
   }
 
   verifyToken(token: string): UserPayload {
@@ -20,8 +30,8 @@ export class AuthProvider implements IAuthProvider {
       ) as UserPayload;
 
       return decoded;
-    } catch (error) {
-      throw new Error("Invalid token");
+    } catch (err) {
+      throw new Error("Ocorreu um erro na validação de seu token");
     }
   }
 
@@ -34,8 +44,10 @@ export class AuthProvider implements IAuthProvider {
       }
 
       return false;
-    } catch (error) {
-      throw new Error("Error in admin validation permission");
+    } catch (err) {
+      throw new Error(
+        "Ocorreu um erro na validação de seu token administrativo"
+      );
     }
   }
 }

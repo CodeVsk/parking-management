@@ -1,13 +1,11 @@
 import { IUserRepository } from "../../../contracts";
 import { UserDto } from "../../../../application/dtos/user-dto";
-import { UserMapper } from "../../../../application/mappers/user-mapper";
+import { mapper } from "@/application/mappers/mapper-config";
+
 import { Result } from "../../../../core/domain/result";
 
 export class UpdateUserUseCase {
-  constructor(
-    private userRepository: IUserRepository,
-    private userMapper: UserMapper
-  ) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: UserDto): Promise<Result<UserDto>> {
     const user = await this.userRepository.findById(data.id);
@@ -19,7 +17,7 @@ export class UpdateUserUseCase {
 
     const result = await this.userRepository.update(userModel);
 
-    const userDto = this.userMapper.mapper(result);
+    const userDto = mapper.map(result, User, UserDto);
 
     return new Result<UserDto>(userDto, "Usuário atualizado com sucesso.");
   }

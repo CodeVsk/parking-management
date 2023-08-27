@@ -2,7 +2,7 @@ import { IUserRepository } from "../../../contracts";
 import { Result } from "../../../../core/domain/result";
 import bcrypt from "bcrypt";
 import { AuthProvider } from "@/infra/providers";
-import { UserLoginDto } from "@/application/dtos";
+import { AuthenticatedDto, UserLoginDto } from "@/application/dtos";
 
 export class AuthLoginUseCase {
   constructor(
@@ -10,7 +10,7 @@ export class AuthLoginUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(data: UserLoginDto): Promise<Result<string>> {
+  async execute(data: UserLoginDto): Promise<Result<AuthenticatedDto>> {
     const { email, password } = data;
 
     const user = await this.userRepository.findByEmail(email);
@@ -25,8 +25,19 @@ export class AuthLoginUseCase {
       return new Result("A senha inserida está incorreta.");
     }
 
-    const token = this.authProvider.generateToken(user.id);
+    const isAdmin: boolean = user.permissions == "ADMIN";
 
-    return new Result<string>(token, "Usuário autenticado com sucesso.");
+    const token = this.authProvider.generateToken(user.id, isAdmin);
+
+    const result: AuthenticatedDto = {
+      token: token,
+      role: user.permissions,
+      userId: user.id,
+    };
+
+    return new Result<AuthenticatedDto>(
+      result,
+      "Usuário autenticado com sucesso."
+    );
   }
 }

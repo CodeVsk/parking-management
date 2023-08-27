@@ -5,4 +5,5 @@ export * from "@/domain/contracts/prisma/user-repository";
 export * from "@/domain/contracts/prisma/vehicle-repository";
 export * from "@/domain/contracts/prisma/vehicle-responsible-repository";
 export * from "@/domain/contracts/prisma/vehicle-note-repository";
+export * from "@/domain/contracts/prisma/course-repository";
 export * from "@/domain/contracts/providers/auth-provider";
