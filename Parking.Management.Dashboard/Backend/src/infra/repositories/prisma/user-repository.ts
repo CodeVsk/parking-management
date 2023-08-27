@@ -13,6 +13,16 @@ export class PrismaUserRepository implements IUserRepository {
     return result;
   }
 
+  async createMany(users: User[]): Promise<number> {
+    const result = await prisma.user.createMany({
+      data: {
+        ...users,
+      },
+    });
+
+    return result.count;
+  }
+
   async update(user: User): Promise<User> {
     const result = await prisma.user.update({
       where: {

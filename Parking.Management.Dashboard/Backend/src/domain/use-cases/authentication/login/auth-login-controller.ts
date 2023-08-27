@@ -1,24 +1,20 @@
 import { Request } from "express";
 import { AuthLoginUseCase } from "./auth-login-usecase";
-import {
-  HttpResponse,
-  error,
-  ok,
-} from "../../../../application/protocols/http";
 import { UserDto } from "../../../../application/dtos/user-dto";
+import { HttpResponse } from "@/presentation/helpers/http";
 
 export class AuthLoginController {
   constructor(private authUserUseCase: AuthLoginUseCase) {}
 
-  async handle(request: Request): Promise<HttpResponse<UserDto>> {
+  async handle(request: Request): Promise<HttpResponse> {
     try {
       const data: UserDto = request.body;
 
       const result = await this.authUserUseCase.execute(data);
 
-      return ok(result);
+      return HttpResponse.ok(result);
     } catch (err) {
-      return error(err);
+      return HttpResponse.badRequest(err);
     }
   }
 }

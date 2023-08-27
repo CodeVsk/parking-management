@@ -19,7 +19,7 @@ export class UpdateVehicleUseCase {
 
     const result = await this.vehicleRepository.update(vehicleModel);
 
-    const vehicleDto = this.vehicleMapper.mapper(result);
+    const vehicleDto = this.vehicleawait Mapper.mapper(result);
 
     return new Result<VehicleDto>(
       vehicleDto,

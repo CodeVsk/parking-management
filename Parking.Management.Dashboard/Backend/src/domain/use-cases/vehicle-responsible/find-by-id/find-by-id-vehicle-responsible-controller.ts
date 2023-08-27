@@ -1,10 +1,6 @@
 import { Request } from "express";
 import { FindByIdVehicleResponsibleUseCase } from "./find-by-id-vehicle-responsible-usecase";
-import {
-  HttpResponse,
-  error,
-  ok,
-} from "../../../../application/protocols/http";
+import { HttpResponse } from "@/presentation/helpers/http";
 import { VehicleResponsibleDto } from "../../../../application/dtos/vehicle-responsible-dto";
 
 export class FindByIdVehicleResponsibleController {
@@ -12,15 +8,15 @@ export class FindByIdVehicleResponsibleController {
     private findByIdVehicleResponsibleUseCase: FindByIdVehicleResponsibleUseCase
   ) {}
 
-  async handle(request: Request): Promise<HttpResponse<VehicleResponsibleDto>> {
+  async handle(request: Request): Promise<HttpResponse> {
     try {
       const { id } = request.params;
 
       const result = await this.findByIdVehicleResponsibleUseCase.execute(id);
 
-      return ok(result);
+      return HttpResponse.ok(result);
     } catch (err) {
-      return error(err);
+      return HttpResponse.badRequest(err);
     }
   }
 }
