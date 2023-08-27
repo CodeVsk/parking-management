@@ -1,12 +1,12 @@
 import React from "react";
 import "./index.css";
-import { LayoutAdmin } from "../../../components/layout/admin";
+import { Layout } from "../../../components/layout/admin";
 
 const RegisterVehicle = () => {
   return (
-    <LayoutAdmin>
+    <Layout>
       <h1>Register Vehicle</h1>
-    </LayoutAdmin>
+    </Layout>
   );
 };
 

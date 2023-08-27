@@ -1,18 +1,36 @@
-import { loginApi, verifyPermissionApi } from "../api/authApi";
+import { loginApi, validateRoleApi } from "../api/authApi";
 
 const login = async (username, password) => {
-  const response = await loginApi(username, password);
+  const { token, userId, permission } = await loginApi(username, password);
   if (response.success) {
     // Armazenar o token no armazenamento (localStorage ou outro)
-    localStorage.setItem("PM:AUTHORIZATION", response);
+    localStorage.setItem("PM:TOKEN", token);
+
+    return { userId, permission };
   }
-  return response;
+
+  return false;
 };
 
-const verifyPermission = async (username, password) => {
-  const response = await verifyPermissionApi(username, password);
-
-  return response;
+const logout = () => {
+  localStorage.removeItem("PM:TOKEN");
+  history.push("/login");
 };
 
-export { login, verifyPermission };
+const validateRole = async (role) => {
+  try {
+    const token = localStorage.getItem("PM:TOKEN");
+
+    if (token == null) {
+      return false;
+    }
+
+    const response = await validateRoleApi(token, role);
+
+    return response;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export { login, logout, validateRole };

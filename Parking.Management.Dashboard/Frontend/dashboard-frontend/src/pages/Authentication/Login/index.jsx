@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/authProvider";
 
 const Login = () => {
+  const { loginUser } = AuthContext();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    loginUser(username, password);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.containerForm}>
@@ -23,6 +32,7 @@ const Login = () => {
                   id="email"
                   placeholder="Digite seu Email..."
                   required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
 
@@ -34,15 +44,12 @@ const Login = () => {
                   id="password"
                   placeholder="Digite sua Senha..."
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
 
-            <div>
-              <Link className={styles.continueButton} to="/cadastro-user">
-                Continuar
-              </Link>
-            </div>
+            <button type="submit" onClick={handleLogin}></button>
           </form>
         </div>
       </div>
