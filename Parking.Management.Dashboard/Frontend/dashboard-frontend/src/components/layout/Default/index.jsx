@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import SidebarUser from "../../section/SidebarUser";
+import Sidebar from "../../section/Sidebar";
 import "./index.css";
 
 export function Layout(props) {
@@ -10,7 +10,7 @@ export function Layout(props) {
       <Container fluid>
         <Row data-bs-theme="dark">
           <Col className="col-1 p-0" data-bs-theme="dark" md={2}>
-            <SidebarUser />
+            <Sidebar />
           </Col>
           <Col>{props.children}</Col>
         </Row>

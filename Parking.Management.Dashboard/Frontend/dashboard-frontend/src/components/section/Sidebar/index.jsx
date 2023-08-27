@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import dashboardRoutes from "../../../data/dashboard-routes.json";
 
-const SidebarUser = () => {
+const Sidebar = () => {
   return (
     <Nav className="flex-column">
       <Nav.Item className="align-self-center">
@@ -26,4 +26,4 @@ const SidebarUser = () => {
   );
 };
 
-export default SidebarUser;
+export default Sidebar;
