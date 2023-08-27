@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { DeleteVehicleNoteUseCase } from "./delete-vehicle-note-usecase";
+import { DeleteVehicleNoteUseCase } from "./DeleteVehicleNoteUseCase";
 import { HttpResponse } from "@/presentation/helpers/http";
 import { VehicleNoteDto } from "../../../../application/dtos/vehicle-note-dto";
 

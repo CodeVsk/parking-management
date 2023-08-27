@@ -1,5 +1,5 @@
 import { UserDto } from "../../../../application/dtos/user-dto";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
 import { CreateUserUseCase } from "./create-user-usecase";

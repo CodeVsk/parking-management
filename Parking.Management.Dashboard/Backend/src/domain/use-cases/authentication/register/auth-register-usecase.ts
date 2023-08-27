@@ -6,7 +6,7 @@ import { UserDto } from "@/application/dtos";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 import { ObjectValidation } from "@/shared/utils/object-validation";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 import { User } from "@/domain/entities";
 
 export class AuthRegisterUseCase {
@@ -29,7 +29,7 @@ export class AuthRegisterUseCase {
 
     const password_hashed = await bcrypt.hashSync(password, 10);
 
-    const userModel = await Mapper.map<User>(data, UserDto);
+    const userModel = mapper.map<User>(data, UserDto);
 
     userModel.password = password_hashed;
 

@@ -1,10 +1,10 @@
 import { createMap } from "@automapper/core";
-import { mapper } from ".";
-import { College } from "@/domain/entities";
-import { CollegeDto } from "../dtos";
+import { mapper } from "./mapper-config";
+import { User } from "@/domain/entities";
+import { UserDto } from "../dtos";
 
-export class CollegeMapper {
+export class UserMapper {
   constructor() {
-    createMap(mapper, College, CollegeDto);
+    createMap(mapper, User, UserDto);
   }
 }

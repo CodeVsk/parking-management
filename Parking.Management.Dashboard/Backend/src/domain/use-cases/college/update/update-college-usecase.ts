@@ -1,6 +1,6 @@
 import { ICollegeRepository } from "../../../contracts";
 import { CollegeDto } from "../../../../application/dtos/college-dto";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 import { Result } from "../../../../core/domain/result";
 
 export class UpdateCollegeUseCase {
@@ -16,7 +16,7 @@ export class UpdateCollegeUseCase {
 
     const result = await this.collegeRepository.update(collegeModel);
 
-    const collegeDto = await Mapper.map<CollegeDto>(result, CollegeDto);
+    const collegeDto = mapper.map(result, College, CollegeDto);
 
     return new Result<CollegeDto>(
       collegeDto,
