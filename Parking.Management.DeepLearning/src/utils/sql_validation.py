@@ -1,6 +1,7 @@
 import psycopg2
 import colorama
 from colorama import Fore, Style
+from convert_text import ReadQrCode
 
 colorama.init()
 
@@ -27,6 +28,21 @@ class Validation:
         except Exception as e:
             print(e)
     
+    def validate_user_x_plate(user):
+        try:
+            with psycopg2.connect(**connection_string) as connection:
+                with connection.cursor() as cursor:
+                    query = f"SELECT plate FROM public.parking WHERE userr = '{user}';"
+                    cursor.execute(query)
+                    
+                    # armazenando o resultado da query em uma lista
+                    result = cursor.fetchone()
+                    final = result[0]
+                    return final
+                
+        except Exception as e:
+            print(e)
+class Output:
     def is_validated(plate):
         valids_plates = Validation.get_validated_plates()
 
@@ -34,8 +50,6 @@ class Validation:
             return True
         else:
             return False
-
-class Output:
     
     def return_to_user(plate):
         output_boolean = Validation.is_validated(plate)

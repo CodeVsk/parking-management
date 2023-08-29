@@ -1,0 +1,63 @@
+#class PlateDetector():
+#    def __init__(self, idx_camera, window_name):
+#        threading.Thread.__init__(self)
+#        self.idx_camera = idx_camera
+#        self.window_name = window_name
+#        self.video_capture = cv2.VideoCapture(self.idx_camera, cv2.CAP_DSHOW)
+#        self.harcascade = "../model/haarcascade_russian_plate_number.xml"
+#
+#        self.video_capture.set(3, 640) # largura
+#        self.video_capture.set(4, 480) # altura
+#
+#        self.min_area = 500
+#
+#    def main(self):
+#        while True:
+#            #trocar esse sucess por _ para ver se funfa
+#            success, image = self.video_capture.read()
+#
+#            #load cascade model
+#            plate_cascade = cv2.CascadeClassifier(self.harcascade)
+#            img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#
+#            plates = plate_cascade.detectMultiScale(img_gray, 1.1, 4)
+#
+#            for (x, y, w, h) in plates:
+#                area = w * h
+#
+#                if area > self.min_area:
+#                    cv2.rectangle(image, (x, y), (x+w, y+h), (0,255,0), 2)
+#                    cv2.putText(image, "Placa carro", (x,y-5), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (255,0,255), 2)
+#
+#                    image_roi = image[y: y+h, x:x+w]
+#            
+#            cv2.imshow(self.window_name, image)
+#
+#            path = "../image/actual_image.jpg"
+#            if cv2.waitKey(1) & 0xFF == ord('q'):
+#                break
+#            elif cv2.waitKey(1) & 0xFF == ord('t'):
+#                cv2.imwrite(path, image_roi)
+#                possible_plate = ct.convert(path)
+#                Output.return_to_user(possible_plate)
+#
+#        self.video_capture.release()
+#        cv2.destroyAllWindows()
+#
+#
+#class QrCodeDetector():
+#    def __init__(self, idx_camera, window_name):
+#        self.idx_camera = idx_camera
+#        self.window_name = window_name
+#        self.video_capture = cv2.VideoCapture(self.idx_camera, cv2.CAP_DSHOW)
+#    
+#    def main(self):
+#        while True:
+#            success, image = self.video_capture.read()
+#            cv2.imshow(self.window_name, image)
+#            
+#            if cv2.waitKey(1) & 0xFF == ord('q'):
+#                    break
+#        
+#        self.video_capture.release()
+#        cv2.destroyAllWindows()
