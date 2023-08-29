@@ -1,56 +1,54 @@
 import React, { useState } from "react";
 import "./index.css";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../../providers/authProvider";
+import { useDispatch } from "react-redux";
+import { login } from "../../../services/authService";
+import { setUser } from "../../../redux/actions/actions";
+import { useNavigate } from "react-router-dom";
+import Input from "../../../components/common/Input";
+import Button from "../../../components/common/Button";
+import { Form } from "react-bootstrap";
+import banner from "../../../assets/images/login-banner.png";
 
 const Login = () => {
-  const { loginUser } = AuthContext();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    loginUser(username, password);
+  const handleLogin = async (e, data) => {
+    e.preventDefault();
+
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    const { role, userId, message, statusCode } = await login(email, password);
+
+    if (role) {
+      dispatch(setUser(userId, role));
+
+      navigate(role == "DEFAULT" ? "/dashboard/user" : "/dashboard/admin");
+    }
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.containerForm}>
-        <div className={styles.form}>
-          <form action="#">
-            <div className={styles.formHeader}>
-              <div className={styles.title}>
-                <h1>Fazer Login</h1>
-              </div>
-            </div>
-
-            <div className={styles.inputGroup}>
-              <div className={styles.inputBox}>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Digite seu Email..."
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-
-              <div className={styles.inputBox}>
-                <label htmlFor="password">Senha</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Digite sua Senha..."
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <button type="submit" onClick={handleLogin}></button>
-          </form>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-left">
+          <img src="/logo-unip.svg" alt="logo-unip" />
+        </div>
+        <div className="login-right">
+          <div className="login-title">
+            <h2>ÁREA DE LOGIN</h2>
+            <p>Seja bem-vindo ao portal para chamar de seu</p>
+          </div>
+          <Form onSubmit={handleLogin} className="login-form">
+            <Input type="email" name="email" placeholder="Email" required />
+            <Input
+              type="password"
+              name="password"
+              placeholder="Senha"
+              required
+            />
+            <Button type="submit" name="Entrar" />
+          </Form>
         </div>
       </div>
     </div>

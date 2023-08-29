@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { Layout } from "../../../components/layout/admin";
+import { Layout } from "../../../components/layout/Default";
 
 const RegisterVehicle = () => {
   return (
