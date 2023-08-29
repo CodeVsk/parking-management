@@ -1,5 +1,5 @@
 import { PrismaVehicleNoteRepository } from "../../../../infra/repositories/prisma/vehicle-note-repository";
-import { VehicleNoteMapper } from "../../../../application/mappers/vehicle-note-mapper";
+
 import { FindByIdVehicleNoteController } from "./find-by-id-vehicle-note-controller";
 import { FindByIdVehicleNoteUseCase } from "./find-by-id-vehicle-note-usecase";
 

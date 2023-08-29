@@ -1,5 +1,6 @@
 import { PrismaGarageRepository } from "../../../../infra/repositories/prisma/garage-repository";
-import { GarageMapper } from "../../../../application/mappers/garage-mapper";
+import { mapper } from "@/application/mappers/mapper-config";
+
 import { UpdateGarageController } from "./update-garage-controller";
 import { UpdateGarageUseCase } from "./update-garage-usecase";
 

@@ -1,13 +1,11 @@
 import { IVehicleNoteRepository } from "../../../contracts";
-import { VehicleNoteDto } from "../../../../application/dtos/vehicle-note-dto";
-import { VehicleNoteMapper } from "../../../../application/mappers/vehicle-note-mapper";
 import { Result } from "../../../../core/domain/result";
+import { VehicleNote } from "@/domain/entities";
+import { VehicleNoteDto } from "@/application/dtos";
+import { mapper } from "@/application/mappers";
 
 export class UpdateVehicleNoteUseCase {
-  constructor(
-    private vehicleNoteRepository: IVehicleNoteRepository,
-    private vehicleNoteMapper: VehicleNoteMapper
-  ) {}
+  constructor(private vehicleNoteRepository: IVehicleNoteRepository) {}
 
   async execute(data: VehicleNoteDto): Promise<Result<VehicleNoteDto>> {
     const vehicleNote = await this.vehicleNoteRepository.findById(data.id);
@@ -19,7 +17,7 @@ export class UpdateVehicleNoteUseCase {
 
     const result = await this.vehicleNoteRepository.update(vehicleNoteModel);
 
-    const vehicleNoteDto = this.vehicleNoteMapper.mapper(result);
+    const vehicleNoteDto = mapper.map(result, VehicleNote, VehicleNoteDto);
 
     return new Result<VehicleNoteDto>(
       vehicleNoteDto,

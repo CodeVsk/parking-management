@@ -6,13 +6,11 @@ import { UserDto } from "@/application/dtos";
 import { validate } from "class-validator";
 import { plainToClass } from "class-transformer";
 import { ObjectValidation } from "@/shared/utils/object-validation";
-import { UserMapper } from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
+import { User } from "@/domain/entities";
 
 export class AuthRegisterUseCase {
-  constructor(
-    private userMapper: UserMapper,
-    private userRepository: IUserRepository
-  ) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: UserDto): Promise<Result<boolean | string[]>> {
     const { email, password } = data;
@@ -31,7 +29,7 @@ export class AuthRegisterUseCase {
 
     const password_hashed = await bcrypt.hashSync(password, 10);
 
-    const userModel = this.userMapper.mapper(data);
+    const userModel = mapper.map<User>(data, UserDto);
 
     userModel.password = password_hashed;
 

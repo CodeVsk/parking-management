@@ -1,12 +1,10 @@
-import { User } from "../../domain/entities";
+import { createMap } from "@automapper/core";
+import { mapper } from "./mapper-config";
+import { User } from "@/domain/entities";
 import { UserDto } from "../dtos";
 
 export class UserMapper {
-  mapper(data: User | UserDto): User | UserDto {
-    const entitie: User | UserDto = {
-      ...data,
-    };
-
-    return entitie;
+  constructor() {
+    createMap(mapper, User, UserDto);
   }
 }
