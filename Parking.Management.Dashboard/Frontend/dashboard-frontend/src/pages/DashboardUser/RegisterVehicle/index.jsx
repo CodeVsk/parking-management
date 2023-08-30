@@ -4,7 +4,7 @@ import { Layout } from "../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const RegisterVehicleAdmin = () => {
+const RegisterVehicleUser = () => {
   return (
     <Layout>
       <Form className="background-form">
@@ -44,4 +44,4 @@ const RegisterVehicleAdmin = () => {
   );
 };
 
-export default RegisterVehicleAdmin;
+export default RegisterVehicleUser;

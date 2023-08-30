@@ -10,25 +10,19 @@ export class AuthValidateUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(data: AuthenticatedDto): Promise<Result<boolean>> {
+  async execute(data: AuthenticatedDto): Promise<Result<AuthenticatedDto>> {
     try {
-      const { token, role, userId } = data;
-
-      const user = await this.userRepository.findById(userId);
-
-      if (user == null) {
-        return new Result(false, "Usuário não encontrado");
-      }
+      const { token } = data;
 
       const decoded = this.authProvider.verifyToken(token);
 
-      const permission = decoded.isAdmin ? "ADMIN" : "DEFAULT";
+      const result: AuthenticatedDto = {
+        role: decoded.isAdmin ? "ADMIN" : "DEFAULT",
+        userId: decoded.userId,
+        token: token,
+      };
 
-      if (decoded.userId == user.id && permission == role) {
-        return new Result(true);
-      }
-
-      return new Result(false);
+      return new Result(result);
     } catch (err) {
       throw err;
     }
