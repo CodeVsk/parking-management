@@ -1,5 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import VehicleTable from "../pages/DashboardUser/VehicleTable";
 import VehicleNoteTable from "../pages/DashboardUser/VehicleNotesTable";
 import VehicleResponsibleTable from "../pages/DashboardUser/VehicleResponsibleTable";
@@ -7,67 +11,75 @@ import HomeUser from "../pages/DashboardUser/Home";
 import HomeAdmin from "../pages/DashboardAdmin/Home";
 import RegisterVehicle from "../pages/DashboardAdmin/RegisterVehicle";
 import RegisterUser from "../pages/DashboardAdmin/RegisterUser";
-import { AuthContext } from "../providers/authProvider";
+import Login from "../pages/Authentication/Login";
+import PrivateRoute from "../components/common/PrivateRouter";
+import Logout from "../pages/Authentication/Logout";
 
-const MapRoutes = () => {
-  const PrivateRoute = ({ element: Component, roles, ...rest }) => {
-    const { user } = AuthContext();
-
-    if (!user) {
-      return <Redirect to="/login" />;
-    }
-
-    if (roles && !roles.includes(user.role)) {
-      return <Redirect to="/logout" />;
-    }
-
-    return <Route {...rest} render={(props) => <Component {...props} />} />;
-  };
-
+export default function MapRoutes() {
   return (
     <Router>
       <Routes>
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/logout" element={<Logout />} />
         /*User Routes*/
-        <PrivateRoute
+        <Route
           path="/dashboard/user"
-          element={<HomeUser />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["DEFAULT", "ADMIN"]}>
+              <HomeUser />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute
+        <Route
           path="/dashboard/user/vehicle"
-          element={<VehicleTable />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["DEFAULT", "ADMIN"]}>
+              <VehicleTable />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute
+        <Route
           path="/dashboard/user/vehicle/notes"
-          element={<VehicleNoteTable />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["DEFAULT", "ADMIN"]}>
+              <VehicleNoteTable />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute
+        <Route
           path="/dashboard/user/vehicle/responsible"
-          element={<VehicleResponsibleTable />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["DEFAULT", "ADMIN"]}>
+              <VehicleResponsibleTable />
+            </PrivateRoute>
+          }
         />
         /*Admin Routes*/
-        <PrivateRoute
+        <Route
           path="/dashboard/admin"
-          element={<HomeAdmin />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <HomeAdmin />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute
+        <Route
           path="/dashboard/admin/register/user"
-          element={<RegisterUser />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <RegisterUser />
+            </PrivateRoute>
+          }
         />
-        <PrivateRoute
+        <Route
           path="/dashboard/admin/register/vehicle"
-          element={<RegisterVehicle />}
-          roles={["DEFAULT", "ADMIN"]}
+          element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <RegisterVehicle />
+            </PrivateRoute>
+          }
         />
       </Routes>
     </Router>
   );
-};
-
-export default MapRoutes;
+}

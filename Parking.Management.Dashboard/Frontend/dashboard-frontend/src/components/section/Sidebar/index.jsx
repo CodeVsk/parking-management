@@ -4,8 +4,11 @@ import "./index.css";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import dashboardRoutes from "../../../data/dashboard-routes.json";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const user = useSelector((state) => state.user);
+
   return (
     <Nav className="flex-column">
       <Nav.Item className="align-self-center">
@@ -16,12 +19,17 @@ const Sidebar = () => {
           alt="Universidade Paulista - Parking Management"
         />
       </Nav.Item>
-      {dashboardRoutes["user"].map((routes, index) => (
-        <Link to={routes.uri} className="navbar-item">
-          <i className={routes.icon} />
-          {routes.text}
-        </Link>
-      ))}
+      {dashboardRoutes["DEFAULT"].map(
+        (
+          routes,
+          index //DEFAULT OR ADMIN
+        ) => (
+          <Link key={index} to={routes.uri} className="navbar-item">
+            <i className={routes.icon} />
+            {routes.text}
+          </Link>
+        )
+      )}
     </Nav>
   );
 };
