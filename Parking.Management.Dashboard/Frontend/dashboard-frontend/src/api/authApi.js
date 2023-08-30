@@ -1,16 +1,17 @@
-const BASE_URL = "https://sua-api.com/auth";
+const BASE_URL = "http://localhost:3030/api";
 
-const loginApi = async (username, password) => {
+const loginApi = async (email, password) => {
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email: email, password: password }),
     });
 
     const data = await response.json();
+
     return data;
   } catch (error) {
     return { success: false, message: "Erro ao fazer login" };
@@ -35,4 +36,4 @@ const validateRoleApi = async (token, role) => {
   }
 };
 
-export { loginApi, verifyPermissionApi };
+export { loginApi, validateRoleApi };
