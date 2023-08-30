@@ -1,5 +1,5 @@
 import { PrismaGarageRepository } from "../../../../infra/repositories/prisma/garage-repository";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 
 import { FindByIdGarageController } from "./find-by-id-garage-controller";
 import { FindByIdGarageUseCase } from "./find-by-id-garage-usecase";

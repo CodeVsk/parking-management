@@ -4,8 +4,7 @@ import { FindByIdVehicleResponsibleController } from "./find-by-id-vehicle-respo
 import { FindByIdVehicleResponsibleUseCase } from "./find-by-id-vehicle-responsible-usecase";
 
 const repository = new PrismaVehicleResponsibleRepository();
-const mapper = new VehicleResponsibleMapper();
-const loader = new FindByIdVehicleResponsibleUseCase(repository, mapper);
+const loader = new FindByIdVehicleResponsibleUseCase(repository);
 
 const findByIdVehicleResponsibleController =
   new FindByIdVehicleResponsibleController(loader);

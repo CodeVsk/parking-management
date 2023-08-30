@@ -1,5 +1,5 @@
 {
-  "admin": [
+  "ADMIN": [
     {
       "uri": "/dashboard/admin",
       "text": "Inicio",
@@ -21,7 +21,7 @@
       "icon": "bi bi-box-arrow-left"
     }
   ],
-  "user": [
+  "DEFAULT": [
     {
       "uri": "/dashboard/user",
       "text": "Inicio",

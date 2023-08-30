@@ -1,6 +1,6 @@
 import { IGarageRepository } from "../../../contracts";
 import { GarageDto } from "../../../../application/dtos/garage-dto";
-import Mapper from "@/application/mappers";
+import { mapper } from "@/application/mappers/mapper-config";
 
 import { Result } from "../../../../core/domain/result";
 
@@ -17,7 +17,7 @@ export class UpdateGarageUseCase {
 
     const result = await this.garageRepository.update(garageModel);
 
-    const garageDto = await Mapper.map(result, GarageDto);
+    const garageDto = mapper.map(result, Garage, GarageDto);
 
     return new Result<GarageDto>(
       garageDto,
