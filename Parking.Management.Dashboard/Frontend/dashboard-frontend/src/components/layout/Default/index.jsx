@@ -9,10 +9,10 @@ export function Layout(props) {
     <>
       <Container fluid>
         <Row data-bs-theme="dark">
-          <Col className="col-1 p-0" data-bs-theme="dark" md={2}>
+          <Col className="l-col-1 p-0" data-bs-theme="dark" md={2}>
             <Sidebar />
           </Col>
-          <Col>{props.children}</Col>
+          <Col className="l-col-2">{props.children}</Col>
         </Row>
       </Container>
     </>

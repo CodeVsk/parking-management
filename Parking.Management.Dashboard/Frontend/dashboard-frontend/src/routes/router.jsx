@@ -14,6 +14,7 @@ import RegisterUser from "../pages/DashboardAdmin/RegisterUser";
 import Login from "../pages/Authentication/Login";
 import PrivateRoute from "../components/common/PrivateRouter";
 import Logout from "../pages/Authentication/Logout";
+import UserAdmin from "../pages/DashboardAdmin/User";
 
 export default function MapRoutes() {
   return (
@@ -64,7 +65,15 @@ export default function MapRoutes() {
           }
         />
         <Route
-          path="/dashboard/admin/register/user"
+          path="/dashboard/admin/user"
+          element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <UserAdmin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/dashboard/admin/user/register"
           element={
             <PrivateRoute roles={["ADMIN"]}>
               <RegisterUser />

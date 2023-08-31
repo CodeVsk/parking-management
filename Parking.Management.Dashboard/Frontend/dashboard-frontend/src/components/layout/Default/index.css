@@ -3,13 +3,12 @@
   height: 100% !important;
 }
 
-.col-1 {
+.l-col-1 {
   background: #101a33;
   width: 100%;
   max-width: 250px;
 }
 
-.col-2 {
-  width: 100%;
-  background: #f8f8fa;
+.l-col-2 {
+  background: #f7f6fa !important;
 }

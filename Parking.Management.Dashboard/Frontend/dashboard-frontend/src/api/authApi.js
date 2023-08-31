@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3030/api";
+import BASE_URL from "../global/apiUrl";
 
 const loginApi = async (email, password) => {
   try {
