@@ -3,6 +3,7 @@ import { UserDto } from "../../../../application/dtos/user-dto";
 import { mapper } from "@/application/mappers/mapper-config";
 
 import { Result } from "../../../../core/domain/result";
+import { User } from "@/domain/entities";
 
 export class DeleteUserUseCase {
   constructor(private userRepository: IUserRepository) {}
