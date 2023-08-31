@@ -2,6 +2,7 @@ import { IUserRepository } from "../../../contracts";
 import { UserDto } from "../../../../application/dtos/user-dto";
 import { Result } from "../../../../core/domain/result";
 import { User } from "@/domain/entities";
+import { mapper } from "@/application/mappers";
 
 export class FindByIdUserUseCase {
   constructor(private userRepository: IUserRepository) {}
@@ -9,9 +10,11 @@ export class FindByIdUserUseCase {
   async execute(id: string): Promise<Result<UserDto>> {
     const result = await this.userRepository.findById(id);
 
-    const userDto = autom;
+    if (!result) {
+      return new Result<UserDto>("Usuário não encontrado.");
+    }
 
-    //console.log(userDto);
+    const userDto = mapper.map(result, User, UserDto);
 
     return new Result<UserDto>(userDto, "Usuário encontrado.");
   }

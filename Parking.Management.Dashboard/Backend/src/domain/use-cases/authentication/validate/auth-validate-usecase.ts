@@ -1,14 +1,9 @@
-import { IUserRepository } from "../../../contracts";
 import { Result } from "../../../../core/domain/result";
-import bcrypt from "bcrypt";
 import { AuthProvider } from "@/infra/providers";
 import { AuthenticatedDto } from "@/application/dtos";
 
 export class AuthValidateUseCase {
-  constructor(
-    private authProvider: AuthProvider,
-    private userRepository: IUserRepository
-  ) {}
+  constructor(private authProvider: AuthProvider) {}
 
   async execute(data: AuthenticatedDto): Promise<Result<AuthenticatedDto>> {
     try {
