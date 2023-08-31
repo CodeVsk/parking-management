@@ -18,12 +18,13 @@ class Validation:
         try:
             with psycopg2.connect(**connection_string) as connection:
                 with connection.cursor() as cursor:
-                    query = "SELECT plate FROM parking;"
+                    query = "SELECT plate FROM public.parking;"
                     cursor.execute(query)
                     
                     # armazenando o resultado da query em uma lista
-                    dict_result = [row[0] for row in cursor.fetchall()]
-                    return dict_result
+                    list_result = [row[0] for row in cursor.fetchall()]
+
+                    return list_result
                 
         except Exception as e:
             print(e)
@@ -42,18 +43,25 @@ class Validation:
                 
         except Exception as e:
             print(e)
+            
 class Output:
     def is_validated(plate):
         valids_plates = Validation.get_validated_plates()
-
+        
         if plate in valids_plates:
             return True
         else:
             return False
     
-    def return_to_user(plate):
-        output_boolean = Validation.is_validated(plate)
+    def plate_in_authorized_plates(plate):
+        output_boolean = Output.is_validated(plate)
         if output_boolean:
-            print(f'O status da placa de número {plate} é '+ Fore.GREEN + Style.NORMAL + 'AUTHORIZED' + Style.RESET_ALL)
+            return f'O status da placa de número {plate} é '+ Fore.MAGENTA + Style.NORMAL + 'AUTHORIZED' + Style.RESET_ALL
         else:
-            print(f'O status da placa de número {plate} é '+ Fore.RED + Style.NORMAL + 'NOT AUTHORIZED' + Style.RESET_ALL)
+            return f'O status da placa de número {plate} é '+ Fore.RED + Style.NORMAL + 'NOT AUTHORIZED' + Style.RESET_ALL
+    
+    def match_plates(plate_from_ia, plate_from_database):
+        if plate_from_database == plate_from_ia:
+            return f'Saída da placa {plate_from_database} '+ Fore.MAGENTA + Style.NORMAL + 'AUTHORIZED' + Style.RESET_ALL
+        else:
+            return f'Saída da placa {plate_from_database} '+ Fore.RED + Style.NORMAL + 'NOT AUTHORIZED' + Style.RESET_ALL
