@@ -16,6 +16,12 @@ export class UpdateVehicleResponsibleUseCase {
       data.id
     );
 
+    if (!vehicleResponsible) {
+      return new Result<VehicleResponsibleDto>({
+        message: "Responsavel pelo veiculo não encontrado.",
+      });
+    }
+
     const vehicleResponsibleModel = {
       ...vehicleResponsible,
       ...data,
@@ -31,9 +37,9 @@ export class UpdateVehicleResponsibleUseCase {
       VehicleResponsibleDto
     );
 
-    return new Result<VehicleResponsibleDto>(
-      vehicleResponsibleDto,
-      "Universidade atualizada com sucesso."
-    );
+    return new Result<VehicleResponsibleDto>({
+      content: vehicleResponsibleDto,
+      message: "Responsavel pelo veiculo atualizado com sucesso.",
+    });
   }
 }

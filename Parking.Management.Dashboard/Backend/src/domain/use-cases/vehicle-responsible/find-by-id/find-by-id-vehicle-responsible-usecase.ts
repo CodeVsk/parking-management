@@ -12,15 +12,20 @@ export class FindByIdVehicleResponsibleUseCase {
   async execute(id: string): Promise<Result<VehicleResponsibleDto>> {
     const result = await this.vehicleResponsibleRepository.findById(id);
 
+    if (!result) {
+      return new Result<VehicleResponsibleDto>({
+        message: "Responsavel pelo veiculo não encontrado.",
+      });
+    }
     const vehicleResponsibleDto = mapper.map(
       result,
       VehicleResponsible,
       VehicleResponsibleDto
     );
 
-    return new Result<VehicleResponsibleDto>(
-      vehicleResponsibleDto,
-      "Universidade encontrada."
-    );
+    return new Result<VehicleResponsibleDto>({
+      content: vehicleResponsibleDto,
+      message: "Responsavel pelo veiculo encontrado.",
+    });
   }
 }

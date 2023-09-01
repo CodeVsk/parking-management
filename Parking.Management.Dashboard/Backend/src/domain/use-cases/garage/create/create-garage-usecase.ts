@@ -14,9 +14,9 @@ export class CreateGarageUseCase {
 
     const garageDto = mapper.map(result, Garage, GarageDto);
 
-    return new Result<GarageDto>(
-      garageDto,
-      "Estacionamento criado com sucesso."
-    );
+    return new Result<GarageDto>({
+      content: garageDto,
+      message: "Estacionamento criado com sucesso.",
+    });
   }
 }

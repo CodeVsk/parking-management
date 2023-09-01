@@ -11,11 +11,14 @@ export class FindByIdUserUseCase {
     const result = await this.userRepository.findById(id);
 
     if (!result) {
-      return new Result<UserDto>("Usuário não encontrado.");
+      return new Result<UserDto>({ message: "Usuário não encontrado." });
     }
 
     const userDto = mapper.map(result, User, UserDto);
 
-    return new Result<UserDto>(userDto, "Usuário encontrado.");
+    return new Result<UserDto>({
+      content: userDto,
+      message: "Usuário encontrado.",
+    });
   }
 }

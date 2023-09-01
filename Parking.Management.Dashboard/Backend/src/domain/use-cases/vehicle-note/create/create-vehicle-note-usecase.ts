@@ -14,9 +14,9 @@ export class CreateVehicleNoteUseCase {
 
     const vehicleNoteDto = mapper.map(result, VehicleNote, VehicleNoteDto);
 
-    return new Result<VehicleNoteDto>(
-      vehicleNoteDto,
-      "Universidade criada com sucesso."
-    );
+    return new Result<VehicleNoteDto>({
+      content: vehicleNoteDto,
+      message: "Anotação de veiculo criada com sucesso.",
+    });
   }
 }

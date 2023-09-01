@@ -11,6 +11,12 @@ export class UpdateVehicleUseCase {
   async execute(data: VehicleDto): Promise<Result<VehicleDto>> {
     const vehicle = await this.vehicleRepository.findById(data.id);
 
+    if (!vehicle) {
+      return new Result<VehicleDto>({
+        message: "Veiculo não encontrado.",
+      });
+    }
+
     const vehicleModel = {
       ...vehicle,
       ...data,
@@ -20,9 +26,9 @@ export class UpdateVehicleUseCase {
 
     const vehicleDto = mapper.map(result, Vehicle, VehicleDto);
 
-    return new Result<VehicleDto>(
-      vehicleDto,
-      "Universidade atualizada com sucesso."
-    );
+    return new Result<VehicleDto>({
+      content: vehicleDto,
+      message: "Veiculo atualizado com sucesso.",
+    });
   }
 }

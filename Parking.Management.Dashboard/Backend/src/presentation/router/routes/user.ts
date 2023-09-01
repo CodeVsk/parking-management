@@ -24,11 +24,6 @@ export default (router: Router): void => {
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(getAllUserController)
   );
-  router.post(
-    "/user",
-    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(createUserController)
-  );
   router.put(
     "/user",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),

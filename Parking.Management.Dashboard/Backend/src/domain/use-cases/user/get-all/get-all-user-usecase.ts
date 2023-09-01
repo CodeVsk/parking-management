@@ -12,6 +12,9 @@ export class GetAllUserUseCase {
 
     const userDto = await mapper.mapArrayAsync(result, User, UserDto);
 
-    return new Result<UserDto[]>(userDto, "Usuário encontrado.");
+    return new Result<UserDto[]>({
+      content: userDto,
+      message: "Usuário encontrado.",
+    });
   }
 }
