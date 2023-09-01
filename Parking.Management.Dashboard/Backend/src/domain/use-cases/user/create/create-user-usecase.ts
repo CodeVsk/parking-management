@@ -11,6 +11,8 @@ export class CreateUserUseCase {
   async execute(data: UserDto): Promise<Result<UserDto>> {
     const userModel = mapper.map(data, UserDto, User);
 
+    console.table(userModel);
+
     const result = await this.userRepository.create(userModel);
 
     const userDto = mapper.map(result, User, UserDto);

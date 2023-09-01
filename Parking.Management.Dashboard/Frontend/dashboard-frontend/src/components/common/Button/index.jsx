@@ -3,7 +3,7 @@ import "./index.css";
 
 const Button = ({ className, name, ...rest }) => {
   return (
-    <button className={className || "custom-button"} {...rest}>
+    <button className={`custom-button ${className}`} {...rest}>
       {name}
     </button>
   );

@@ -11,8 +11,8 @@
       "icon": "bi bi-car-front-fill"
     },
     {
-      "uri": "/dashboard/admin/register/user",
-      "text": "Cadastrar Usuários",
+      "uri": "/dashboard/admin/user",
+      "text": "Usuários",
       "icon": "bi bi-person-add"
     },
     {
