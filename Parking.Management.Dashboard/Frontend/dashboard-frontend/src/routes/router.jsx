@@ -81,6 +81,14 @@ export default function MapRoutes() {
           }
         />
         <Route
+          path="/dashboard/admin/user/edit/:id"
+          element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <RegisterUser />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/dashboard/admin/register/vehicle"
           element={
             <PrivateRoute roles={["ADMIN"]}>

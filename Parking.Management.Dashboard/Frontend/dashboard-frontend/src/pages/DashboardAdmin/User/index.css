@@ -8,3 +8,7 @@ tbody td {
   font-weight: 500;
   color: #999999;
 }
+
+.table-action i {
+  margin-right: 5px;
+}
