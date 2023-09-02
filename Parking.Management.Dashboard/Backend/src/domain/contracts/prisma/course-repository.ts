@@ -5,4 +5,5 @@ export interface ICourseRepository {
   update(course: Course): Promise<Course>;
   delete(id: string): Promise<Course>;
   findById(id: string): Promise<Course>;
+  getAll(): Promise<Course[]>;
 }

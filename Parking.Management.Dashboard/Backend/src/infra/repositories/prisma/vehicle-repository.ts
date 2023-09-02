@@ -45,4 +45,10 @@ export class PrismaVehicleRepository implements IVehicleRepository {
 
     return result;
   }
+
+  async getAll(): Promise<Vehicle[]> {
+    const result = await prisma.vehicle.findMany();
+
+    return result;
+  }
 }
