@@ -5,4 +5,5 @@ export interface IGarageRepository {
   update(college: Garage): Promise<Garage>;
   delete(id: string): Promise<Garage>;
   findById(id: string): Promise<Garage>;
+  getAll(): Promise<Garage[]>;
 }

@@ -24,16 +24,18 @@ class ConvertText:
             "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_",
             "+", "=", "{", "}", "[", "]", "|", "\\", ":", ";", "\"", "'",
             "<", ">", ",", ".", "/", "?", "`", "~", "¨", " "
-]       
+            ]       
         
         #Percorro cada caracter especial na lista e procuro ele na minha string
         #Caso esteja contindo na string, eu removo.
         for schar in processing_list:
-            if schar in plate:
+            if schar in plate and schar == "|":
+                plate = plate.replace(schar, "1")
+            else:
                 plate = plate.replace(schar, "")
         
         #Retorno o valor final
-        return plate 
+        return plate.upper() 
     
 class ReadQrCode:
     def read(qr_code_path):

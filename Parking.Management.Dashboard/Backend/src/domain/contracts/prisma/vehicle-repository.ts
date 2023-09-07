@@ -5,4 +5,5 @@ export interface IVehicleRepository {
   update(user: Vehicle): Promise<Vehicle>;
   delete(id: string): Promise<Vehicle>;
   findById(id: string): Promise<Vehicle>;
+  getAll(): Promise<Vehicle[]>;
 }

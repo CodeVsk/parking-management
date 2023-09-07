@@ -1,3 +1,4 @@
+import { Result } from "@/core/domain/result";
 import { UserPayload } from "@/infra/providers/auth/types/user-payload";
 
 export interface IAuthProvider {

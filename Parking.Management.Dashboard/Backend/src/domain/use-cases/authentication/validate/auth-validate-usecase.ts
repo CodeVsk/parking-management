@@ -17,7 +17,7 @@ export class AuthValidateUseCase {
         token: token,
       };
 
-      return new Result(result);
+      return new Result({ content: result });
     } catch (err) {
       throw err;
     }

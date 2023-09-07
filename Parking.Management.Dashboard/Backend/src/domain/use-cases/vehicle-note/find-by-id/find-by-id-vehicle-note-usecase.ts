@@ -11,11 +11,17 @@ export class FindByIdVehicleNoteUseCase {
   async execute(id: string): Promise<Result<VehicleNoteDto>> {
     const result = await this.vehicleNoteRepository.findById(id);
 
+    if (!result) {
+      return new Result<VehicleNoteDto>({
+        message: "Anotação de veiculo não encontrada.",
+      });
+    }
+
     const vehicleNoteDto = mapper.map(result, VehicleNote, VehicleNoteDto);
 
-    return new Result<VehicleNoteDto>(
-      vehicleNoteDto,
-      "Universidade encontrada."
-    );
+    return new Result<VehicleNoteDto>({
+      content: vehicleNoteDto,
+      message: "Anotação de veiculo encontrada.",
+    });
   }
 }

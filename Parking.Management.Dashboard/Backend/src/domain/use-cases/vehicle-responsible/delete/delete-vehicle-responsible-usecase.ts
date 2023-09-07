@@ -10,6 +10,14 @@ export class DeleteVehicleResponsibleUseCase {
   ) {}
 
   async execute(id: string): Promise<Result<VehicleResponsibleDto>> {
+    const vehicleResponsible = this.vehicleResponsibleRepository.findById(id);
+
+    if (!vehicleResponsible) {
+      return new Result<VehicleResponsibleDto>({
+        message: "Responsavel pelo veiculo não encontrado.",
+      });
+    }
+
     const result = await this.vehicleResponsibleRepository.delete(id);
 
     const vehicleResponsibleDto = mapper.map(
@@ -18,9 +26,9 @@ export class DeleteVehicleResponsibleUseCase {
       VehicleResponsibleDto
     );
 
-    return new Result<VehicleResponsibleDto>(
-      vehicleResponsibleDto,
-      "Universidade deletada com sucesso."
-    );
+    return new Result<VehicleResponsibleDto>({
+      content: vehicleResponsibleDto,
+      message: "Responsavel pelo veiculo deletado com sucesso.",
+    });
   }
 }

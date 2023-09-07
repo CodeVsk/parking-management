@@ -14,6 +14,9 @@ export class CreateCourseUseCase {
 
     const courseDto = mapper.map(result, Course, CourseDto);
 
-    return new Result<CourseDto>(courseDto, "Universidade criada com sucesso.");
+    return new Result<CourseDto>({
+      content: courseDto,
+      message: "Curso criado com sucesso.",
+    });
   }
 }

@@ -10,6 +10,12 @@ export class UpdateVehicleNoteUseCase {
   async execute(data: VehicleNoteDto): Promise<Result<VehicleNoteDto>> {
     const vehicleNote = await this.vehicleNoteRepository.findById(data.id);
 
+    if (!vehicleNote) {
+      return new Result<VehicleNoteDto>({
+        message: "Anotação de veiculo não encontrada.",
+      });
+    }
+
     const vehicleNoteModel = {
       ...vehicleNote,
       ...data,
@@ -19,9 +25,9 @@ export class UpdateVehicleNoteUseCase {
 
     const vehicleNoteDto = mapper.map(result, VehicleNote, VehicleNoteDto);
 
-    return new Result<VehicleNoteDto>(
-      vehicleNoteDto,
-      "Universidade atualizada com sucesso."
-    );
+    return new Result<VehicleNoteDto>({
+      content: vehicleNoteDto,
+      message: "Anotação de veiculo atualizada com sucesso.",
+    });
   }
 }

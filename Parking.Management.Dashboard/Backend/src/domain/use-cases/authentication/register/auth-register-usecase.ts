@@ -12,29 +12,39 @@ import { User } from "@/domain/entities";
 export class AuthRegisterUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(data: UserDto): Promise<Result<boolean | string[]>> {
+  async execute(data: UserDto): Promise<Result<boolean | string[] | UserDto>> {
     const { email, password } = data;
 
     const validation = await ObjectValidation(data, UserDto);
 
     if (validation) {
-      return new Result(validation, "Preencha os campos corretamente.");
+      return new Result({
+        content: validation,
+        message: "Preencha os campos corretamente.",
+      });
     }
 
     const user = await this.userRepository.findByEmail(email);
 
     if (user) {
-      return new Result("O email já está cadastrado.");
+      return new Result({ message: "O email já está cadastrado." });
     }
 
     const password_hashed = await bcrypt.hashSync(password, 10);
 
-    const userModel = mapper.map<User>(data, UserDto);
+    console.log(password_hashed);
+
+    let userModel = mapper.map(data, UserDto, User);
 
     userModel.password = password_hashed;
 
-    await this.userRepository.create(userModel);
+    const userCreated = await this.userRepository.create(userModel);
 
-    return new Result("Usuário autenticado com sucesso.");
+    const userDto = mapper.map(userCreated, User, UserDto);
+
+    return new Result({
+      content: userDto,
+      message: "Usuário criado com sucesso.",
+    });
   }
 }
