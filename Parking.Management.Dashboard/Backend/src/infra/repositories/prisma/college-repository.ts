@@ -45,4 +45,10 @@ export class PrismaCollegeRepository implements ICollegeRepository {
 
     return result;
   }
+
+  async getAll(): Promise<College[]> {
+    const result = await prisma.college.findMany();
+
+    return result;
+  }
 }

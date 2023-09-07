@@ -10,9 +10,17 @@ export class FindByIdCollegeUseCase {
   async execute(id: string): Promise<Result<CollegeDto>> {
     const result = await this.collegeRepository.findById(id);
 
-    const collegeDto = mapper.map(result, College, CollegeDto);
-    //const collegeDto = mapper.map(result, College, CollegeDto);;
+    if (!result) {
+      return new Result<CollegeDto>({
+        message: "Universidade não encontrada.",
+      });
+    }
 
-    return new Result<CollegeDto>(collegeDto, "Universidade encontrada.");
+    const collegeDto = mapper.map(result, College, CollegeDto);
+
+    return new Result<CollegeDto>({
+      content: collegeDto,
+      message: "Universidade encontrada.",
+    });
   }
 }

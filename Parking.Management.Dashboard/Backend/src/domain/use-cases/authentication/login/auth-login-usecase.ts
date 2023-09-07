@@ -16,13 +16,17 @@ export class AuthLoginUseCase {
     const user = await this.userRepository.findByEmail(email);
 
     if (user == null) {
-      return new Result("Usuário não encontrado.");
+      return new Result<AuthenticatedDto>({
+        message: "Usuário não encontrado.",
+      });
     }
 
     const verifyPassword = await bcrypt.compareSync(password, user.password);
 
     if (!verifyPassword) {
-      return new Result("A senha inserida está incorreta.");
+      return new Result<AuthenticatedDto>({
+        message: "A senha inserida está incorreta.",
+      });
     }
 
     const isAdmin: boolean = user.permissions == "ADMIN";
@@ -35,9 +39,9 @@ export class AuthLoginUseCase {
       userId: user.id,
     };
 
-    return new Result<AuthenticatedDto>(
-      result,
-      "Usuário autenticado com sucesso."
-    );
+    return new Result<AuthenticatedDto>({
+      content: result,
+      message: "Usuário autenticado com sucesso.",
+    });
   }
 }

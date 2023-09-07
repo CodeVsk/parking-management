@@ -28,9 +28,9 @@ export class CreateVehicleResponsibleUseCase {
       VehicleResponsibleDto
     );
 
-    return new Result<VehicleResponsibleDto>(
-      vehicleResponsibleDto,
-      "Universidade criada com sucesso."
-    );
+    return new Result<VehicleResponsibleDto>({
+      content: vehicleResponsibleDto,
+      message: "Responsavel pelo veiculo criado com sucesso.",
+    });
   }
 }

@@ -6,6 +6,7 @@ import { updateUserController } from "@/domain/use-cases/user/update";
 import { findByIdUserController } from "@/domain/use-cases/user/find-by-id";
 import { getAllUserController } from "@/domain/use-cases/user/get-all";
 import { findByTokenUserController } from "@/domain/use-cases/user/find-by-token";
+import { createUserController } from "@/domain/use-cases/user/create";
 
 export default (router: Router): void => {
   router.get(

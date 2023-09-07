@@ -19,7 +19,7 @@ const Sidebar = () => {
           alt="Universidade Paulista - Parking Management"
         />
       </Nav.Item>
-      {dashboardRoutes["DEFAULT"].map(
+      {dashboardRoutes["ADMIN"].map(
         (
           routes,
           index //DEFAULT OR ADMIN

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import { Layout } from "../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const RegisterUser = () => {
+  useEffect(() => {});
+
   return (
     <Layout>
       <Form className="background-form">
@@ -100,7 +102,9 @@ const RegisterUser = () => {
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="outline-light" type="submit">Finalizar Cadastro</Button>
+          <Button variant="outline-light" type="submit">
+            Finalizar Cadastro
+          </Button>
         </div>
       </Form>
     </Layout>

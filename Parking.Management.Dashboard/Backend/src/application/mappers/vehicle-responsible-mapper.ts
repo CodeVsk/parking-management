@@ -6,5 +6,6 @@ import { VehicleResponsibleDto } from "../dtos";
 export class VehicleResponsibleMapper {
   constructor() {
     createMap(mapper, VehicleResponsible, VehicleResponsibleDto);
+    createMap(mapper, VehicleResponsibleDto, VehicleResponsible);
   }
 }

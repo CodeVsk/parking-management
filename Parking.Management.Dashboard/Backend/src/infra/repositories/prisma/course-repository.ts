@@ -45,4 +45,10 @@ export class PrismaCourseRepository implements ICourseRepository {
 
     return result;
   }
+
+  async getAll(): Promise<Course[]> {
+    const result = await prisma.course.findMany();
+
+    return result;
+  }
 }

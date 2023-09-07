@@ -45,4 +45,10 @@ export class PrismaGarageRepository implements IGarageRepository {
 
     return result;
   }
+
+  async getAll(): Promise<Garage[]> {
+    const result = await prisma.garage.findMany();
+
+    return result;
+  }
 }

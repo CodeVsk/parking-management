@@ -10,8 +10,17 @@ export class FindByIdCourseUseCase {
   async execute(id: string): Promise<Result<CourseDto>> {
     const result = await this.courseRepository.findById(id);
 
+    if (!result) {
+      return new Result<CourseDto>({
+        message: "Curso não encontrado.",
+      });
+    }
+
     const courseDto = mapper.map(result, Course, CourseDto);
 
-    return new Result<CourseDto>(courseDto, "Universidade encontrada.");
+    return new Result<CourseDto>({
+      content: courseDto,
+      message: "Curso encontrado.",
+    });
   }
 }

@@ -15,6 +15,9 @@ export class CreateUserUseCase {
 
     const userDto = mapper.map(result, User, UserDto);
 
-    return new Result<UserDto>(userDto, "Usuário criado com sucesso.");
+    return new Result<UserDto>({
+      content: userDto,
+      message: "Usuário criado com sucesso.",
+    });
   }
 }
