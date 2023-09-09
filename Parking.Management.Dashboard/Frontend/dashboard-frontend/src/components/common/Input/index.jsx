@@ -3,7 +3,6 @@ import "./index.css";
 
 const Input = ({ name, className, defaultValue, ...rest }) => {
   const inputRef = useRef(null);
-
   return (
     <input
       className={className || "custom-input"}

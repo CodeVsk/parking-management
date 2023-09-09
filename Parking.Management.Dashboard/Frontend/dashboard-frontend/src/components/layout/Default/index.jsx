@@ -8,7 +8,7 @@ export function Layout({ children }) {
   return (
     <>
       <Container fluid>
-        <Row data-bs-theme="dark">
+        <Row data-bs-theme="light">
           <Col className="l-col-1 p-0" data-bs-theme="dark" md={2}>
             <Sidebar />
           </Col>

@@ -5,19 +5,27 @@ import Toolbar from "../../../components/section/Toolbar";
 import { UserApi } from "../../../api/userApi";
 import { useNavigate } from "react-router-dom";
 import ModalCustom from "../../../components/common/Modal";
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from "../../../global/notifications";
 
 const UserAdmin = () => {
   const modalRef = useRef(null);
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
+  const [userApi] = useState(new UserApi());
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState(null);
   const navigate = useNavigate();
-  const api = new UserApi();
+
+  const getAllUsers = async () => {
+    const response = await userApi.getAll(token);
+    setUsers(response.data);
+  };
 
   useEffect(() => {
     async function fetchGetAll() {
-      const response = await api.getAll(token);
-
-      setUsers(response.data);
+      await getAllUsers();
     }
 
     fetchGetAll();
@@ -28,27 +36,42 @@ const UserAdmin = () => {
   };
 
   const handleDeleteUser = async (id) => {
-    console.log(modalRef);
-    //modalRef.current.handleShow();
-    //const response = await api.deleteUser(id, token);
-    //if (response.statusCode == 200 && response.data > 0) {
-    //  fetchGetAll();
-    //}
+    modalRef.current.handleShow(id);
   };
 
-  const handleConfirmDelete = async () => {
-    console.log("AAAAA");
-    //const response = await api.deleteUser(id, token);
-    //if (response.statusCode == 200 && response.data > 0) {
-    //  fetchGetAll();
-    //}
+  const handleConfirmDelete = async (id) => {
+    const response = await userApi.deleteUser(id, token);
+    if (response.statusCode == 200 && response.data != null) {
+      showSuccessNotification("Usuário foi removido com sucesso.");
+      await getAllUsers();
+
+      return;
+    }
+
+    showErrorNotification("Ocorreu um erro ao remover o usuário.");
+  };
+
+  const handleSearch = (value) => {
+    setSearch(value);
+  };
+
+  const getUsers = () => {
+    if (search && search != "") {
+      return users.filter(
+        (x) =>
+          x.name.toLowerCase().includes(search?.toLowerCase()) ||
+          x.enrollment.toLowerCase().includes(search?.toLowerCase())
+      );
+    }
+
+    return users;
   };
 
   return (
     <Layout>
       <div className="user-wrapper">
         <div className="user-container">
-          <Toolbar />
+          <Toolbar onSearchCallback={handleSearch} />
           <table className="table mb-0">
             <thead>
               <tr>
@@ -59,11 +82,11 @@ const UserAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user) => (
+              {getUsers().map((user) => (
                 <tr key={user.id}>
                   <td>{user.name}</td>
                   <td>{user.enrollment}</td>
-                  <td>{user.status ? "ATIVO" : "DESATIVADO"}</td>
+                  <td>{user.status ? "Ativo" : "Desativado"}</td>
                   <td className="table-action">
                     <i
                       className="bi bi-pencil-square"
@@ -82,7 +105,7 @@ const UserAdmin = () => {
       </div>
       <ModalCustom
         ref={modalRef}
-        //onCallback={handleConfirmDelete}
+        onCallback={handleConfirmDelete}
         title="Excluir usuário"
         description="Você realmente deseja excluir este usuário?"
       />

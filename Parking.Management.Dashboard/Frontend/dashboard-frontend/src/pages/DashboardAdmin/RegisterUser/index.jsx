@@ -315,10 +315,10 @@ const RegisterUser = () => {
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="light" type="submit">
+          <Button variant="dark" type="submit">
             Finalizar Cadastro
           </Button>
-          <Button variant="outline-light" onClick={handleReturn}>
+          <Button variant="outline-dark" onClick={handleReturn}>
             Voltar
           </Button>
         </div>

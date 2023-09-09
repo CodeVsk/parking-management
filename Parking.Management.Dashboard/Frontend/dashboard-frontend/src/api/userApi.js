@@ -69,7 +69,7 @@ export class UserApi {
 
   async deleteUser(id, token) {
     try {
-      const response = await fetch(`${BASE_URL}/user/${id}`, {
+      const response = await fetch(`${BASE_URL}/user/id/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

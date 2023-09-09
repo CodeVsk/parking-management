@@ -1,23 +1,27 @@
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import "./index.css";
 import { Button, Modal } from "react-bootstrap";
 
 const ModalCustom = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
+  const [id, setId] = useState(null);
 
   const handleShow = () => setShow(!show);
 
   const handleConfirm = () => {
     setShow(!show);
-    props.onCallback(true);
+    props.onCallback(id);
   };
 
-  useRef(() => {
-    ref.current = {
-      handleConfirm,
-      handleShow,
-    };
-  });
+  useImperativeHandle(ref, () => ({
+    handleShow(value) {
+      handleShow();
+      setId(value);
+    },
+    handleConfirm() {
+      handleConfirm();
+    },
+  }));
 
   return (
     <Modal show={show} onHide={handleShow}>
@@ -26,10 +30,10 @@ const ModalCustom = forwardRef((props, ref) => {
       </Modal.Header>
       <Modal.Body>{props.description}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleShow}>
+        <Button variant="outline-dark" onClick={handleShow}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={handleConfirm}>
+        <Button variant="dark" onClick={handleConfirm}>
           Confirmar
         </Button>
       </Modal.Footer>
