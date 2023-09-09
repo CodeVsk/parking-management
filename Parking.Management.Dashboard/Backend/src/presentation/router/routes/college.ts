@@ -9,7 +9,7 @@ import { getAllCollegeController } from "@/domain/use-cases/college/get-all";
 
 export default (router: Router): void => {
   router.get(
-    "/college/:id",
+    "/college/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdCollegeController)
   );
@@ -29,7 +29,7 @@ export default (router: Router): void => {
     adaptRoute(createCollegeController)
   );
   router.delete(
-    "/college/:id",
+    "/college/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteCollegeController)
   );

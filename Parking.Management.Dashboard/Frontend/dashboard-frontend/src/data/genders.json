@@ -1,0 +1,6 @@
+[
+  { "description": "Selecione um sexo", "value": null },
+  { "description": "Masculino", "value": "M" },
+  { "description": "Feminino", "value": "F" },
+  { "description": "Outro", "value": "O" }
+]

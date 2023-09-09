@@ -12,7 +12,7 @@ export class AuthLoginUseCase {
 
   async execute(data: UserLoginDto): Promise<Result<AuthenticatedDto>> {
     const { email, password } = data;
-
+    console.log(email);
     const user = await this.userRepository.findByEmail(email);
 
     if (user == null) {

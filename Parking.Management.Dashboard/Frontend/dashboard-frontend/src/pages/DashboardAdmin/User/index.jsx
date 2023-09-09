@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { Layout } from "../../../components/layout/Default";
 import Toolbar from "../../../components/section/Toolbar";
 import { UserApi } from "../../../api/userApi";
 import { useNavigate } from "react-router-dom";
+import ModalCustom from "../../../components/common/Modal";
 
 const UserAdmin = () => {
+  const modalRef = useRef(null);
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
@@ -21,17 +23,25 @@ const UserAdmin = () => {
     fetchGetAll();
   }, []);
 
-  const editUserRedirect = (id) => {
+  const handleEditUser = (id) => {
     navigate(`/dashboard/admin/user/edit/${id}`);
   };
 
-  const deleteUser = async (id) => {
-    const response = await api.deleteUser(id, token);
-    console.log(response);
-    if (response.statusCode == 200 && response.data > 0) {
-      console.log(response);
-      fetchGetAll();
-    }
+  const handleDeleteUser = async (id) => {
+    console.log(modalRef);
+    //modalRef.current.handleShow();
+    //const response = await api.deleteUser(id, token);
+    //if (response.statusCode == 200 && response.data > 0) {
+    //  fetchGetAll();
+    //}
+  };
+
+  const handleConfirmDelete = async () => {
+    console.log("AAAAA");
+    //const response = await api.deleteUser(id, token);
+    //if (response.statusCode == 200 && response.data > 0) {
+    //  fetchGetAll();
+    //}
   };
 
   return (
@@ -57,11 +67,11 @@ const UserAdmin = () => {
                   <td className="table-action">
                     <i
                       className="bi bi-pencil-square"
-                      onClick={() => editUserRedirect(user.id)}
+                      onClick={() => handleEditUser(user.id)}
                     ></i>
                     <i
                       className="bi bi-trash"
-                      onClick={() => deleteUser(user.id)}
+                      onClick={() => handleDeleteUser(user.id)}
                     ></i>
                   </td>
                 </tr>
@@ -70,6 +80,12 @@ const UserAdmin = () => {
           </table>
         </div>
       </div>
+      <ModalCustom
+        ref={modalRef}
+        //onCallback={handleConfirmDelete}
+        title="Excluir usuário"
+        description="Você realmente deseja excluir este usuário?"
+      />
     </Layout>
   );
 };

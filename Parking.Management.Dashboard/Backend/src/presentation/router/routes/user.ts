@@ -30,7 +30,7 @@ export default (router: Router): void => {
     adaptRoute(updateUserController)
   );
   router.delete(
-    "/user/:id",
+    "/user/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteUserController)
   );

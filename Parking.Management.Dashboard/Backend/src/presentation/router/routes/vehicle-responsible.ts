@@ -8,7 +8,7 @@ import { authMiddleware } from "@/infra/factory/auth-factory";
 
 export default (router: Router): void => {
   router.get(
-    "/vehicle-responsible/:id",
+    "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdCollegeController)
   );
@@ -23,7 +23,7 @@ export default (router: Router): void => {
     adaptRoute(createCollegeController)
   );
   router.delete(
-    "/vehicle-responsible/:id",
+    "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteCollegeController)
   );

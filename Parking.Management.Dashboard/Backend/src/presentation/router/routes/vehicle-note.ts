@@ -8,7 +8,7 @@ import { authMiddleware } from "@/infra/factory/auth-factory";
 
 export default (router: Router): void => {
   router.get(
-    "/vehicle-note/:id",
+    "/vehicle-note/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdVehicleNoteController)
   );
@@ -23,7 +23,7 @@ export default (router: Router): void => {
     adaptRoute(createVehicleNoteController)
   );
   router.delete(
-    "/vehicle-note/:id",
+    "/vehicle-note/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteVehicleNoteController)
   );

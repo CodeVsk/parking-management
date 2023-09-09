@@ -1,22 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { resetUser } from "../../../redux/actions/actions";
+import { Navigate, Outlet } from "react-router-dom";
+import { validateApi } from "../../../api";
+import { setUser } from "../../../redux/actions/actions";
+import { useEffect } from "react";
 
-const PrivateRoute = ({ children, roles }) => {
+const PrivateRoute = ({ roles }) => {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  //if (!user && user.id != "" && user.role != "") {
-  //  navigate("/login");
-  //}
-
-  //if (roles && !roles.includes(user.role)) {
-  //  dispatch(resetUser());
-  //  navigate("/login");
-  //}
-
-  return <>{children}</>;
+  return user.role && roles.includes(user.role) ? (
+    <>
+      <Outlet />
+    </>
+  ) : (
+    <Navigate to="/login" />
+  );
 };
 
 export default PrivateRoute;

@@ -3,6 +3,7 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import Button from "../../common/Button";
 import Input from "../../common/Input";
+import ButtonLink from "../../common/ButtonLink";
 
 const Toolbar = () => {
   return (
@@ -13,7 +14,11 @@ const Toolbar = () => {
           placeholder="Digite o nome ou a matricula do aluno"
           className="custom-input"
         />
-        <Button name="Cadastrar" className="mw-400" />
+        <ButtonLink
+          name="Cadastrar"
+          className="mw-400"
+          to="/dashboard/admin/user/register"
+        />
       </div>
     </div>
   );

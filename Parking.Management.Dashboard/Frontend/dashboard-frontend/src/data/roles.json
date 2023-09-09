@@ -1,0 +1,5 @@
+[
+  { "description": "Selecione uma função", "value": null },
+  { "description": "Estudante", "value": "STUDENT" },
+  { "description": "Funcionário", "value": "EMPLOYEE" }
+]

@@ -19,17 +19,18 @@ const Sidebar = () => {
           alt="Universidade Paulista - Parking Management"
         />
       </Nav.Item>
-      {dashboardRoutes["ADMIN"].map(
-        (
-          routes,
-          index //DEFAULT OR ADMIN
-        ) => (
-          <Link key={index} to={routes.uri} className="navbar-item">
-            <i className={routes.icon} />
-            {routes.text}
-          </Link>
-        )
-      )}
+      {user.role &&
+        dashboardRoutes[user.role].map(
+          (
+            routes,
+            index //DEFAULT OR ADMIN
+          ) => (
+            <Link key={index} to={routes.uri} className="navbar-item">
+              <i className={routes.icon} />
+              {routes.text}
+            </Link>
+          )
+        )}
     </Nav>
   );
 };

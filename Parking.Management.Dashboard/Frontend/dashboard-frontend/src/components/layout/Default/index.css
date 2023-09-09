@@ -1,5 +1,7 @@
 .container-fluid,
-.row {
+.row,
+.l-col-1,
+.l-col-2 {
   height: 100% !important;
 }
 
@@ -11,4 +13,6 @@
 
 .l-col-2 {
   background: #f7f6fa !important;
+  overflow: hidden;
+  overflow-y: auto;
 }

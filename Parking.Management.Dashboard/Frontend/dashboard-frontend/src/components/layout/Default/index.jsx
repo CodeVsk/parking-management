@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Sidebar from "../../section/Sidebar";
 import "./index.css";
 
-export function Layout(props) {
+export function Layout({ children }) {
   return (
     <>
       <Container fluid>
@@ -12,7 +12,7 @@ export function Layout(props) {
           <Col className="l-col-1 p-0" data-bs-theme="dark" md={2}>
             <Sidebar />
           </Col>
-          <Col className="l-col-2">{props.children}</Col>
+          <Col className="l-col-2">{children}</Col>
         </Row>
       </Container>
     </>

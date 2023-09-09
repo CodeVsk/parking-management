@@ -10,30 +10,26 @@ const loginApi = async (email, password) => {
       body: JSON.stringify({ email: email, password: password }),
     });
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     return { success: false, message: "Erro ao fazer login" };
   }
 };
 
-const validateRoleApi = async (token, role) => {
+const validateApi = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/validate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ token, role }),
+      body: JSON.stringify({ token }),
     });
 
-    const data = await response.json();
-
-    return data;
+    return await response.json();
   } catch (error) {
     return { success: false, message: "Erro ao validar token" };
   }
 };
 
-export { loginApi, validateRoleApi };
+export { loginApi, validateApi };

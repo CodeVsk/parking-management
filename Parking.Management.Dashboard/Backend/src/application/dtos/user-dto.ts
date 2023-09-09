@@ -59,7 +59,6 @@ export class UserDto extends EntityDto {
   courseId: string;
 
   @AutoMap()
-  @IsNotEmpty({ message: "A matricula é obrigatória." })
   enrollment: string;
 
   @AutoMap()

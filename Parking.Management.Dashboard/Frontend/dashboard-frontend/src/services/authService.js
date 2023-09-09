@@ -1,4 +1,6 @@
-import { loginApi, validateRoleApi } from "../api/authApi";
+import { useDispatch } from "react-redux";
+import { loginApi, validateApi } from "../api/authApi";
+import { setUser } from "../redux/actions/actions";
 
 const login = async (email, password) => {
   const { data, message, statusCode } = await loginApi(email, password);
@@ -17,18 +19,4 @@ const logout = () => {
   localStorage.removeItem("PM:TOKEN");
 };
 
-const validateRole = async (token) => {
-  try {
-    if (token == null) {
-      return false;
-    }
-
-    const response = await validateRoleApi(token);
-
-    return response;
-  } catch (err) {
-    throw err;
-  }
-};
-
-export { login, logout, validateRole };
+export { login, logout };

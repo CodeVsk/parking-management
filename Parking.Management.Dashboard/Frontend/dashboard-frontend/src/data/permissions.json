@@ -1,0 +1,5 @@
+[
+  { "description": "Selecione uma permissão", "value": null },
+  { "description": "Comum", "value": "DEFAULT" },
+  { "description": "Administrador", "value": "ADMIN" }
+]

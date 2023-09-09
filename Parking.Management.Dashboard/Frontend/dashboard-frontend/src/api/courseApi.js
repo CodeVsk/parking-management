@@ -1,9 +1,9 @@
 import BASE_URL from "../global/apiUrl";
 
-export class CollegeApi {
+export class CourseApi {
   async getAll(token) {
     try {
-      const response = await fetch(`${BASE_URL}/college/get-all`, {
+      const response = await fetch(`${BASE_URL}/course/get-all`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

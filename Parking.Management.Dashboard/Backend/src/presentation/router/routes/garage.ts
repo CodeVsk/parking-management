@@ -9,7 +9,7 @@ import { getAllGarageController } from "@/domain/use-cases/garage/get-all";
 
 export default (router: Router): void => {
   router.get(
-    "/garage/:id",
+    "/garage/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdGarageController)
   );
@@ -29,7 +29,7 @@ export default (router: Router): void => {
     adaptRoute(createGarageController)
   );
   router.delete(
-    "/garage/:id",
+    "/garage/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteGarageController)
   );
