@@ -13,7 +13,7 @@ export class CourseApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao validar token" };
+      return { type: "error", message: "Erro ao validar token" };
     }
   }
 }

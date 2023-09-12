@@ -16,14 +16,10 @@ const Toolbar = (props) => {
         <Input
           onChange={handleSearch}
           name="search"
-          placeholder="Digite o nome ou a matricula do aluno"
+          placeholder={props.placeholder}
           className="custom-input"
         />
-        <ButtonLink
-          name="Cadastrar"
-          className="mw-400"
-          to="/dashboard/admin/user/register"
-        />
+        <ButtonLink name="Cadastrar" className="mw-400" to={props.to} />
       </div>
     </div>
   );

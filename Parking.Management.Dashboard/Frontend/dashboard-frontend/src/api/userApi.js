@@ -13,7 +13,7 @@ export class UserApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao executar funcionalidade." };
+      return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
 
@@ -29,11 +29,11 @@ export class UserApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao executar funcionalidade." };
+      return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
 
-  async registerUser(payload, token) {
+  async create(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/register`, {
         method: "POST",
@@ -46,11 +46,11 @@ export class UserApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao executar funcionalidade." };
+      return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
 
-  async updateUser(payload, token) {
+  async update(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/user`, {
         method: "PUT",
@@ -63,11 +63,11 @@ export class UserApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao executar funcionalidade." };
+      return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
 
-  async deleteUser(id, token) {
+  async delete(id, token) {
     try {
       const response = await fetch(`${BASE_URL}/user/id/${id}`, {
         method: "DELETE",
@@ -79,7 +79,7 @@ export class UserApi {
 
       return await response.json();
     } catch (error) {
-      return { success: false, message: "Erro ao executar funcionalidade." };
+      return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
 }

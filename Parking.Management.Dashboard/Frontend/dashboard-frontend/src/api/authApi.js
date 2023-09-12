@@ -12,7 +12,7 @@ const loginApi = async (email, password) => {
 
     return await response.json();
   } catch (error) {
-    return { success: false, message: "Erro ao fazer login" };
+    return { type: "error", message: "Erro ao fazer login" };
   }
 };
 
@@ -28,7 +28,7 @@ const validateApi = async (token) => {
 
     return await response.json();
   } catch (error) {
-    return { success: false, message: "Erro ao validar token" };
+    return { type: "error", message: "Erro ao validar token" };
   }
 };
 

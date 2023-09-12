@@ -1,26 +1,14 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-  BrowserRouter,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
-import VehicleTable from "../pages/DashboardUser/VehicleTable";
-import VehicleNoteTable from "../pages/DashboardUser/VehicleNotesTable";
-import VehicleResponsibleTable from "../pages/DashboardUser/VehicleResponsibleTable";
-import HomeUser from "../pages/DashboardUser/Home";
-import HomeAdmin from "../pages/DashboardAdmin/Home";
-import RegisterVehicle from "../pages/DashboardAdmin/RegisterVehicle";
-import RegisterUser from "../pages/DashboardAdmin/RegisterUser";
+import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/Authentication/Login";
 import PrivateRoute from "../components/common/PrivateRouter";
-import Logout from "../pages/Authentication/Logout";
-import UserAdmin from "../pages/DashboardAdmin/User";
-import { useDispatch } from "react-redux";
-import { setUser } from "../redux/actions/actions";
-import EditUser from "../pages/DashboardAdmin/EditUser";
+
+import HomeAdmin from "../pages/Dashboard/Admin/Home";
+import HomeUserAdmin from "../pages/Dashboard/Admin/User/Home";
+import EditUserAdmin from "../pages/Dashboard/Admin/User/Edit";
+import CreateUserAdmin from "../pages/Dashboard/Admin/User/Create";
+import CreateCollegeAdmin from "../pages/Dashboard/Admin/College/Create";
+import CollegeHomeAdmin from "../pages/Dashboard/Admin/College/Home";
+import EditCollegeAdmin from "../pages/Dashboard/Admin/College/Edit";
 
 const router = createBrowserRouter([
   {
@@ -28,20 +16,32 @@ const router = createBrowserRouter([
     element: <PrivateRoute roles={["ADMIN"]} />,
     children: [
       {
-        path: "/dashboard/admin",
+        path: "dashboard/admin/",
         element: <HomeAdmin />,
       },
       {
-        path: "/dashboard/admin/user",
-        element: <UserAdmin />,
+        path: "dashboard/admin/user",
+        element: <HomeUserAdmin />,
       },
       {
-        path: "/dashboard/admin/user/register",
-        element: <RegisterUser />,
+        path: "dashboard/admin/user/register",
+        element: <CreateUserAdmin />,
       },
       {
-        path: "/dashboard/admin/user/edit/:id",
-        element: <EditUser />,
+        path: "dashboard/admin/user/edit/:id",
+        element: <EditUserAdmin />,
+      },
+      {
+        path: "dashboard/admin/college",
+        element: <CollegeHomeAdmin />,
+      },
+      {
+        path: "dashboard/admin/college/create",
+        element: <CreateCollegeAdmin />,
+      },
+      {
+        path: "dashboard/admin/college/edit/:id",
+        element: <EditCollegeAdmin />,
       },
     ],
   },

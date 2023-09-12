@@ -6,14 +6,19 @@
       "icon": "bi bi-house-door-fill"
     },
     {
-      "uri": "/dashboard/admin/register/vehicle",
-      "text": "Cadastrar Veiculos",
-      "icon": "bi bi-car-front-fill"
-    },
-    {
       "uri": "/dashboard/admin/user",
       "text": "Usuários",
       "icon": "bi bi-person-add"
+    },
+    {
+      "uri": "/dashboard/admin/college",
+      "text": "Universidades",
+      "icon": "bi bi-building-add"
+    },
+    {
+      "uri": "/dashboard/admin/courses",
+      "text": "Cursos",
+      "icon": "bi bi-journal-plus"
     },
     {
       "uri": "/logout",

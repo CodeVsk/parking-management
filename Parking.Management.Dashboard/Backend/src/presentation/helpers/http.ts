@@ -8,6 +8,7 @@ export class HttpResponse {
       statusCode: 200,
       data: result.content,
       message: result.message,
+      type: result.type,
     };
   }
 

@@ -13,7 +13,7 @@ const showSuccessNotification = (message) => {
 };
 
 const showErrorNotification = (message) => {
-  toast.success(message, {
+  toast.error(message, {
     position: "top-right", // Posição da notificação
     autoClose: 5000, // Tempo que a notificação ficará visível em milissegundos
     hideProgressBar: false, // Mostrar barra de progresso
@@ -25,7 +25,7 @@ const showErrorNotification = (message) => {
 };
 
 const showWarningNotification = (message) => {
-  toast.success(message, {
+  toast.warning(message, {
     position: "top-right", // Posição da notificação
     autoClose: 5000, // Tempo que a notificação ficará visível em milissegundos
     hideProgressBar: false, // Mostrar barra de progresso
@@ -36,8 +36,20 @@ const showWarningNotification = (message) => {
   });
 };
 
-export {
-  showSuccessNotification,
-  showWarningNotification,
-  showErrorNotification,
+const showNotification = (type, message) => {
+  switch (type) {
+    case "success":
+      showSuccessNotification(message);
+      break;
+
+    case "error":
+      showErrorNotification(message);
+      break;
+
+    case "warning":
+      showWarningNotification(message);
+      break;
+  }
 };
+
+export { showNotification };

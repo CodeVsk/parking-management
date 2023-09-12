@@ -1,22 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../components/layout/Default";
+import { Layout } from "../../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../data/genders.json";
-import permissions from "../../../data/permissions.json";
-import roles from "../../../data/roles.json";
-import { CollegeApi, CourseApi, UserApi } from "../../../api";
-import {
-  showErrorNotification,
-  showSuccessNotification,
-} from "../../../global/notifications";
-import { useNavigate } from "react-router-dom";
+import genders from "../../../../data/genders.json";
+import permissions from "../../../../data/permissions.json";
+import roles from "../../../../data/roles.json";
+import { CollegeApi, CourseApi, UserApi } from "../../../../api";
+import { showNotification } from "../../../../global/notifications";
+import { useNavigate, useParams } from "react-router-dom";
+import { dateFormat } from "../../../../global/date-format";
 
-const RegisterUser = () => {
-  const formRef = useRef();
+const EditUserAdmin = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [collegeApi] = useState(new CollegeApi());
@@ -27,6 +25,7 @@ const RegisterUser = () => {
   const [colleges, setColleges] = useState([]);
 
   const formInitalState = {
+    id: id,
     name: "",
     email: "",
     password: "",
@@ -46,18 +45,18 @@ const RegisterUser = () => {
     courseId: "",
   };
 
-  const [addFormData, setAddFormData] = useState(formInitalState);
+  const [editFormData, setEditFormData] = useState(formInitalState);
 
-  async function handleAddFormChange(event) {
+  async function handleEditFormChange(event) {
     event.preventDefault();
 
     const fieldNome = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
-    const newFormData = { ...addFormData };
+    const newFormData = { ...editFormData };
     newFormData[fieldNome] = fieldValue;
 
-    await setAddFormData(newFormData);
+    await setEditFormData(newFormData);
   }
 
   async function handleReturn(event) {
@@ -92,23 +91,31 @@ const RegisterUser = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = token && (await userApi.getById(id, token));
+
+        setEditFormData(response.data);
+      } catch (e) {
+        console.error("Erro ao trazer dados do usuário");
+      }
+    };
+
+    getData();
+  }, []);
+
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await userApi.registerUser(addFormData, token);
+    const response = await userApi.update(editFormData, token);
 
-    if (response.type == "success") {
-      formRef.current.reset();
-      setAddFormData(formInitalState);
-      showSuccessNotification(response.message);
-    } else {
-      showErrorNotification(response.message);
-    }
+    showNotification(response.type, response.message);
   }
 
   return (
     <Layout>
-      <Form className="background-form" ref={formRef} onSubmit={handleSubmit}>
+      <Form className="background-form" onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGroupEmail">
             <Form.Label>Email</Form.Label>
@@ -117,8 +124,9 @@ const RegisterUser = () => {
               className="form-item"
               type="email"
               placeholder="Digite seu email"
+              value={editFormData.email}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGroupPassword">
@@ -128,8 +136,8 @@ const RegisterUser = () => {
               className="form-item"
               type="password"
               placeholder="Digite sua Senha"
-              required
-              onChange={handleAddFormChange}
+              value="###########"
+              disabled
             />
           </Form.Group>
         </Row>
@@ -141,8 +149,9 @@ const RegisterUser = () => {
             className="form-item"
             type="text"
             placeholder="Digite seu Nome completo"
+            value={editFormData.name}
             required
-            onChange={handleAddFormChange}
+            onChange={handleEditFormChange}
           />
         </Form.Group>
 
@@ -154,8 +163,9 @@ const RegisterUser = () => {
               className="form-item"
               type="text"
               placeholder="Digite seu RG"
+              value={editFormData.rg}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGroupCPF">
@@ -165,8 +175,9 @@ const RegisterUser = () => {
               className="form-item"
               type="text"
               placeholder="Digite seu CPF"
+              value={editFormData.cpf}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             />
           </Form.Group>
         </Row>
@@ -178,8 +189,9 @@ const RegisterUser = () => {
             className="form-item"
             type="text"
             placeholder="Digite seu Número de Telefone"
+            value={editFormData.phone}
             required
-            onChange={handleAddFormChange}
+            onChange={handleEditFormChange}
           />
         </Form.Group>
 
@@ -190,8 +202,9 @@ const RegisterUser = () => {
             className="form-item"
             type="text"
             placeholder="Digite seu Endereço"
+            value={editFormData.address}
             required
-            onChange={handleAddFormChange}
+            onChange={handleEditFormChange}
           />
         </Form.Group>
 
@@ -203,8 +216,9 @@ const RegisterUser = () => {
               className="form-item"
               type="text"
               placeholder="Digite o estado"
+              value={editFormData.state}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGroupCity">
@@ -214,8 +228,9 @@ const RegisterUser = () => {
               className="form-item"
               type="text"
               placeholder="Digite a cidade"
+              value={editFormData.city}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             />
           </Form.Group>
         </Row>
@@ -226,8 +241,9 @@ const RegisterUser = () => {
             <Form.Select
               name="role"
               className="form-item"
+              value={editFormData.role}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             >
               {roles.map((v, i) => (
                 <option key={i} value={v.value}>
@@ -241,8 +257,9 @@ const RegisterUser = () => {
             <Form.Select
               name="permissions"
               className="form-item"
+              value={editFormData.permissions}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             >
               {permissions.map((v, i) => (
                 <option key={i} value={v.value}>
@@ -258,8 +275,9 @@ const RegisterUser = () => {
           <Form.Select
             name="gender"
             className="form-item"
+            value={editFormData.gender}
             required
-            onChange={handleAddFormChange}
+            onChange={handleEditFormChange}
           >
             {genders.map((v, i) => (
               <option key={i} value={v.value}>
@@ -275,9 +293,13 @@ const RegisterUser = () => {
             <Form.Select
               name="courseId"
               className="form-item"
+              value={editFormData.courseId}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             >
+              <option key="null" value="null">
+                Selecione um curso
+              </option>
               {courses.map((v, i) => (
                 <option key={i} value={v.id}>
                   {v.name}
@@ -290,8 +312,9 @@ const RegisterUser = () => {
             <Form.Select
               name="collegeId"
               className="form-item"
+              value={editFormData.collegeId}
               required
-              onChange={handleAddFormChange}
+              onChange={handleEditFormChange}
             >
               <option value="null">Selecione uma universidade</option>
               {colleges.map((v, i) => (
@@ -309,14 +332,15 @@ const RegisterUser = () => {
             name="birthdate"
             className="form-item"
             type="date"
+            value={dateFormat(editFormData.birthdate)}
             required
-            onChange={handleAddFormChange}
+            onChange={handleEditFormChange}
           />
         </Form.Group>
 
         <div className="d-grid gap-2">
           <Button variant="dark" type="submit">
-            Finalizar Cadastro
+            Concluir Edição
           </Button>
           <Button variant="outline-dark" onClick={handleReturn}>
             Voltar
@@ -327,4 +351,4 @@ const RegisterUser = () => {
   );
 };
 
-export default RegisterUser;
+export default EditUserAdmin;

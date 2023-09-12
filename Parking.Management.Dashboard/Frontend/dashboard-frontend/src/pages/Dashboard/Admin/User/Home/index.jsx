@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../components/layout/Default";
-import Toolbar from "../../../components/section/Toolbar";
-import { UserApi } from "../../../api/userApi";
+import { Layout } from "../../../../components/layout/Default";
+import Toolbar from "../../../../components/section/Toolbar";
+import { UserApi } from "../../../../api/userApi";
 import { useNavigate } from "react-router-dom";
-import ModalCustom from "../../../components/common/Modal";
-import {
-  showErrorNotification,
-  showSuccessNotification,
-} from "../../../global/notifications";
+import ModalCustom from "../../../../components/common/Modal";
+import { showNotification } from "../../../../global/notifications";
 
-const UserAdmin = () => {
+const HomeUserAdmin = () => {
   const modalRef = useRef(null);
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [userApi] = useState(new UserApi());
@@ -35,20 +32,20 @@ const UserAdmin = () => {
     navigate(`/dashboard/admin/user/edit/${id}`);
   };
 
-  const handleDeleteUser = async (id) => {
+  const showModalDelete = async (id) => {
     modalRef.current.handleShow(id);
   };
 
-  const handleConfirmDelete = async (id) => {
-    const response = await userApi.deleteUser(id, token);
+  const handleDelete = async (id) => {
+    const response = await userApi.delete(id, token);
     if (response.statusCode == 200 && response.data != null) {
-      showSuccessNotification("Usuário foi removido com sucesso.");
+      showNotification("success", "Usuário foi removido com sucesso.");
       await getAllUsers();
 
       return;
     }
 
-    showErrorNotification("Ocorreu um erro ao remover o usuário.");
+    showNotification("error", "Ocorreu um erro ao remover o usuário.");
   };
 
   const handleSearch = (value) => {
@@ -71,7 +68,11 @@ const UserAdmin = () => {
     <Layout>
       <div className="user-wrapper">
         <div className="user-container">
-          <Toolbar onSearchCallback={handleSearch} />
+          <Toolbar
+            onSearchCallback={handleSearch}
+            placeholder="Digite o nome ou a matricula do aluno"
+            to="/dashboard/admin/user/register"
+          />
           <table className="table mb-0">
             <thead>
               <tr>
@@ -94,7 +95,7 @@ const UserAdmin = () => {
                     ></i>
                     <i
                       className="bi bi-trash"
-                      onClick={() => handleDeleteUser(user.id)}
+                      onClick={() => showModalDelete(user.id)}
                     ></i>
                   </td>
                 </tr>
@@ -105,7 +106,7 @@ const UserAdmin = () => {
       </div>
       <ModalCustom
         ref={modalRef}
-        onCallback={handleConfirmDelete}
+        onCallback={handleDelete}
         title="Excluir usuário"
         description="Você realmente deseja excluir este usuário?"
       />
@@ -113,4 +114,4 @@ const UserAdmin = () => {
   );
 };
 
-export default UserAdmin;
+export default HomeUserAdmin;

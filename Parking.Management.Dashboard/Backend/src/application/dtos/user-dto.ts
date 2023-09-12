@@ -23,7 +23,7 @@ export class UserDto extends EntityDto {
   email: string;
 
   @AutoMap()
-  @MinLength(6, { message: "A senha é obrigatória." })
+  @MinLength(6, { message: "A senha deve conter no minimo 6 caracteres." })
   password: string;
 
   @AutoMap()
