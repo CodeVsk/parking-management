@@ -1,9 +1,9 @@
 import BASE_URL from "../global/apiUrl";
 
-export class CourseApi {
+export class VehicleApi {
   async getAll(token) {
     try {
-      const response = await fetch(`${BASE_URL}/course/get-all`, {
+      const response = await fetch(`${BASE_URL}/vehicle/get-all`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export class CourseApi {
 
   async getById(id, token) {
     try {
-      const response = await fetch(`${BASE_URL}/course/id/${id}`, {
+      const response = await fetch(`${BASE_URL}/vehicle/id/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export class CourseApi {
 
   async create(payload, token) {
     try {
-      const response = await fetch(`${BASE_URL}/course`, {
+      const response = await fetch(`${BASE_URL}/vehicle`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export class CourseApi {
 
   async update(payload, token) {
     try {
-      const response = await fetch(`${BASE_URL}/course`, {
+      const response = await fetch(`${BASE_URL}/vehicle`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export class CourseApi {
 
   async delete(id, token) {
     try {
-      const response = await fetch(`${BASE_URL}/course/id/${id}`, {
+      const response = await fetch(`${BASE_URL}/vehicle/id/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

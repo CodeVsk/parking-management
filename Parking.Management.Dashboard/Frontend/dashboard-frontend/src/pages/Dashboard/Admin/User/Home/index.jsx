@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
-import Toolbar from "../../../../components/section/Toolbar";
-import { UserApi } from "../../../../api/userApi";
+import { Layout } from "../../../../../components/layout/Default";
+import Toolbar from "../../../../../components/section/Toolbar";
+import { UserApi } from "../../../../../api/userApi";
 import { useNavigate } from "react-router-dom";
-import ModalCustom from "../../../../components/common/Modal";
-import { showNotification } from "../../../../global/notifications";
+import ModalCustom from "../../../../../components/common/Modal";
+import { showNotification } from "../../../../../global/notifications";
 
 const HomeUserAdmin = () => {
   const modalRef = useRef(null);

@@ -1,30 +1,30 @@
 import { Router } from "express";
 import { adaptRoute } from "../../../infra/adapters/express-router-adapter";
-import { createCollegeController } from "../../../domain/use-cases/college/create";
-import { updateCollegeController } from "../../../domain/use-cases/college/update";
-import { findByIdCollegeController } from "../../../domain/use-cases/college/find-by-id";
-import { deleteCollegeController } from "../../../domain/use-cases/college/delete";
 import { authMiddleware } from "@/infra/factory/auth-factory";
+import { FindByIdVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/find-by-id/find-by-id-vehicle-responsible-controller";
+import { updateVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/update";
+import { createVehicleNoteController } from "@/domain/use-cases/vehicle-note/create";
+import { deleteVehicleNoteController } from "@/domain/use-cases/vehicle-note/delete";
 
 export default (router: Router): void => {
   router.get(
     "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
-    adaptRoute(findByIdCollegeController)
+    adaptRoute(FindByIdVehicleResponsibleController)
   );
   router.put(
     "/vehicle-responsible",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(updateCollegeController)
+    adaptRoute(updateVehicleResponsibleController)
   );
   router.post(
     "/vehicle-responsible",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(createCollegeController)
+    adaptRoute(createVehicleNoteController)
   );
   router.delete(
     "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(deleteCollegeController)
+    adaptRoute(deleteVehicleNoteController)
   );
 };

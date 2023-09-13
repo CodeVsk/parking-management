@@ -16,9 +16,14 @@
       "icon": "bi bi-building-add"
     },
     {
-      "uri": "/dashboard/admin/courses",
+      "uri": "/dashboard/admin/course",
       "text": "Cursos",
       "icon": "bi bi-journal-plus"
+    },
+    {
+      "uri": "/dashboard/admin/vehicle",
+      "text": "Veiculos",
+      "icon": "bi bi-car-front-fill"
     },
     {
       "uri": "/logout",

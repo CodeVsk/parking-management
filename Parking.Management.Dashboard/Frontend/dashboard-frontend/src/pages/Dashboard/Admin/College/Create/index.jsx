@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
+import { Layout } from "../../../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { CollegeApi } from "../../../../api";
-import { showNotification } from "../../../../global/notifications";
+import { CollegeApi } from "../../../../../api";
+import { showNotification } from "../../../../../global/notifications";
 import { useNavigate } from "react-router-dom";
 
 const CreateCollege = () => {

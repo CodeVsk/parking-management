@@ -88,12 +88,12 @@ model Garage {
 }
 
 model Vehicle {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   model      String
-  type       String
+  type       VehicleType @default(AUTOMOBILE)
   plate      String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
 
   //FK keys relations
   user   User   @relation(name: "iVehicle", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -173,4 +173,8 @@ enum Gender {
   M
   F
   O
+}
+
+enum VehicleType {
+  AUTOMOBILE
 }

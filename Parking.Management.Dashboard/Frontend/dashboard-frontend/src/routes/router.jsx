@@ -9,6 +9,13 @@ import CreateUserAdmin from "../pages/Dashboard/Admin/User/Create";
 import CreateCollegeAdmin from "../pages/Dashboard/Admin/College/Create";
 import CollegeHomeAdmin from "../pages/Dashboard/Admin/College/Home";
 import EditCollegeAdmin from "../pages/Dashboard/Admin/College/Edit";
+import CourseHome from "../pages/Dashboard/Admin/Course/Home";
+import CourseHomeAdmin from "../pages/Dashboard/Admin/Course/Home";
+import CreateCourseAdmin from "../pages/Dashboard/Admin/Course/Create";
+import EditCourseAdmin from "../pages/Dashboard/Admin/Course/Edit";
+import HomeVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Home";
+import CreateVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Create";
+import EditVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Edit";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +50,30 @@ const router = createBrowserRouter([
         path: "dashboard/admin/college/edit/:id",
         element: <EditCollegeAdmin />,
       },
+      {
+        path: "dashboard/admin/course",
+        element: <CourseHomeAdmin />,
+      },
+      {
+        path: "dashboard/admin/course/create",
+        element: <CreateCourseAdmin />,
+      },
+      {
+        path: "dashboard/admin/course/edit/:id",
+        element: <EditCourseAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle",
+        element: <HomeVehicleAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/create",
+        element: <CreateVehicleAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/edit/:id",
+        element: <EditVehicleAdmin />,
+      },
     ],
   },
   {
@@ -52,17 +83,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-
-/*
-createRoutesFromElements(
-    <Route
-      path="/login"
-      element={<Login />}
-      loader={async () => {
-        console.log("T");
-
-        return null;
-      }}
-    />
-  )
-  */

@@ -14,6 +14,7 @@ export class DeleteCourseController {
 
       return HttpResponse.ok(result);
     } catch (err) {
+      console.log(err);
       return HttpResponse.badRequest(err);
     }
   }

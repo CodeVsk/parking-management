@@ -8,18 +8,18 @@ import Button from "react-bootstrap/Button";
 import genders from "../../../../../data/genders.json";
 import permissions from "../../../../../data/permissions.json";
 import roles from "../../../../../data/roles.json";
-import { CollegeApi, CourseApi, UserApi } from "../../../../../api";
+import { CollegeApi, CourseApi, VehicleApi } from "../../../../../api";
 import { showNotification } from "../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
 import { dateFormat } from "../../../../../global/date-format";
 
-const EditUserAdmin = () => {
+const EditVehicleAdmin = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [collegeApi] = useState(new CollegeApi());
   const [courseApi] = useState(new CourseApi());
-  const [userApi] = useState(new UserApi());
+  const [vehicleApi] = useState(new VehicleApi());
 
   const [courses, setCourses] = useState([]);
   const [colleges, setColleges] = useState([]);
@@ -61,7 +61,7 @@ const EditUserAdmin = () => {
 
   async function handleReturn(event) {
     event.preventDefault();
-    navigate("/dashboard/admin/user");
+    navigate("/dashboard/admin/vehicle");
   }
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const EditUserAdmin = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = token && (await userApi.getById(id, token));
+        const response = token && (await vehicleApi.getById(id, token));
 
         setEditFormData(response.data);
       } catch (e) {
@@ -108,7 +108,7 @@ const EditUserAdmin = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await userApi.update(editFormData, token);
+    const response = await vehicleApi.update(editFormData, token);
 
     showNotification(response.type, response.message);
   }
@@ -351,4 +351,4 @@ const EditUserAdmin = () => {
   );
 };
 
-export default EditUserAdmin;
+export default EditVehicleAdmin;

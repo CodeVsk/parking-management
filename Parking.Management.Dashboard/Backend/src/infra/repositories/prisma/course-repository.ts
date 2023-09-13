@@ -4,9 +4,11 @@ import { prisma } from "../../database/Prisma";
 
 export class PrismaCourseRepository implements ICourseRepository {
   async create(course: Course): Promise<Course> {
+    const { college, ...courseData } = course;
+
     const result = await prisma.course.create({
       data: {
-        ...course,
+        ...courseData,
       },
     });
 
@@ -14,12 +16,14 @@ export class PrismaCourseRepository implements ICourseRepository {
   }
 
   async update(course: Course): Promise<Course> {
+    const { college, ...courseData } = course;
+
     const result = await prisma.course.update({
       where: {
-        id: course.id,
+        id: courseData.id,
       },
       data: {
-        ...course,
+        ...courseData,
       },
     });
 
@@ -47,7 +51,11 @@ export class PrismaCourseRepository implements ICourseRepository {
   }
 
   async getAll(): Promise<Course[]> {
-    const result = await prisma.course.findMany();
+    const result = await prisma.course.findMany({
+      include: {
+        college: true,
+      },
+    });
 
     return result;
   }

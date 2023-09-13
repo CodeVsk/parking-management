@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
-import Toolbar from "../../../../components/section/Toolbar";
+import { Layout } from "../../../../../components/layout/Default";
+import Toolbar from "../../../../../components/section/Toolbar";
 import { useNavigate } from "react-router-dom";
-import ModalCustom from "../../../../components/common/Modal";
-import { showNotification } from "../../../../global/notifications";
-import { CollegeApi } from "../../../../api";
+import ModalCustom from "../../../../../components/common/Modal";
+import { showNotification } from "../../../../../global/notifications";
+import { CollegeApi } from "../../../../../api";
 
 const CollegeHome = () => {
   const modalRef = useRef(null);

@@ -9,7 +9,6 @@ export class GetAllCourseUseCase {
 
   async execute(): Promise<Result<CourseDto[]>> {
     const result = await this.courseRepository.getAll();
-
     const coursesDto = await mapper.mapArrayAsync(result, Course, CourseDto);
 
     return new Result<CourseDto[]>({

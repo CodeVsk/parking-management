@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
+import { Layout } from "../../../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../../data/genders.json";
-import permissions from "../../../../data/permissions.json";
-import roles from "../../../../data/roles.json";
-import { CollegeApi, CourseApi, UserApi } from "../../../../api";
-import { showNotification } from "../../../../global/notifications";
+import { CollegeApi } from "../../../../../api";
+import { showNotification } from "../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
-import { dateFormat } from "../../../../global/date-format";
 
 const EditCollege = () => {
   const { id } = useParams();

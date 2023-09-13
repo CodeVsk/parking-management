@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
+import { Layout } from "../../../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../../data/genders.json";
-import permissions from "../../../../data/permissions.json";
-import roles from "../../../../data/roles.json";
-import { CollegeApi, CourseApi, UserApi } from "../../../../api";
-import { showNotification } from "../../../../global/notifications";
+import { CollegeApi, CourseApi } from "../../../../../api";
+import { showNotification } from "../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
-import { dateFormat } from "../../../../global/date-format";
 
-const EditCollege = () => {
+const EditCourseAdmin = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
+  const [courseApi] = useState(new CourseApi());
   const [collegeApi] = useState(new CollegeApi());
+  const [colleges, setColleges] = useState([]);
 
   const formInitalState = {
     name: "",
-    address: "",
-    city: "",
-    campus: "",
+    collegeId: "",
   };
 
   const [editFormData, setEditFormData] = useState(formInitalState);
@@ -42,13 +38,13 @@ const EditCollege = () => {
 
   async function handleReturn(event) {
     event.preventDefault();
-    navigate("/dashboard/admin/college");
+    navigate("/dashboard/admin/course");
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await collegeApi.update(editFormData, token);
+    const response = await courseApi.update(editFormData, token);
 
     showNotification(response.type, response.message);
   }
@@ -56,11 +52,25 @@ const EditCollege = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = token && (await collegeApi.getById(id, token));
+        const response = token && (await courseApi.getById(id, token));
 
         setEditFormData(response.data);
       } catch (e) {
-        showNotification("error", "Erro ao trazer dados da universidade");
+        showNotification("error", "Erro ao trazer dados do curso");
+      }
+    };
+
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = token && (await collegeApi.getAll(token));
+
+        setColleges(response.data);
+      } catch (e) {
+        showNotification("error", "Erro ao trazer universidades cadastradas");
       }
     };
 
@@ -83,43 +93,24 @@ const EditCollege = () => {
               onChange={handleEditFormChange}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCampus">
-            <Form.Label>Campus</Form.Label>
-            <Form.Control
-              name="campus"
+          <Form.Group as={Col} controlId="formGroupCollege">
+            <Form.Label>Universidade</Form.Label>
+            <Form.Select
+              name="collegeId"
               className="form-item"
-              type="text"
-              placeholder="Digite o campus da universidade"
-              value={editFormData.campus}
-              disabled
-            />
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupAddress">
-            <Form.Label>Endereço</Form.Label>
-            <Form.Control
-              name="address"
-              className="form-item"
-              type="text"
-              placeholder="Digite o endereço da universidade"
-              value={editFormData.address}
               required
+              value={editFormData.collegeId}
               onChange={handleEditFormChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCity">
-            <Form.Label>Cidade</Form.Label>
-            <Form.Control
-              name="city"
-              className="form-item"
-              type="text"
-              placeholder="Digite a cidade da universidade"
-              value={editFormData.city}
-              required
-              onChange={handleEditFormChange}
-            />
+            >
+              <option key="null" value="null">
+                Selecione uma universidade
+              </option>
+              {colleges.map((v, i) => (
+                <option key={i} value={v.id}>
+                  {v.name} | {v.campus}
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
         </Row>
 
@@ -136,4 +127,4 @@ const EditCollege = () => {
   );
 };
 
-export default EditCollege;
+export default EditCourseAdmin;

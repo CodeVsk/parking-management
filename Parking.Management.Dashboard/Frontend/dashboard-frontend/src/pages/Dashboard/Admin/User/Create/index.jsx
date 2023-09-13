@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { Layout } from "../../../../components/layout/Default";
+import { Layout } from "../../../../../components/layout/Default";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../../data/genders.json";
-import permissions from "../../../../data/permissions.json";
-import roles from "../../../../data/roles.json";
-import { CollegeApi, CourseApi, UserApi } from "../../../../api";
-import { showNotification } from "../../../../global/notifications";
+import genders from "../../../../../data/genders.json";
+import permissions from "../../../../../data/permissions.json";
+import roles from "../../../../../data/roles.json";
+import { CollegeApi, CourseApi, UserApi } from "../../../../../api";
+import { showNotification } from "../../../../../global/notifications";
 import { useNavigate } from "react-router-dom";
 
 const CreateUserAdmin = () => {
