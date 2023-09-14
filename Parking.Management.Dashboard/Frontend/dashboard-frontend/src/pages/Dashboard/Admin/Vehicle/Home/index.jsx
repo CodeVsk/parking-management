@@ -56,8 +56,8 @@ const HomeVehicleAdmin = () => {
     if (search && search != "") {
       return vehicles.filter(
         (x) =>
-          x.name.toLowerCase().includes(search?.toLowerCase()) ||
-          x.enrollment.toLowerCase().includes(search?.toLowerCase())
+          x.plate.toLowerCase().includes(search?.toLowerCase()) ||
+          x.user.enrollment.toLowerCase().includes(search?.toLowerCase())
       );
     }
 
@@ -70,24 +70,28 @@ const HomeVehicleAdmin = () => {
         <div className="vehicle-container">
           <Toolbar
             onSearchCallback={handleSearch}
-            placeholder="Digite o nome ou a matricula do aluno"
-            to="/dashboard/admin/vehicle/register"
+            placeholder="Digite a placa do veiculo ou a matricula do responsável"
+            to="/dashboard/admin/vehicle/create"
           />
           <table className="table mb-0">
             <thead>
               <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Matricula</th>
-                <th scope="col">Status</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Responsável</th>
+                <th scope="col">Campus</th>
                 <th scope="col">Ações</th>
               </tr>
             </thead>
             <tbody>
               {getVehicles().map((vehicle) => (
                 <tr key={vehicle.id}>
-                  <td>{vehicle.name}</td>
-                  <td>{vehicle.enrollment}</td>
-                  <td>{vehicle.status ? "Ativo" : "Desativado"}</td>
+                  <td>{vehicle.model}</td>
+                  <td>{vehicle.plate}</td>
+                  <td>
+                    ({vehicle?.user?.enrollment}) {vehicle?.user?.name}
+                  </td>
+                  <td>{vehicle?.college?.campus}</td>
                   <td className="table-action">
                     <i
                       className="bi bi-pencil-square"

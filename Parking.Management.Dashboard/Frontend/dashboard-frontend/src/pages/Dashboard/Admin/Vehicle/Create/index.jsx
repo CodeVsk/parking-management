@@ -5,10 +5,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../../../data/genders.json";
-import permissions from "../../../../../data/permissions.json";
-import roles from "../../../../../data/roles.json";
-import { CollegeApi, CourseApi, VehicleApi } from "../../../../../api";
+import vehicleType from "../../../../../data/vehicle-type.json";
+import vehicleColor from "../../../../../data/vehicle-colors.json";
+import { CollegeApi, VehicleApi } from "../../../../../api";
 import { showNotification } from "../../../../../global/notifications";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +16,8 @@ const CreateVehicleAdmin = () => {
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [collegeApi] = useState(new CollegeApi());
-  const [courseApi] = useState(new CourseApi());
-  const [VehicleApi] = useState(new VehicleApi());
+  const [vehicleApi] = useState(new VehicleApi());
 
-  const [courses, setCourses] = useState([]);
   const [colleges, setColleges] = useState([]);
 
   const formInitalState = {
@@ -53,19 +50,6 @@ const CreateVehicleAdmin = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = token && (await courseApi.getAll(token));
-
-        setCourses(response.data);
-      } catch (e) {
-        console.error("Erro ao trazer cursos cadastrados");
-      }
-    };
-    getData();
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
         const response = token && (await collegeApi.getAll(token));
 
         setColleges(response.data);
@@ -80,7 +64,7 @@ const CreateVehicleAdmin = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await VehicleApi.create(addFormData, token);
+    const response = await vehicleApi.create(addFormData, token);
 
     if (response.type == "success") {
       formRef.current.reset();
@@ -94,141 +78,26 @@ const CreateVehicleAdmin = () => {
     <Layout>
       <Form className="background-form" ref={formRef} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupEmail">
-            <Form.Label>Email</Form.Label>
+          <Form.Group as={Col} controlId="formGroupModel">
+            <Form.Label>Modelo</Form.Label>
             <Form.Control
-              name="email"
-              className="form-item"
-              type="email"
-              placeholder="Digite seu email"
-              required
-              onChange={handleAddFormChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGroupPassword">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control
-              name="password"
-              className="form-item"
-              type="password"
-              placeholder="Digite sua Senha"
-              required
-              onChange={handleAddFormChange}
-            />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="formGroupName">
-          <Form.Label>Nome completo</Form.Label>
-          <Form.Control
-            name="name"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Nome completo"
-            required
-            onChange={handleAddFormChange}
-          />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupRG">
-            <Form.Label>RG</Form.Label>
-            <Form.Control
-              name="rg"
+              name="model"
               className="form-item"
               type="text"
-              placeholder="Digite seu RG"
+              placeholder="Digite o modelo do veiculo (ex: HB20)"
               required
               onChange={handleAddFormChange}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCPF">
-            <Form.Label>CPF</Form.Label>
-            <Form.Control
-              name="cpf"
-              className="form-item"
-              type="text"
-              placeholder="Digite seu CPF"
-              required
-              onChange={handleAddFormChange}
-            />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="formGroupPhone">
-          <Form.Label>Telefone</Form.Label>
-          <Form.Control
-            name="phone"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Número de Telefone"
-            required
-            onChange={handleAddFormChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formGroupAddress">
-          <Form.Label>Endereço</Form.Label>
-          <Form.Control
-            name="address"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Endereço"
-            required
-            onChange={handleAddFormChange}
-          />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupState">
-            <Form.Label>Estado</Form.Label>
-            <Form.Control
-              name="state"
-              className="form-item"
-              type="text"
-              placeholder="Digite o estado"
-              required
-              onChange={handleAddFormChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCity">
-            <Form.Label>Cidade</Form.Label>
-            <Form.Control
-              name="city"
-              className="form-item"
-              type="text"
-              placeholder="Digite a cidade"
-              required
-              onChange={handleAddFormChange}
-            />
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupRole">
+          <Form.Group as={Col} controlId="formGroupType">
             <Form.Label>Tipo</Form.Label>
             <Form.Select
-              name="role"
+              name="type"
               className="form-item"
               required
               onChange={handleAddFormChange}
             >
-              {roles.map((v, i) => (
-                <option key={i} value={v.value}>
-                  {v.description}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGrouPermission">
-            <Form.Label>Permissão</Form.Label>
-            <Form.Select
-              name="permissions"
-              className="form-item"
-              required
-              onChange={handleAddFormChange}
-            >
-              {permissions.map((v, i) => (
+              {vehicleType.map((v, i) => (
                 <option key={i} value={v.value}>
                   {v.description}
                 </option>
@@ -237,40 +106,46 @@ const CreateVehicleAdmin = () => {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3" controlId="formGroupGender">
-          <Form.Label>Gênero</Form.Label>
-          <Form.Select
-            name="gender"
-            className="form-item"
-            required
-            onChange={handleAddFormChange}
-          >
-            {genders.map((v, i) => (
-              <option key={i} value={v.value}>
-                {v.description}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupCourse">
-            <Form.Label>Curso</Form.Label>
+          <Form.Group as={Col} controlId="formGroupPlate">
+            <Form.Label>Placa</Form.Label>
+            <Form.Control
+              name="plate"
+              className="form-item"
+              type="text"
+              placeholder="Digite a placa do veiculo"
+              required
+              onChange={handleAddFormChange}
+            />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGroupColor">
+            <Form.Label>Cor</Form.Label>
             <Form.Select
-              name="courseId"
+              name="color"
               className="form-item"
               required
               onChange={handleAddFormChange}
             >
-              <option key="null" value="null">
-                Selecione um curso
-              </option>
-              {courses.map((v, i) => (
-                <option key={i} value={v.id}>
-                  {v.name}
+              {vehicleColor.map((v, i) => (
+                <option key={i} value={v.value}>
+                  {v.description}
                 </option>
               ))}
             </Form.Select>
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGroupStudent">
+            <Form.Label>Aluno</Form.Label>
+            <Form.Control
+              name="userId"
+              className="form-item"
+              type="text"
+              placeholder="Digite o id do aluno"
+              required
+              onChange={handleAddFormChange}
+            />
           </Form.Group>
           <Form.Group as={Col} controlId="formGroupCollege">
             <Form.Label>Universidade</Form.Label>
@@ -280,26 +155,17 @@ const CreateVehicleAdmin = () => {
               required
               onChange={handleAddFormChange}
             >
-              <option value="null">Selecione uma universidade</option>
+              <option key="null" value="null">
+                Selecione uma universidade
+              </option>
               {colleges.map((v, i) => (
                 <option key={i} value={v.id}>
-                  {v.name}
+                  {v.name} | {v.campus}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
         </Row>
-
-        <Form.Group className="mb-4" controlId="formGroupBirthdate">
-          <Form.Label>Data de Nascimento</Form.Label>
-          <Form.Control
-            name="birthdate"
-            className="form-item"
-            type="date"
-            required
-            onChange={handleAddFormChange}
-          />
-        </Form.Group>
 
         <div className="d-grid gap-2">
           <Button variant="dark" type="submit">
