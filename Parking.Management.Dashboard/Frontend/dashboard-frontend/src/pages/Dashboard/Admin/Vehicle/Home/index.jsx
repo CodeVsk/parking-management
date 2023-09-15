@@ -111,8 +111,8 @@ const HomeVehicleAdmin = () => {
       <ModalCustom
         ref={modalRef}
         onCallback={handleDelete}
-        title="Excluir usuário"
-        description="Você realmente deseja excluir este usuário?"
+        title="Excluir veiculo"
+        description="Você realmente deseja excluir este veiculo?"
       />
     </Layout>
   );

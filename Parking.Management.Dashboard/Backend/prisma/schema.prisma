@@ -90,8 +90,8 @@ model Garage {
 model Vehicle {
   id         String      @id @default(uuid())
   model      String
-  color      String
-  brand      String
+  color      String      @default("N/A")
+  brand      String      @default("N/A")
   type       VehicleType @default(AUTOMOBILE)
   plate      String
   created_at DateTime    @default(now())

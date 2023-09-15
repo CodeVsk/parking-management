@@ -7,9 +7,11 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import vehicleType from "../../../../../data/vehicle-type.json";
 import vehicleColor from "../../../../../data/vehicle-colors.json";
-import { CollegeApi, VehicleApi } from "../../../../../api";
+import vehicleBrand from "../../../../../data/vehicle-brand.json";
+import { CollegeApi, UserApi, VehicleApi } from "../../../../../api";
 import { showNotification } from "../../../../../global/notifications";
 import { useNavigate } from "react-router-dom";
+import Select from "../../../../../components/common/Select";
 
 const CreateVehicleAdmin = () => {
   const formRef = useRef();
@@ -17,8 +19,10 @@ const CreateVehicleAdmin = () => {
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [collegeApi] = useState(new CollegeApi());
   const [vehicleApi] = useState(new VehicleApi());
+  const [userApi] = useState(new UserApi());
 
   const [colleges, setColleges] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const formInitalState = {
     model: "",
@@ -34,12 +38,14 @@ const CreateVehicleAdmin = () => {
     event.preventDefault();
 
     const fieldNome = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
+    const fieldValue = event.target.value || event.target.getAttribute("value");
 
     const newFormData = { ...addFormData };
     newFormData[fieldNome] = fieldValue;
 
     await setAddFormData(newFormData);
+
+    console.log(newFormData);
   }
 
   async function handleReturn(event) {
@@ -55,6 +61,20 @@ const CreateVehicleAdmin = () => {
         setColleges(response.data);
       } catch (e) {
         console.error("Erro ao trazer universidades cadastradas");
+      }
+    };
+
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = token && (await userApi.getAll(token));
+
+        setUsers(response.data);
+      } catch (e) {
+        console.error("Erro ao trazer usuários cadastrados");
       }
     };
 
@@ -136,17 +156,25 @@ const CreateVehicleAdmin = () => {
         </Row>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupStudent">
-            <Form.Label>Aluno</Form.Label>
-            <Form.Control
-              name="userId"
+          <Form.Group as={Col} controlId="formGroupBrand">
+            <Form.Label>Marca</Form.Label>
+            <Form.Select
+              name="brand"
               className="form-item"
-              type="text"
-              placeholder="Digite o id do aluno"
               required
               onChange={handleAddFormChange}
-            />
+            >
+              <option key="null" value="null">
+                Selecione a marca
+              </option>
+              {vehicleBrand.map((v, i) => (
+                <option key={i} value={v.value}>
+                  {v.description}
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
+
           <Form.Group as={Col} controlId="formGroupCollege">
             <Form.Label>Universidade</Form.Label>
             <Form.Select
@@ -165,6 +193,16 @@ const CreateVehicleAdmin = () => {
               ))}
             </Form.Select>
           </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
+          <Select
+            name="userId"
+            placeholder="Digite a matricula ou o nome do usuário"
+            title="Responsável pelo veículo"
+            data={users}
+            onCallback={handleAddFormChange}
+          />
         </Row>
 
         <div className="d-grid gap-2">

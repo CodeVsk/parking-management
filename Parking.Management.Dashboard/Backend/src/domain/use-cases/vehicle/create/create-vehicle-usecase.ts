@@ -16,7 +16,7 @@ export class CreateVehicleUseCase {
 
     return new Result<VehicleDto>({
       content: vehicleDto,
-      message: "Universidade criada com sucesso.",
+      message: "Veiculo cadastrado com sucesso.",
     });
   }
 }
