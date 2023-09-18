@@ -72,6 +72,7 @@ const CollegeHome = () => {
             onSearchCallback={handleSearch}
             placeholder="Digite o nome ou o campus da universidade"
             to="/dashboard/admin/college/create"
+            title="Cadastrar"
           />
           <table className="table mb-0">
             <thead>

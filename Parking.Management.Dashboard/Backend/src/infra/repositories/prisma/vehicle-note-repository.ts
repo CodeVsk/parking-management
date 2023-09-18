@@ -36,10 +36,10 @@ export class PrismaVehicleNoteRepository implements IVehicleNoteRepository {
     return result;
   }
 
-  async findById(id: string): Promise<VehicleNote> {
-    const result = await prisma.vehicleNote.findUnique({
+  async findById(id: string): Promise<VehicleNote[]> {
+    const result = await prisma.vehicleNote.findMany({
       where: {
-        id: id,
+        vehicleId: id,
       },
     });
 

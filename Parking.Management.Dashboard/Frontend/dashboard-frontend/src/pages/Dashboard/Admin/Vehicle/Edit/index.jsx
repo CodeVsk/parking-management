@@ -5,44 +5,29 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import genders from "../../../../../data/genders.json";
-import permissions from "../../../../../data/permissions.json";
-import roles from "../../../../../data/roles.json";
-import { CollegeApi, CourseApi, VehicleApi } from "../../../../../api";
+import vehicleType from "../../../../../data/vehicle-type.json";
+import vehicleColor from "../../../../../data/vehicle-colors.json";
+import vehicleBrand from "../../../../../data/vehicle-brand.json";
+import { CollegeApi, VehicleApi } from "../../../../../api";
 import { showNotification } from "../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
-import { dateFormat } from "../../../../../global/date-format";
 
 const EditVehicleAdmin = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [collegeApi] = useState(new CollegeApi());
-  const [courseApi] = useState(new CourseApi());
   const [vehicleApi] = useState(new VehicleApi());
 
-  const [courses, setCourses] = useState([]);
   const [colleges, setColleges] = useState([]);
 
   const formInitalState = {
-    id: id,
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    address: "",
-    rg: "",
-    cpf: "",
-    gender: "",
-    city: "",
-    state: "",
-    enrollment: "",
-    status: true,
+    model: "",
+    type: "",
+    plate: "",
+    color: "",
+    brand: "",
     collegeId: "",
-    birthdate: "",
-    role: "",
-    permissions: "",
-    courseId: "",
   };
 
   const [editFormData, setEditFormData] = useState(formInitalState);
@@ -63,19 +48,6 @@ const EditVehicleAdmin = () => {
     event.preventDefault();
     navigate("/dashboard/admin/vehicle");
   }
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = token && (await courseApi.getAll(token));
-
-        setCourses(response.data);
-      } catch (e) {
-        console.error("Erro ao trazer cursos cadastrados");
-      }
-    };
-    getData();
-  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -117,151 +89,28 @@ const EditVehicleAdmin = () => {
     <Layout>
       <Form className="background-form" onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupEmail">
-            <Form.Label>Email</Form.Label>
+          <Form.Group as={Col} controlId="formGroupModel">
+            <Form.Label>Modelo</Form.Label>
             <Form.Control
-              name="email"
-              className="form-item"
-              type="email"
-              placeholder="Digite seu email"
-              value={editFormData.email}
-              required
-              onChange={handleEditFormChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGroupPassword">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control
-              name="password"
-              className="form-item"
-              type="password"
-              placeholder="Digite sua Senha"
-              value="###########"
-              disabled
-            />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="formGroupName">
-          <Form.Label>Nome completo</Form.Label>
-          <Form.Control
-            name="name"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Nome completo"
-            value={editFormData.name}
-            required
-            onChange={handleEditFormChange}
-          />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupRG">
-            <Form.Label>RG</Form.Label>
-            <Form.Control
-              name="rg"
+              name="model"
               className="form-item"
               type="text"
-              placeholder="Digite seu RG"
-              value={editFormData.rg}
+              placeholder="Digite o modelo do veiculo (ex: HB20)"
               required
               onChange={handleEditFormChange}
+              value={editFormData.model}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCPF">
-            <Form.Label>CPF</Form.Label>
-            <Form.Control
-              name="cpf"
-              className="form-item"
-              type="text"
-              placeholder="Digite seu CPF"
-              value={editFormData.cpf}
-              required
-              onChange={handleEditFormChange}
-            />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="formGroupPhone">
-          <Form.Label>Telefone</Form.Label>
-          <Form.Control
-            name="phone"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Número de Telefone"
-            value={editFormData.phone}
-            required
-            onChange={handleEditFormChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formGroupAddress">
-          <Form.Label>Endereço</Form.Label>
-          <Form.Control
-            name="address"
-            className="form-item"
-            type="text"
-            placeholder="Digite seu Endereço"
-            value={editFormData.address}
-            required
-            onChange={handleEditFormChange}
-          />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupState">
-            <Form.Label>Estado</Form.Label>
-            <Form.Control
-              name="state"
-              className="form-item"
-              type="text"
-              placeholder="Digite o estado"
-              value={editFormData.state}
-              required
-              onChange={handleEditFormChange}
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGroupCity">
-            <Form.Label>Cidade</Form.Label>
-            <Form.Control
-              name="city"
-              className="form-item"
-              type="text"
-              placeholder="Digite a cidade"
-              value={editFormData.city}
-              required
-              onChange={handleEditFormChange}
-            />
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupRole">
+          <Form.Group as={Col} controlId="formGroupType">
             <Form.Label>Tipo</Form.Label>
             <Form.Select
-              name="role"
+              name="type"
               className="form-item"
-              value={editFormData.role}
               required
               onChange={handleEditFormChange}
+              value={editFormData.type}
             >
-              {roles.map((v, i) => (
-                <option key={i} value={v.value}>
-                  {v.description}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGrouPermission">
-            <Form.Label>Permissão</Form.Label>
-            <Form.Select
-              name="permissions"
-              className="form-item"
-              value={editFormData.permissions}
-              required
-              onChange={handleEditFormChange}
-            >
-              {permissions.map((v, i) => (
+              {vehicleType.map((v, i) => (
                 <option key={i} value={v.value}>
                   {v.description}
                 </option>
@@ -270,73 +119,78 @@ const EditVehicleAdmin = () => {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3" controlId="formGroupGender">
-          <Form.Label>Gênero</Form.Label>
-          <Form.Select
-            name="gender"
-            className="form-item"
-            value={editFormData.gender}
-            required
-            onChange={handleEditFormChange}
-          >
-            {genders.map((v, i) => (
-              <option key={i} value={v.value}>
-                {v.description}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGroupCourse">
-            <Form.Label>Curso</Form.Label>
-            <Form.Select
-              name="courseId"
+          <Form.Group as={Col} controlId="formGroupPlate">
+            <Form.Label>Placa</Form.Label>
+            <Form.Control
+              name="plate"
               className="form-item"
-              value={editFormData.courseId}
+              type="text"
+              placeholder="Digite a placa do veiculo"
               required
               onChange={handleEditFormChange}
+              value={editFormData.plate}
+            />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGroupColor">
+            <Form.Label>Cor</Form.Label>
+            <Form.Select
+              name="color"
+              className="form-item"
+              required
+              onChange={handleEditFormChange}
+              value={editFormData.color}
             >
-              <option key="null" value="null">
-                Selecione um curso
-              </option>
-              {courses.map((v, i) => (
-                <option key={i} value={v.id}>
-                  {v.name}
+              {vehicleColor.map((v, i) => (
+                <option key={i} value={v.value}>
+                  {v.description}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGroupBrand">
+            <Form.Label>Marca</Form.Label>
+            <Form.Select
+              name="brand"
+              className="form-item"
+              required
+              onChange={handleEditFormChange}
+              value={editFormData.brand}
+            >
+              <option key="null" value="null">
+                Selecione a marca
+              </option>
+              {vehicleBrand.map((v, i) => (
+                <option key={i} value={v.value}>
+                  {v.description}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+
           <Form.Group as={Col} controlId="formGroupCollege">
             <Form.Label>Universidade</Form.Label>
             <Form.Select
               name="collegeId"
               className="form-item"
-              value={editFormData.collegeId}
               required
               onChange={handleEditFormChange}
+              value={editFormData.collegeId}
             >
-              <option value="null">Selecione uma universidade</option>
+              <option key="null" value="null">
+                Selecione uma universidade
+              </option>
               {colleges.map((v, i) => (
                 <option key={i} value={v.id}>
-                  {v.name}
+                  {v.name} | {v.campus}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
         </Row>
-
-        <Form.Group className="mb-4" controlId="formGroupBirthdate">
-          <Form.Label>Data de Nascimento</Form.Label>
-          <Form.Control
-            name="birthdate"
-            className="form-item"
-            type="date"
-            value={dateFormat(editFormData.birthdate)}
-            required
-            onChange={handleEditFormChange}
-          />
-        </Form.Group>
 
         <div className="d-grid gap-2">
           <Button variant="dark" type="submit">

@@ -11,8 +11,6 @@ const Select = (props) => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-
-    console.log(search);
   };
 
   const filterUsers = () => {
@@ -46,6 +44,7 @@ const Select = (props) => {
         name={props.name}
         className="form-item"
         type="text"
+        autocomplete="off"
         placeholder={props.placeholder}
         value={search}
         onChange={handleSearch}

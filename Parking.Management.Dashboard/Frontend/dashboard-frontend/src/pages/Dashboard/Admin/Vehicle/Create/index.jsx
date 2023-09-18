@@ -28,6 +28,8 @@ const CreateVehicleAdmin = () => {
     model: "",
     type: "",
     plate: "",
+    color: "",
+    brand: "",
     userId: "",
     collegeId: "",
   };

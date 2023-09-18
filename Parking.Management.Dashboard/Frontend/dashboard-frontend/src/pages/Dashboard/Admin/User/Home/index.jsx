@@ -72,6 +72,7 @@ const HomeUserAdmin = () => {
             onSearchCallback={handleSearch}
             placeholder="Digite o nome ou a matricula do aluno"
             to="/dashboard/admin/user/register"
+            title="Cadastrar"
           />
           <table className="table mb-0">
             <thead>

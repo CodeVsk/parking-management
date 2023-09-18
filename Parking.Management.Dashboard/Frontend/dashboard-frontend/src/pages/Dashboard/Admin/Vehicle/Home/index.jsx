@@ -32,6 +32,14 @@ const HomeVehicleAdmin = () => {
     navigate(`/dashboard/admin/vehicle/edit/${id}`);
   };
 
+  const handleAddResponsible = (id) => {
+    navigate(`/dashboard/admin/vehicle/responsibles/${id}`);
+  };
+
+  const handleViewNotes = (id) => {
+    navigate(`/dashboard/admin/vehicle/notes/${id}`);
+  };
+
   const showModalDelete = async (id) => {
     modalRef.current.handleShow(id);
   };
@@ -72,6 +80,7 @@ const HomeVehicleAdmin = () => {
             onSearchCallback={handleSearch}
             placeholder="Digite a placa do veiculo ou a matricula do responsável"
             to="/dashboard/admin/vehicle/create"
+            title="Cadastrar"
           />
           <table className="table mb-0">
             <thead>
@@ -96,6 +105,14 @@ const HomeVehicleAdmin = () => {
                     <i
                       className="bi bi-pencil-square"
                       onClick={() => handleEditVehicle(vehicle.id)}
+                    ></i>
+                    <i
+                      className="bi bi-people-fill"
+                      onClick={() => handleAddResponsible(vehicle.id)}
+                    ></i>
+                    <i
+                      className="bi bi-stickies-fill"
+                      onClick={() => handleViewNotes(vehicle.id)}
                     ></i>
                     <i
                       className="bi bi-trash"

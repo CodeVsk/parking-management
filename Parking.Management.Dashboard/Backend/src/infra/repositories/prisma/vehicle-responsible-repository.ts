@@ -8,9 +8,10 @@ export class PrismaVehicleResponsibleRepository
   async create(
     vehicleResponsible: VehicleResponsible
   ): Promise<VehicleResponsible> {
+    const { user, vehicle, ...vehicleResponsibleData } = vehicleResponsible;
     const result = await prisma.vehicleResponsible.create({
       data: {
-        ...vehicleResponsible,
+        ...vehicleResponsibleData,
       },
     });
 
@@ -20,12 +21,13 @@ export class PrismaVehicleResponsibleRepository
   async update(
     vehicleResponsible: VehicleResponsible
   ): Promise<VehicleResponsible> {
+    const { user, vehicle, ...vehicleResponsibleData } = vehicleResponsible;
     const result = await prisma.vehicleResponsible.update({
       where: {
         id: vehicleResponsible.id,
       },
       data: {
-        ...vehicleResponsible,
+        ...vehicleResponsibleData,
       },
     });
 
@@ -42,10 +44,14 @@ export class PrismaVehicleResponsibleRepository
     return result;
   }
 
-  async findById(id: string): Promise<VehicleResponsible> {
-    const result = await prisma.vehicleResponsible.findUnique({
+  async findById(id: string): Promise<VehicleResponsible[]> {
+    const result = await prisma.vehicleResponsible.findMany({
       where: {
-        id: id,
+        vehicleId: id,
+      },
+      include: {
+        user: true,
+        vehicle: true,
       },
     });
 

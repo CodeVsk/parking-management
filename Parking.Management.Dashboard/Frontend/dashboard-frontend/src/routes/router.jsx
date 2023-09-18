@@ -16,6 +16,10 @@ import EditCourseAdmin from "../pages/Dashboard/Admin/Course/Edit";
 import HomeVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Home";
 import CreateVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Create";
 import EditVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Edit";
+import HomeResponsibleVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Responsibles/Home";
+import CreateResponsibleVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Responsibles/Create";
+import HomeVehicleNoteAdmin from "../pages/Dashboard/Admin/Vehicle/Notes/Home";
+import CreateVehicleNoteAdmin from "../pages/Dashboard/Admin/Vehicle/Notes/Create";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +77,22 @@ const router = createBrowserRouter([
       {
         path: "dashboard/admin/vehicle/edit/:id",
         element: <EditVehicleAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/responsibles/:id",
+        element: <HomeResponsibleVehicleAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/responsibles/create/:id",
+        element: <CreateResponsibleVehicleAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/notes/:id",
+        element: <HomeVehicleNoteAdmin />,
+      },
+      {
+        path: "dashboard/admin/vehicle/notes/create/:id",
+        element: <CreateVehicleNoteAdmin />,
       },
     ],
   },

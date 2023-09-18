@@ -19,7 +19,7 @@ const Toolbar = (props) => {
           placeholder={props.placeholder}
           className="custom-input"
         />
-        <ButtonLink name="Cadastrar" className="mw-400" to={props.to} />
+        <ButtonLink name={props.title} className="mw-400" to={props.to} />
       </div>
     </div>
   );
