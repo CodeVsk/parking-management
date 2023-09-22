@@ -1,0 +1,29 @@
+#card-wrapper {
+  width: 100%;
+  max-width: 500px;
+  min-height: 200px;
+  border-radius: 10px;
+  color: #fff;
+  background: url("../../../assets/images/stock-chart.svg");
+  background-size: cover;
+  padding: 20px;
+}
+
+#card-wrapper .card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#card-wrapper .card-header .card-title {
+  font-size: 1.5rem;
+}
+
+#card-wrapper .card-header .card-description {
+  font-size: 1rem;
+}
+
+#card-wrapper .card-counter {
+  font-size: 3rem;
+  font-weight: 700;
+}

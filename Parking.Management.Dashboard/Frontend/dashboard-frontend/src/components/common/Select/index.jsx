@@ -44,7 +44,7 @@ const Select = (props) => {
         name={props.name}
         className="form-item"
         type="text"
-        autocomplete="off"
+        autoComplete="off"
         placeholder={props.placeholder}
         value={search}
         onChange={handleSearch}
