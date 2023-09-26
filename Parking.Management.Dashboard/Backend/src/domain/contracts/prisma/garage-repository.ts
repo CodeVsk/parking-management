@@ -6,4 +6,6 @@ export interface IGarageRepository {
   delete(id: string): Promise<Garage>;
   findById(id: string): Promise<Garage>;
   getAll(): Promise<Garage[]>;
+  countInside(): Promise<number>;
+  getLatestUpdated(): Promise<Garage[]>;
 }

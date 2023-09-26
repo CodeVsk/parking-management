@@ -33,6 +33,22 @@ export class UserApi {
     }
   }
 
+  async getStatistics(token) {
+    try {
+      const response = await fetch(`${BASE_URL}/user/statistics`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao executar funcionalidade." };
+    }
+  }
+
   async create(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/register`, {

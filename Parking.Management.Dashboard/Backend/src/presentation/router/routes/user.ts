@@ -7,6 +7,7 @@ import { findByIdUserController } from "@/domain/use-cases/user/find-by-id";
 import { getAllUserController } from "@/domain/use-cases/user/get-all";
 import { findByTokenUserController } from "@/domain/use-cases/user/find-by-token";
 import { createUserController } from "@/domain/use-cases/user/create";
+import { statisticsUserController } from "@/domain/use-cases/user/statistics";
 
 export default (router: Router): void => {
   router.get(
@@ -23,6 +24,11 @@ export default (router: Router): void => {
     "/user/get-all",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(getAllUserController)
+  );
+  router.get(
+    "/user/statistics",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    adaptRoute(statisticsUserController)
   );
   router.put(
     "/user",

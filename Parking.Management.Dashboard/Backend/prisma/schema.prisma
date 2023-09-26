@@ -64,19 +64,19 @@ model User {
 }
 
 model Garage {
-  id            String   @id @default(uuid())
-  status        Status   @default(INSIDE)
+  id            String    @id @default(uuid())
+  status        Status    @default(INSIDE)
   entryTime     DateTime
-  departureTime DateTime
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+  departureTime DateTime?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
 
   //FK keys relations
   userEntry   User   @relation(name: "iGarageEntry", fields: [userEntryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userEntryId String
 
-  userDeparture   User   @relation(name: "iGarageDeparture", fields: [userDepartureId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userDepartureId String
+  userDeparture   User?   @relation(name: "iGarageDeparture", fields: [userDepartureId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userDepartureId String?
 
   college   College @relation(name: "iGarage", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   collegeId String

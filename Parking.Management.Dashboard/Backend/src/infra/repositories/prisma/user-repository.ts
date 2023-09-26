@@ -71,4 +71,23 @@ export class PrismaUserRepository implements IUserRepository {
 
     return result;
   }
+
+  async count(): Promise<number> {
+    const result = await prisma.user.count();
+
+    return result;
+  }
+
+  async countByDate(startDate: Date, endDate: Date): Promise<number> {
+    const result = await prisma.user.count({
+      where: {
+        created_at: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+    });
+
+    return result;
+  }
 }

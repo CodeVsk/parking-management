@@ -1,11 +1,24 @@
 import "./index.css";
-import Card from "../Card";
-import DefaultBarChart from "../BarChart";
-import RadialChart from "../RadialChart";
 import DefaultLineChart from "../LineChart";
 import ListStatistics from "../ListStatistics";
+import { useEffect, useState } from "react";
+import { GarageApi } from "../../../api";
 
 const Statistcs = () => {
+  const [token] = useState(localStorage.getItem("PM:TOKEN"));
+  const [vehicles, setVehicles] = useState([]);
+  const [garageApi] = useState(new GarageApi(token));
+
+  useEffect(() => {
+    async function getData() {
+      const response = await garageApi.getLatestUpdated(token);
+
+      setVehicles(response.data);
+    }
+
+    getData();
+  }, []);
+
   return (
     <div id="statistics-wrapper">
       <div className="statistics-header">
@@ -18,18 +31,27 @@ const Statistcs = () => {
       <div className="statistics-content">
         <span>Últimas movimentações</span>
         <div className="statistics-list">
-          <ListStatistics
-            title="Matheus Testudo Turolla"
-            description="Celta Rosa"
-            icon="bi bi-arrow-up-right-square-fill"
-            content={[{ text: "Entrou" }, { text: "12:00" }]}
-          />
-          <ListStatistics
-            title="Matheus Testudo Turolla"
-            description="Celta Rosa"
-            icon="bi bi-arrow-down-left-square-fill"
-            content={[{ text: "Saiu" }, { text: "15:00" }]}
-          />
+          {vehicles.map((vehicle) => (
+            <ListStatistics
+              key={vehicle.id}
+              title="Matheus Testudo Turolla"
+              description={`${vehicle.vehicle.model} (${vehicle.vehicle.plate})`}
+              icon={
+                vehicle.status == "INSIDE"
+                  ? "bi bi-arrow-up-right-square-fill"
+                  : "bi bi-arrow-down-left-square-fill"
+              }
+              content={[
+                { text: vehicle.status == "INSIDE" ? "Entrou" : "SAIU" },
+                {
+                  text:
+                    vehicle.status == "INSIDE"
+                      ? new Date(vehicle.entryTime).toLocaleTimeString()
+                      : vehicle.departureTime,
+                },
+              ]}
+            />
+          ))}
         </div>
       </div>
     </div>
