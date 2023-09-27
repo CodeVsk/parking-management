@@ -6,4 +6,5 @@ export interface IVehicleRepository {
   delete(id: string): Promise<Vehicle>;
   findById(id: string): Promise<Vehicle>;
   getAll(): Promise<Vehicle[]>;
+  findByYear(year: number): Promise<Vehicle[]>;
 }

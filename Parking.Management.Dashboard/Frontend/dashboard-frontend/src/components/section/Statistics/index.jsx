@@ -2,18 +2,30 @@ import "./index.css";
 import DefaultLineChart from "../LineChart";
 import ListStatistics from "../ListStatistics";
 import { useEffect, useState } from "react";
-import { GarageApi } from "../../../api";
+import { GarageApi, VehicleApi } from "../../../api";
 
 const Statistcs = () => {
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [vehicles, setVehicles] = useState([]);
+  const [statistics, setStatistics] = useState([]);
   const [garageApi] = useState(new GarageApi(token));
+  const [vehicleApi] = useState(new VehicleApi(token));
 
   useEffect(() => {
     async function getData() {
       const response = await garageApi.getLatestUpdated(token);
 
       setVehicles(response.data);
+    }
+
+    getData();
+  }, []);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await vehicleApi.getStatistics(token);
+
+      setStatistics(response.data);
     }
 
     getData();
@@ -27,7 +39,11 @@ const Statistcs = () => {
         </div>
         <div className="statistics-divisor"></div>
       </div>
-      <DefaultLineChart />
+      <DefaultLineChart
+        data={statistics}
+        chartKey="value"
+        description="Veiculos"
+      />
       <div className="statistics-content">
         <span>Últimas movimentações</span>
         <div className="statistics-list">

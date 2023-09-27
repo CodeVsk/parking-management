@@ -33,6 +33,22 @@ export class VehicleApi {
     }
   }
 
+  async getStatistics(token) {
+    try {
+      const response = await fetch(`${BASE_URL}/vehicle/statistics`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao validar token" };
+    }
+  }
+
   async create(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/vehicle`, {

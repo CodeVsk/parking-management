@@ -6,6 +6,7 @@ import { getAllVehicleController } from "@/domain/use-cases/vehicle/get-all";
 import { updateVehicleController } from "@/domain/use-cases/vehicle/update";
 import { createVehicleController } from "@/domain/use-cases/vehicle/create";
 import { deleteVehicleController } from "@/domain/use-cases/vehicle/delete";
+import { statisticsVehicleController } from "@/domain/use-cases/vehicle/statistics";
 
 export default (router: Router): void => {
   router.get(
@@ -17,6 +18,11 @@ export default (router: Router): void => {
     "/vehicle/get-all",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(getAllVehicleController)
+  );
+  router.get(
+    "/vehicle/statistics",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(statisticsVehicleController)
   );
   router.put(
     "/vehicle",
