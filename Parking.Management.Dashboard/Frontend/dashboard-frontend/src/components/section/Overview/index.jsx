@@ -3,6 +3,7 @@ import Card from "../Card";
 import CardStatistics from "../CardStatistics";
 import { useEffect, useState } from "react";
 import { GarageApi, UserApi } from "../../../api";
+import { formatHour } from "../../../global/hour-format";
 
 const Overview = () => {
   const [hours] = useState(new Date());
@@ -56,7 +57,10 @@ const Overview = () => {
               ? "Veiculo no estacionamento atualmente"
               : "Veiculos no estacionamento atualmente"
           }
-          description={`Última atualização - ${hours.getHours()}:${hours.getMinutes()}`}
+          description={`Última atualização - ${formatHour(
+            hours.getHours(),
+            hours.getMinutes()
+          )}`}
           counter={insideGarageCount}
         />
       </div>

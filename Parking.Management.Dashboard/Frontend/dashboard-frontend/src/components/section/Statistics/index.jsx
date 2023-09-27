@@ -58,12 +58,12 @@ const Statistcs = () => {
                   : "bi bi-arrow-down-left-square-fill"
               }
               content={[
-                { text: vehicle.status == "INSIDE" ? "Entrou" : "SAIU" },
+                { text: vehicle.status == "INSIDE" ? "Entrou" : "Saiu" },
                 {
                   text:
                     vehicle.status == "INSIDE"
-                      ? new Date(vehicle.entryTime).toLocaleTimeString()
-                      : vehicle.departureTime,
+                      ? new Date(vehicle.entryTime).toLocaleString("pt-BR")
+                      : new Date(vehicle.departureTime).toLocaleString("pt-BR"),
                 },
               ]}
             />

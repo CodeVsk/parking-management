@@ -4,7 +4,7 @@ import { prisma } from "../../database/Prisma";
 
 export class PrismaGarageRepository implements IGarageRepository {
   async create(garage: Garage): Promise<Garage> {
-    const { userDeparture, userEntry, ...garageData } = garage;
+    const { userDeparture, userEntry, vehicle, ...garageData } = garage;
 
     const result = await prisma.garage.create({
       data: {
@@ -16,7 +16,7 @@ export class PrismaGarageRepository implements IGarageRepository {
   }
 
   async update(garage: Garage): Promise<Garage> {
-    const { userDeparture, userEntry, ...garageData } = garage;
+    const { userDeparture, userEntry, vehicle, ...garageData } = garage;
 
     const result = await prisma.garage.update({
       where: {
