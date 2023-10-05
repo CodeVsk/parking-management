@@ -7,6 +7,8 @@ import { updateVehicleController } from "@/domain/use-cases/vehicle/update";
 import { createVehicleController } from "@/domain/use-cases/vehicle/create";
 import { deleteVehicleController } from "@/domain/use-cases/vehicle/delete";
 import { statisticsVehicleController } from "@/domain/use-cases/vehicle/statistics";
+import { findByTokenVehicleController } from "@/domain/use-cases/vehicle/find-by-token";
+import { createVehicleByTokenController } from "@/domain/use-cases/vehicle/create-by-token";
 
 export default (router: Router): void => {
   router.get(
@@ -38,5 +40,15 @@ export default (router: Router): void => {
     "/vehicle/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteVehicleController)
+  );
+  router.get(
+    "/vehicle/get-by-token",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(findByTokenVehicleController)
+  );
+  router.post(
+    "/vehicle/by-token",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(createVehicleByTokenController)
   );
 };

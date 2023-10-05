@@ -57,4 +57,22 @@ export class PrismaVehicleResponsibleRepository
 
     return result;
   }
+
+  async findByVehicleUserId(
+    id: string,
+    userId: string
+  ): Promise<VehicleResponsible[]> {
+    const result = await prisma.vehicleResponsible.findMany({
+      where: {
+        vehicleId: id,
+        userId: userId,
+      },
+      include: {
+        user: true,
+        vehicle: true,
+      },
+    });
+
+    return result;
+  }
 }

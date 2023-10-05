@@ -20,85 +20,124 @@ import HomeResponsibleVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Respon
 import CreateResponsibleVehicleAdmin from "../pages/Dashboard/Admin/Vehicle/Responsibles/Create";
 import HomeVehicleNoteAdmin from "../pages/Dashboard/Admin/Vehicle/Notes/Home";
 import CreateVehicleNoteAdmin from "../pages/Dashboard/Admin/Vehicle/Notes/Create";
+import HomeUser from "../pages/Dashboard/Student/Home";
+import HomeVehicleUser from "../pages/Dashboard/Student/Vehicle/Home";
+import CreateVehicleUser from "../pages/Dashboard/Student/Vehicle/Create";
+import HomeResponsibleVehicleUser from "../pages/Dashboard/Student/Vehicle/Responsibles/Home";
+import Logout from "../pages/Authentication/Logout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "dashboard/admin/",
     element: <PrivateRoute roles={["ADMIN"]} />,
     children: [
       {
-        path: "dashboard/admin/",
+        path: "",
         element: <HomeAdmin />,
       },
       {
-        path: "dashboard/admin/user",
+        path: "user",
         element: <HomeUserAdmin />,
       },
       {
-        path: "dashboard/admin/user/register",
+        path: "user/register",
         element: <CreateUserAdmin />,
       },
       {
-        path: "dashboard/admin/user/edit/:id",
+        path: "user/edit/:id",
         element: <EditUserAdmin />,
       },
       {
-        path: "dashboard/admin/college",
+        path: "college",
         element: <CollegeHomeAdmin />,
       },
       {
-        path: "dashboard/admin/college/create",
+        path: "college/create",
         element: <CreateCollegeAdmin />,
       },
       {
-        path: "dashboard/admin/college/edit/:id",
+        path: "college/edit/:id",
         element: <EditCollegeAdmin />,
       },
       {
-        path: "dashboard/admin/course",
+        path: "course",
         element: <CourseHomeAdmin />,
       },
       {
-        path: "dashboard/admin/course/create",
+        path: "course/create",
         element: <CreateCourseAdmin />,
       },
       {
-        path: "dashboard/admin/course/edit/:id",
+        path: "course/edit/:id",
         element: <EditCourseAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle",
+        path: "vehicle",
         element: <HomeVehicleAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/create",
+        path: "vehicle/create",
         element: <CreateVehicleAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/edit/:id",
+        path: "vehicle/edit/:id",
         element: <EditVehicleAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/responsibles/:id",
+        path: "vehicle/responsibles/:id",
         element: <HomeResponsibleVehicleAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/responsibles/create/:id",
+        path: "vehicle/responsibles/create/:id",
         element: <CreateResponsibleVehicleAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/notes/:id",
+        path: "vehicle/notes/:id",
         element: <HomeVehicleNoteAdmin />,
       },
       {
-        path: "dashboard/admin/vehicle/notes/create/:id",
+        path: "vehicle/notes/create/:id",
         element: <CreateVehicleNoteAdmin />,
       },
     ],
   },
   {
+    path: "dashboard/user/",
+    element: <PrivateRoute roles={["DEFAULT"]} />,
+    children: [
+      {
+        path: "",
+        element: <HomeUser />,
+      },
+      {
+        path: "vehicle",
+        element: <HomeVehicleUser />,
+      },
+      {
+        path: "vehicle/create",
+        element: <CreateVehicleUser />,
+      },
+      //{
+      //  path: "vehicle/edit/:id",
+      //  element: <EditVehicleAdmin />,
+      //},
+      {
+        path: "vehicle/responsibles/:id",
+        element: <HomeResponsibleVehicleUser />,
+      },
+      //{
+      //  path: "vehicle/responsibles/create/:id",
+      //  element: <CreateResponsibleVehicleAdmin />,
+      //},
+    ],
+  },
+  {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
   },
 ]);
 

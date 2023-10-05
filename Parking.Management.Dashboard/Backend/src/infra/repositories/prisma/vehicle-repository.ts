@@ -52,6 +52,20 @@ export class PrismaVehicleRepository implements IVehicleRepository {
     return result;
   }
 
+  async findByUserId(id: string): Promise<Vehicle[]> {
+    const result = await prisma.vehicle.findMany({
+      where: {
+        userId: id,
+      },
+      include: {
+        user: true,
+        college: true,
+      },
+    });
+
+    return result;
+  }
+
   async findByYear(year: number): Promise<Vehicle[]> {
     const result = await prisma.vehicle.findMany({
       where: {

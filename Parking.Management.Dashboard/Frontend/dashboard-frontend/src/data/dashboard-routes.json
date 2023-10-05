@@ -39,18 +39,8 @@
     },
     {
       "uri": "/dashboard/user/vehicle",
-      "text": "Cadastrar Veiculos",
+      "text": "Veiculos",
       "icon": "bi bi-car-front-fill"
-    },
-    {
-      "uri": "/dashboard/user/vehicle/notes",
-      "text": "Observações Veiculos",
-      "icon": "bi bi-card-heading"
-    },
-    {
-      "uri": "/dashboard/user/vehicle/responsible",
-      "text": "Cadastrar Responsáveis",
-      "icon": "bi bi-person-add"
     },
     {
       "uri": "/logout",

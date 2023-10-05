@@ -17,6 +17,25 @@ export class VehicleResponsibleApi {
     }
   }
 
+  async getByIdToken(id, token) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/vehicle-responsible/user/id/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao validar token" };
+    }
+  }
+
   async create(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/vehicle-responsible`, {
