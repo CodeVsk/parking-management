@@ -77,7 +77,7 @@ const CreateResponsibleVehicleAdmin = () => {
         <Row className="mb-3">
           <Select
             name="userId"
-            placeholder="Digite a matricula ou o nome do usuário"
+            placeholder="Digite a matricula do usuário"
             title="Responsável pelo veículo"
             data={users}
             onCallback={handleAddFormChange}
