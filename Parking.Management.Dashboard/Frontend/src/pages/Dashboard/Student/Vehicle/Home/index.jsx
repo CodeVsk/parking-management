@@ -29,15 +29,15 @@ const HomeVehicleUser = () => {
   }, []);
 
   const handleEditVehicle = (id) => {
-    navigate(`/dashboard/admin/vehicle/edit/${id}`);
+    navigate(`/dashboard/user/vehicle/edit/${id}`);
   };
 
   const handleAddResponsible = (id) => {
-    navigate(`/dashboard/admin/vehicle/responsibles/${id}`);
+    navigate(`/dashboard/user/vehicle/responsibles/${id}`);
   };
 
   const handleViewNotes = (id) => {
-    navigate(`/dashboard/admin/vehicle/notes/${id}`);
+    navigate(`/dashboard/user/vehicle/notes/${id}`);
   };
 
   const showModalDelete = async (id) => {
@@ -45,7 +45,7 @@ const HomeVehicleUser = () => {
   };
 
   const handleDelete = async (id) => {
-    const response = await vehicleApi.delete(id, token);
+    const response = await vehicleApi.deleteByToken(id, token);
     if (response.statusCode == 200 && response.data != null) {
       showNotification("success", "Veiculo foi removido com sucesso.");
       await getAllVehicles();

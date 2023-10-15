@@ -6,17 +6,16 @@ import { updateVehicleResponsibleController } from "@/domain/use-cases/vehicle-r
 import { createVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/create";
 import { deleteVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/delete";
 import { findByIdTokenVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/find-by-id-token";
+import { createVehicleResponsibleByTokenController } from "@/domain/use-cases/vehicle-responsible/create-by-token";
+import { deleteVehicleResponsibleByTokenController } from "@/domain/use-cases/vehicle-responsible/delete-by-token";
 
 export default (router: Router): void => {
+  /* Admin Endpoints */
+
   router.get(
     "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(findByIdVehicleResponsibleController)
-  );
-  router.get(
-    "/vehicle-responsible/user/id/:id",
-    (req, res, next) => authMiddleware.isLogged(req, res, next),
-    adaptRoute(findByIdTokenVehicleResponsibleController)
   );
   router.put(
     "/vehicle-responsible",
@@ -32,5 +31,24 @@ export default (router: Router): void => {
     "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteVehicleResponsibleController)
+  );
+
+  /* User Endpoints */
+
+  router.get(
+    "/vehicle-responsible/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(findByIdTokenVehicleResponsibleController)
+  );
+
+  router.post(
+    "/vehicle-responsible/user",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(createVehicleResponsibleByTokenController)
+  );
+  router.delete(
+    "/vehicle-responsible/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(deleteVehicleResponsibleByTokenController)
   );
 };

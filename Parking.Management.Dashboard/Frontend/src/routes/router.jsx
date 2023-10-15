@@ -25,6 +25,7 @@ import HomeVehicleUser from "../pages/Dashboard/Student/Vehicle/Home";
 import CreateVehicleUser from "../pages/Dashboard/Student/Vehicle/Create";
 import HomeResponsibleVehicleUser from "../pages/Dashboard/Student/Vehicle/Responsibles/Home";
 import Logout from "../pages/Authentication/Logout";
+import CreateResponsibleVehicleUser from "../pages/Dashboard/Student/Vehicle/Responsibles/Create";
 
 const router = createBrowserRouter([
   {
@@ -125,10 +126,10 @@ const router = createBrowserRouter([
         path: "vehicle/responsibles/:id",
         element: <HomeResponsibleVehicleUser />,
       },
-      //{
-      //  path: "vehicle/responsibles/create/:id",
-      //  element: <CreateResponsibleVehicleAdmin />,
-      //},
+      {
+        path: "vehicle/responsibles/create/:id",
+        element: <CreateResponsibleVehicleUser />,
+      },
     ],
   },
   {

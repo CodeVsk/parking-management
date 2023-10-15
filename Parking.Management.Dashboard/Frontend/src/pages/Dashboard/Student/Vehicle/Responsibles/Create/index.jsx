@@ -9,8 +9,9 @@ import { showNotification } from "../../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
 import Select from "../../../../../../components/common/Select";
 import { VehicleResponsibleApi } from "../../../../../../api/vehicleResponsibleApi";
+import Search from "../../../../../../components/common/Search";
 
-const CreateResponsibleVehicleAdmin = () => {
+const CreateResponsibleVehicleUser = () => {
   const { id } = useParams();
   const formRef = useRef();
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const CreateResponsibleVehicleAdmin = () => {
   const [users, setUsers] = useState([]);
 
   const formInitalState = {
-    userId: "",
+    enrollment: "",
     vehicleId: id,
   };
 
@@ -44,24 +45,13 @@ const CreateResponsibleVehicleAdmin = () => {
     navigate(`/dashboard/user/vehicle/responsibles/${id}`);
   }
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = token && (await userApi.getAll(token));
-
-        setUsers(response.data);
-      } catch (e) {
-        console.error("Erro ao trazer usuários cadastrados");
-      }
-    };
-
-    getData();
-  }, []);
-
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await vehicleResponsibleApi.create(addFormData, token);
+    const response = await vehicleResponsibleApi.createByToken(
+      addFormData,
+      token
+    );
 
     if (response.type == "success") {
       formRef.current.reset();
@@ -75,11 +65,10 @@ const CreateResponsibleVehicleAdmin = () => {
     <Layout>
       <Form className="background-form" ref={formRef} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <Select
-            name="userId"
+          <Search
+            name="enrollment"
             placeholder="Digite a matricula do usuário"
             title="Responsável pelo veículo"
-            data={users}
             onCallback={handleAddFormChange}
           />
         </Row>
@@ -97,4 +86,4 @@ const CreateResponsibleVehicleAdmin = () => {
   );
 };
 
-export default CreateResponsibleVehicleAdmin;
+export default CreateResponsibleVehicleUser;

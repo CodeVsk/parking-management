@@ -18,6 +18,8 @@ export class FindByIdTokenVehicleResponsibleUseCase {
       userId
     );
 
+    console.log(result);
+
     if (!result) {
       return new Result<VehicleResponsibleDto[]>({
         message: "Responsáveis pelo veiculo não foram encontrados.",

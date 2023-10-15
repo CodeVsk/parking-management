@@ -10,6 +10,8 @@ const loginApi = async (email, password) => {
       body: JSON.stringify({ email: email, password: password }),
     });
 
+    console.log(await response.data);
+
     return await response.json();
   } catch (error) {
     return { type: "error", message: "Erro ao fazer login" };

@@ -131,4 +131,20 @@ export class VehicleApi {
       return { type: "error", message: "Erro ao executar funcionalidade." };
     }
   }
+
+  async deleteByToken(id, token) {
+    try {
+      const response = await fetch(`${BASE_URL}/vehicle/user/id/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao executar funcionalidade." };
+    }
+  }
 }

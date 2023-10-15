@@ -9,6 +9,7 @@ import { deleteVehicleController } from "@/domain/use-cases/vehicle/delete";
 import { statisticsVehicleController } from "@/domain/use-cases/vehicle/statistics";
 import { findByTokenVehicleController } from "@/domain/use-cases/vehicle/find-by-token";
 import { createVehicleByTokenController } from "@/domain/use-cases/vehicle/create-by-token";
+import { deleteVehicleByTokenController } from "@/domain/use-cases/vehicle/delete-by-token";
 
 export default (router: Router): void => {
   router.get(
@@ -40,6 +41,11 @@ export default (router: Router): void => {
     "/vehicle/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteVehicleController)
+  );
+  router.delete(
+    "/vehicle/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(deleteVehicleByTokenController)
   );
   router.get(
     "/vehicle/get-by-token",

@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
-import { loginApi, validateApi } from "../api/authApi";
-import { setUser } from "../redux/actions/actions";
+import { loginApi } from "../api/authApi";
 
 const login = async (email, password) => {
   const { data, message, statusCode } = await loginApi(email, password);

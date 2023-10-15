@@ -53,6 +53,23 @@ export class VehicleResponsibleApi {
     }
   }
 
+  async createByToken(payload, token) {
+    try {
+      const response = await fetch(`${BASE_URL}/vehicle-responsible/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao cadastrar curso" };
+    }
+  }
+
   async update(payload, token) {
     try {
       const response = await fetch(`${BASE_URL}/-responsible`, {
@@ -79,6 +96,25 @@ export class VehicleResponsibleApi {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao executar funcionalidade." };
+    }
+  }
+
+  async deleteByToken(id, token) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/vehicle-responsible/user/id/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       return await response.json();
     } catch (error) {

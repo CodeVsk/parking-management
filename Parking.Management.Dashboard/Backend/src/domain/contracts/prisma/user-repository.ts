@@ -10,4 +10,5 @@ export interface IUserRepository {
   getAll(): Promise<User[]>;
   count(): Promise<number>;
   countByDate(startDate: Date, endDate: Date): Promise<number>;
+  findByEnrollment(enrollment: string): Promise<User>;
 }

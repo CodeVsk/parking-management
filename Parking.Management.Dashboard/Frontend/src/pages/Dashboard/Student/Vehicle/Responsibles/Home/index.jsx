@@ -39,7 +39,7 @@ const HomeResponsibleVehicleUser = () => {
   };
 
   const handleDelete = async (id) => {
-    const response = await vehicleResponsibleApi.delete(id, token);
+    const response = await vehicleResponsibleApi.deleteByToken(id, token);
     if (response.statusCode == 200 && response.data != null) {
       showNotification(
         "success",
@@ -83,7 +83,6 @@ const HomeResponsibleVehicleUser = () => {
             <thead>
               <tr>
                 <th scope="col">Responsável</th>
-                <th scope="col">Matricula</th>
                 <th scope="col">Veiculo</th>
                 <th scope="col">Placa</th>
                 <th scope="col">Ações</th>
@@ -93,7 +92,6 @@ const HomeResponsibleVehicleUser = () => {
               {getResponsible().map((responsible) => (
                 <tr key={responsible.id}>
                   <td>{responsible.user.name}</td>
-                  <td>{responsible.user.enrollment}</td>
                   <td>{responsible.vehicle.model}</td>
                   <td>{responsible.vehicle.plate}</td>
                   <td className="table-action">

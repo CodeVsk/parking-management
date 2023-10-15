@@ -56,6 +56,17 @@ export class PrismaUserRepository implements IUserRepository {
     return result;
   }
 
+  async findByEnrollment(enrollment: string): Promise<User> {
+    console.log(enrollment);
+    const result = await prisma.user.findFirst({
+      where: {
+        enrollment: enrollment,
+      },
+    });
+
+    return result;
+  }
+
   async findByEmail(email: string): Promise<User> {
     const result = await prisma.user.findUnique({
       where: {
