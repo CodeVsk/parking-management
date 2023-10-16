@@ -12,7 +12,7 @@ import { CollegeApi, VehicleApi } from "../../../../../api";
 import { showNotification } from "../../../../../global/notifications";
 import { useNavigate, useParams } from "react-router-dom";
 
-const EditVehicleAdmin = () => {
+const EditVehicleUser = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
@@ -46,22 +46,8 @@ const EditVehicleAdmin = () => {
 
   async function handleReturn(event) {
     event.preventDefault();
-    navigate("/dashboard/admin/vehicle");
+    navigate("/dashboard/user/vehicle");
   }
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = token && (await collegeApi.getAll(token));
-
-        setColleges(response.data);
-      } catch (e) {
-        console.error("Erro ao trazer universidades cadastradas");
-      }
-    };
-
-    getData();
-  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -80,7 +66,7 @@ const EditVehicleAdmin = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = await vehicleApi.update(editFormData, token);
+    const response = await vehicleApi.updateByToken(editFormData, token);
 
     showNotification(response.type, response.message);
   }
@@ -170,26 +156,6 @@ const EditVehicleAdmin = () => {
               ))}
             </Form.Select>
           </Form.Group>
-
-          <Form.Group as={Col} controlId="formGroupCollege">
-            <Form.Label>Universidade</Form.Label>
-            <Form.Select
-              name="collegeId"
-              className="form-item"
-              required
-              onChange={handleEditFormChange}
-              value={editFormData.collegeId}
-            >
-              <option key="null" value="null">
-                Selecione uma universidade
-              </option>
-              {colleges.map((v, i) => (
-                <option key={i} value={v.id}>
-                  {v.name} | {v.campus}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
         </Row>
 
         <div className="d-grid gap-2">
@@ -205,4 +171,4 @@ const EditVehicleAdmin = () => {
   );
 };
 
-export default EditVehicleAdmin;
+export default EditVehicleUser;

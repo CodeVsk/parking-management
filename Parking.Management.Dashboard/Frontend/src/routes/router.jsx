@@ -26,6 +26,8 @@ import CreateVehicleUser from "../pages/Dashboard/Student/Vehicle/Create";
 import HomeResponsibleVehicleUser from "../pages/Dashboard/Student/Vehicle/Responsibles/Home";
 import Logout from "../pages/Authentication/Logout";
 import CreateResponsibleVehicleUser from "../pages/Dashboard/Student/Vehicle/Responsibles/Create";
+import EditVehicleUser from "../pages/Dashboard/Student/Vehicle/Edit";
+import HomeVehicleNoteUser from "../pages/Dashboard/Student/Vehicle/Notes/Home";
 
 const router = createBrowserRouter([
   {
@@ -118,10 +120,10 @@ const router = createBrowserRouter([
         path: "vehicle/create",
         element: <CreateVehicleUser />,
       },
-      //{
-      //  path: "vehicle/edit/:id",
-      //  element: <EditVehicleAdmin />,
-      //},
+      {
+        path: "vehicle/edit/:id",
+        element: <EditVehicleUser />,
+      },
       {
         path: "vehicle/responsibles/:id",
         element: <HomeResponsibleVehicleUser />,
@@ -129,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "vehicle/responsibles/create/:id",
         element: <CreateResponsibleVehicleUser />,
+      },
+      {
+        path: "vehicle/notes/:id",
+        element: <HomeVehicleNoteUser />,
       },
     ],
   },

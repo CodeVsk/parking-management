@@ -116,6 +116,23 @@ export class VehicleApi {
     }
   }
 
+  async updateByToken(payload, token) {
+    try {
+      const response = await fetch(`${BASE_URL}/vehicle/user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      return await response.json();
+    } catch (error) {
+      return { type: "error", message: "Erro ao executar funcionalidade." };
+    }
+  }
+
   async delete(id, token) {
     try {
       const response = await fetch(`${BASE_URL}/vehicle/id/${id}`, {
