@@ -114,10 +114,10 @@ const HomeVehicleUser = () => {
                       className="bi bi-stickies-fill"
                       onClick={() => handleViewNotes(vehicle.id)}
                     ></i>
-                    {/*<i
+                    <i
                       className="bi bi-trash"
                       onClick={() => showModalDelete(vehicle.id)}
-              ></i>*/}
+                    ></i>
                   </td>
                 </tr>
               ))}
