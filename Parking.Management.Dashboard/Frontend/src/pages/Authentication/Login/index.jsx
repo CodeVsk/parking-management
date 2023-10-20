@@ -19,10 +19,13 @@ const Login = () => {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    const { role, userId, message, statusCode } = await login(email, password);
+    const { role, userId, message, statusCode, expireIn } = await login(
+      email,
+      password
+    );
 
     if (role) {
-      dispatch(setUser(userId, role));
+      dispatch(setUser(userId, role, expireIn));
 
       navigate(role == "DEFAULT" ? "/dashboard/user" : "/dashboard/admin");
     }

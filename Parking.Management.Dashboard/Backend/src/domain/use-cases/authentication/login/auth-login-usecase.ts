@@ -15,8 +15,6 @@ export class AuthLoginUseCase {
 
     const user = await this.userRepository.findByEmail(email);
 
-    console.log(user);
-
     if (user == null) {
       return new Result<AuthenticatedDto>({
         message: "Usuário não encontrado.",

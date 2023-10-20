@@ -27,7 +27,7 @@ export default (router: Router): void => {
   );
   router.get(
     "/user/statistics",
-    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(statisticsUserController)
   );
   router.put(

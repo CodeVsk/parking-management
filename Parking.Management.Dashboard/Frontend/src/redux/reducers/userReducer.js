@@ -1,6 +1,7 @@
 const initialState = {
   id: null,
   role: null,
+  expireIn: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         id: action.payload.id,
         role: action.payload.role,
+        expireIn: action.payload.expireIn,
       };
     case "RESET_USER":
       return initialState;

@@ -1,4 +1,4 @@
-import AuthProvider from "../providers/authProvider";
+import AuthProvider from "../providers/AuthProvider";
 
 const GlobalProvider = ({ children }) => {
   return <AuthProvider>{children}</AuthProvider>;

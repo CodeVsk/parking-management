@@ -1,11 +1,11 @@
 import "./index.css";
-import Card from "../Card";
-import CardStatistics from "../CardStatistics";
+import Card from "../../Card";
+import CardStatistics from "../../CardStatistics";
 import { useEffect, useState } from "react";
-import { GarageApi, UserApi } from "../../../api";
-import { formatHour } from "../../../global/hour-format";
+import { GarageApi, UserApi } from "../../../../api";
+import { formatHour } from "../../../../global/hour-format";
 
-const Overview = () => {
+const OverviewAdmin = () => {
   const [hours] = useState(new Date());
   const [token] = useState(localStorage.getItem("PM:TOKEN"));
   const [insideGarageCount, setInsideGarageCount] = useState(0);
@@ -68,4 +68,4 @@ const Overview = () => {
   );
 };
 
-export default Overview;
+export default OverviewAdmin;

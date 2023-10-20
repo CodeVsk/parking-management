@@ -16,9 +16,9 @@ const PrivateRoute = ({ roles }) => {
         if (!user.role) {
           const data = await validateApi(token);
           if (data.statusCode != 400) {
-            const { userId, role } = data.data;
+            const { userId, role, expireIn } = data.data;
 
-            await dispatch(setUser(userId, role));
+            await dispatch(setUser(userId, role, expireIn));
 
             if (!userId || !role || !roles.includes(role)) {
               navigate("/login");

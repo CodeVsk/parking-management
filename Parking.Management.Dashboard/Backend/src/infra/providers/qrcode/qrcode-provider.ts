@@ -4,12 +4,15 @@ import { IQRCodeProvider } from "@/domain/contracts";
 import qr from "qrcode";
 
 export class QRCodeProvider implements IQRCodeProvider {
-  generateQRCode(
-    data: string,
-    callback: (err: Error | null, url?: string) => void
-  ): any {
+  async generateQRCode(data: string): Promise<string> {
     try {
-      qr.toDataURL(data, callback);
+      var opts = {
+        width: 300,
+      };
+
+      const qrcode = await qr.toDataURL(data, opts);
+
+      return qrcode;
     } catch (err) {
       throw new Error("Ocorreu um erro na geração de seu qrcode");
     }

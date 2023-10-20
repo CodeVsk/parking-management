@@ -1,14 +1,15 @@
 import React from "react";
 import "./index.css";
 import { Layout } from "../../../../components/layout/Default";
-import Overview from "../../../../components/section/Overview";
-import Statistcs from "../../../../components/section/Statistics";
+import QrCode from "../../../../components/section/QrCode";
+import OverviewUser from "../../../../components/section/Overview/User";
 
 const HomeUser = () => {
   return (
     <Layout>
       <div id="home-wrapper">
-        <h1>HOME ALUNO</h1>
+        <OverviewUser />
+        <QrCode />
       </div>
     </Layout>
   );

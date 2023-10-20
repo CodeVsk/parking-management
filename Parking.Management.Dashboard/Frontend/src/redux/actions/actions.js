@@ -1,6 +1,6 @@
-export const setUser = (id, role) => ({
+export const setUser = (id, role, expireIn) => ({
   type: "SET_USER",
-  payload: { id, role },
+  payload: { id, role, expireIn },
 });
 
 export const resetUser = () => ({
