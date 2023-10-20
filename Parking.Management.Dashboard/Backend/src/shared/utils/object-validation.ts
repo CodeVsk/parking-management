@@ -1,7 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 
-export async function ObjectValidation(
+export async function objectValidation(
   from: any,
   to: any
 ): Promise<string[] | boolean> {

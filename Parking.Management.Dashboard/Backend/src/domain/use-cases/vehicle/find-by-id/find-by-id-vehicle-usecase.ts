@@ -10,8 +10,17 @@ export class FindByIdVehicleUseCase {
   async execute(id: string): Promise<Result<VehicleDto>> {
     const result = await this.vehicleRepository.findById(id);
 
+    if (!result) {
+      return new Result<VehicleDto>({
+        message: "Veiculo não encontrado.",
+      });
+    }
+
     const vehicleDto = mapper.map(result, Vehicle, VehicleDto);
 
-    return new Result<VehicleDto>(vehicleDto, "Universidade encontrada.");
+    return new Result<VehicleDto>({
+      content: vehicleDto,
+      message: "Veiculo encontrado.",
+    });
   }
 }

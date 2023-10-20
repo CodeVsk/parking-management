@@ -9,18 +9,23 @@ export class FindByIdVehicleResponsibleUseCase {
     private vehicleResponsibleRepository: IVehicleResponsibleRepository
   ) {}
 
-  async execute(id: string): Promise<Result<VehicleResponsibleDto>> {
+  async execute(id: string): Promise<Result<VehicleResponsibleDto[]>> {
     const result = await this.vehicleResponsibleRepository.findById(id);
 
-    const vehicleResponsibleDto = mapper.map(
+    if (!result) {
+      return new Result<VehicleResponsibleDto[]>({
+        message: "Responsáveis pelo veiculo não foram encontrados.",
+      });
+    }
+    const vehicleResponsibleDto = mapper.mapArray(
       result,
       VehicleResponsible,
       VehicleResponsibleDto
     );
 
-    return new Result<VehicleResponsibleDto>(
-      vehicleResponsibleDto,
-      "Universidade encontrada."
-    );
+    return new Result<VehicleResponsibleDto[]>({
+      content: vehicleResponsibleDto,
+      message: "Responsaveis pelo veiculo encontrados.",
+    });
   }
 }

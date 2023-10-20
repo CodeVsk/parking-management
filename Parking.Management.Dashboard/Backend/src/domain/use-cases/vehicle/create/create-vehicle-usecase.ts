@@ -8,15 +8,15 @@ export class CreateVehicleUseCase {
   constructor(private vehicleRepository: IVehicleRepository) {}
 
   async execute(data: VehicleDto): Promise<Result<VehicleDto>> {
-    const vehicleModel = mapper.map(data, Vehicle);
+    const vehicleModel = mapper.map(data, VehicleDto, Vehicle);
 
     const result = await this.vehicleRepository.create(vehicleModel);
 
     const vehicleDto = mapper.map(result, Vehicle, VehicleDto);
 
-    return new Result<VehicleDto>(
-      vehicleDto,
-      "Universidade criada com sucesso."
-    );
+    return new Result<VehicleDto>({
+      content: vehicleDto,
+      message: "Veiculo cadastrado com sucesso.",
+    });
   }
 }

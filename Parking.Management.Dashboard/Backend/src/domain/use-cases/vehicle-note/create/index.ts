@@ -4,8 +4,7 @@ import { CreateVehicleNoteController } from "./create-vehicle-note-controller";
 import { CreateVehicleNoteUseCase } from "./create-vehicle-note-usecase";
 
 const repository = new PrismaVehicleNoteRepository();
-const mapper = new VehicleNoteMapper();
-const loader = new CreateVehicleNoteUseCase(repository, mapper);
+const loader = new CreateVehicleNoteUseCase(repository);
 
 const createVehicleNoteController = new CreateVehicleNoteController(loader);
 

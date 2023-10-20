@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { College, Prisma } from "@prisma/client";
 import { Entity } from "../../core/domain/entity";
 import { AutoMap } from "@automapper/classes";
 
@@ -14,4 +14,6 @@ export class Course
   updated_at?: Date;
   @AutoMap()
   collegeId: string;
+  @AutoMap()
+  college?: College;
 }

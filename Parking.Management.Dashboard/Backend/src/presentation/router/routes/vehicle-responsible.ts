@@ -1,30 +1,54 @@
 import { Router } from "express";
 import { adaptRoute } from "../../../infra/adapters/express-router-adapter";
-import { createCollegeController } from "../../../domain/use-cases/college/create";
-import { updateCollegeController } from "../../../domain/use-cases/college/update";
-import { findByIdCollegeController } from "../../../domain/use-cases/college/find-by-id";
-import { deleteCollegeController } from "../../../domain/use-cases/college/delete";
 import { authMiddleware } from "@/infra/factory/auth-factory";
+import { findByIdVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/find-by-id";
+import { updateVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/update";
+import { createVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/create";
+import { deleteVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/delete";
+import { findByIdTokenVehicleResponsibleController } from "@/domain/use-cases/vehicle-responsible/find-by-id-token";
+import { createVehicleResponsibleByTokenController } from "@/domain/use-cases/vehicle-responsible/create-by-token";
+import { deleteVehicleResponsibleByTokenController } from "@/domain/use-cases/vehicle-responsible/delete-by-token";
 
 export default (router: Router): void => {
+  /* Admin Endpoints */
+
   router.get(
-    "/vehicle/:id",
-    (req, res, next) => authMiddleware.isLogged(req, res, next),
-    adaptRoute(findByIdCollegeController)
+    "/vehicle-responsible/id/:id",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
+    adaptRoute(findByIdVehicleResponsibleController)
   );
   router.put(
-    "/vehicle",
+    "/vehicle-responsible",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(updateCollegeController)
+    adaptRoute(updateVehicleResponsibleController)
   );
   router.post(
-    "/vehicle",
+    "/vehicle-responsible",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(createCollegeController)
+    adaptRoute(createVehicleResponsibleController)
   );
   router.delete(
-    "/vehicle/:id",
+    "/vehicle-responsible/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
-    adaptRoute(deleteCollegeController)
+    adaptRoute(deleteVehicleResponsibleController)
+  );
+
+  /* User Endpoints */
+
+  router.get(
+    "/vehicle-responsible/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(findByIdTokenVehicleResponsibleController)
+  );
+
+  router.post(
+    "/vehicle-responsible/user",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(createVehicleResponsibleByTokenController)
+  );
+  router.delete(
+    "/vehicle-responsible/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(deleteVehicleResponsibleByTokenController)
   );
 };

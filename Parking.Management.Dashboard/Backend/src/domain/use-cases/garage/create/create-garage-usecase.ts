@@ -3,6 +3,7 @@ import { GarageDto } from "../../../../application/dtos/garage-dto";
 import { Result } from "../../../../core/domain/result";
 import { mapper } from "@/application/mappers/mapper-config";
 import { Garage } from "@/domain/entities";
+import { randomUUID } from "crypto";
 
 export class CreateGarageUseCase {
   constructor(private garageRepository: IGarageRepository) {}
@@ -14,9 +15,9 @@ export class CreateGarageUseCase {
 
     const garageDto = mapper.map(result, Garage, GarageDto);
 
-    return new Result<GarageDto>(
-      garageDto,
-      "Estacionamento criado com sucesso."
-    );
+    return new Result<GarageDto>({
+      content: garageDto,
+      message: "Estacionamento criado com sucesso.",
+    });
   }
 }

@@ -1,0 +1,31 @@
+#overview-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f9fafe;
+  width: 40%;
+  height: 100%;
+  padding: 20px;
+}
+
+#overview-wrapper .overview-header {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+#overview-wrapper .overview-header .overview-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#overview-wrapper .overview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#overview-wrapper .overview-content .overview-description {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

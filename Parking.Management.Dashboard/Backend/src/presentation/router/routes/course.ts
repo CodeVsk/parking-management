@@ -5,12 +5,18 @@ import { updateCourseController } from "@/domain/use-cases/course/update";
 import { findByIdCourseController } from "@/domain/use-cases/course/find-by-id";
 import { deleteCourseController } from "@/domain/use-cases/course/delete";
 import { authMiddleware } from "@/infra/factory/auth-factory";
+import { getAllCourseController } from "@/domain/use-cases/course/get-all";
 
 export default (router: Router): void => {
   router.get(
-    "/course/:id",
+    "/course/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdCourseController)
+  );
+  router.get(
+    "/course/get-all",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(getAllCourseController)
   );
   router.put(
     "/course",
@@ -23,7 +29,7 @@ export default (router: Router): void => {
     adaptRoute(createCourseController)
   );
   router.delete(
-    "/course/:id",
+    "/course/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteCourseController)
   );

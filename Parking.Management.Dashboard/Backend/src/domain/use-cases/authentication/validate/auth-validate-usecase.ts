@@ -15,9 +15,10 @@ export class AuthValidateUseCase {
         role: decoded.isAdmin ? "ADMIN" : "DEFAULT",
         userId: decoded.userId,
         token: token,
+        expireIn: decoded.exp,
       };
 
-      return new Result(result);
+      return new Result({ content: result });
     } catch (err) {
       throw err;
     }

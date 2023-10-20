@@ -4,9 +4,10 @@ import { prisma } from "../../database/Prisma";
 
 export class PrismaVehicleRepository implements IVehicleRepository {
   async create(vehicle: Vehicle): Promise<Vehicle> {
+    const { user, college, ...vehicleData } = vehicle;
     const result = await prisma.vehicle.create({
       data: {
-        ...vehicle,
+        ...vehicleData,
       },
     });
 
@@ -14,12 +15,13 @@ export class PrismaVehicleRepository implements IVehicleRepository {
   }
 
   async update(vehicle: Vehicle): Promise<Vehicle> {
+    const { user, college, ...vehicleData } = vehicle;
     const result = await prisma.vehicle.update({
       where: {
-        id: vehicle.id,
+        id: vehicleData.id,
       },
       data: {
-        ...vehicle,
+        ...vehicleData,
       },
     });
 
@@ -40,6 +42,48 @@ export class PrismaVehicleRepository implements IVehicleRepository {
     const result = await prisma.vehicle.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        user: true,
+        college: true,
+      },
+    });
+
+    return result;
+  }
+
+  async findByUserId(id: string): Promise<Vehicle[]> {
+    const result = await prisma.vehicle.findMany({
+      where: {
+        userId: id,
+      },
+      include: {
+        user: true,
+        college: true,
+      },
+    });
+
+    return result;
+  }
+
+  async findByYear(year: number): Promise<Vehicle[]> {
+    const result = await prisma.vehicle.findMany({
+      where: {
+        created_at: {
+          gte: new Date(`${year}-01-01`),
+          lt: new Date(`${year + 1}-01-01`),
+        },
+      },
+    });
+
+    return result;
+  }
+
+  async getAll(): Promise<Vehicle[]> {
+    const result = await prisma.vehicle.findMany({
+      include: {
+        user: true,
+        college: true,
       },
     });
 

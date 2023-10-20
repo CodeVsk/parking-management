@@ -1,0 +1,24 @@
+.search-list {
+  position: relative;
+}
+
+.search-list ul {
+  width: 100%;
+  margin-top: 5px;
+  position: absolute;
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 150px;
+  z-index: 10;
+  background: #fefefe;
+  padding: 0;
+}
+
+.search-list ul li {
+  list-style: none;
+  padding: 10px 5px;
+}
+
+.search-list ul li:hover {
+  background: #d3d2d2;
+}

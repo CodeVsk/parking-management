@@ -31,6 +31,10 @@ export class AuthProvider implements IAuthProvider {
 
       return decoded;
     } catch (err) {
+      if (err.expiredAt) {
+        throw new Error("O token de usuário está expirado");
+      }
+
       throw new Error("Ocorreu um erro na validação de seu token");
     }
   }

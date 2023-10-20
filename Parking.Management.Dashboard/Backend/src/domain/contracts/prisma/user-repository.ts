@@ -8,4 +8,7 @@ export interface IUserRepository {
   findById(id: string): Promise<User>;
   findByEmail(email: string): Promise<User>;
   getAll(): Promise<User[]>;
+  count(): Promise<number>;
+  countByDate(startDate: Date, endDate: Date): Promise<number>;
+  findByEnrollment(enrollment: string): Promise<User>;
 }
