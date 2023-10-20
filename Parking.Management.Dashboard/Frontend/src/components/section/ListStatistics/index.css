@@ -1,0 +1,30 @@
+#list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#list-wrapper .list-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#list-wrapper .list-header i {
+  font-size: 2.25rem;
+  color: #16276f;
+}
+
+#list-wrapper .list-header .list-title span {
+  font-weight: 700;
+}
+
+#list-wrapper .list-header .list-title p {
+  margin: 0;
+  font-weight: 600;
+}
+
+#list-wrapper .list-content {
+  margin: 0;
+  font-weight: 600;
+}

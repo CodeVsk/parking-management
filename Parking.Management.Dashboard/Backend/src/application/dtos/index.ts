@@ -8,3 +8,5 @@ export * from "@/application/dtos/vehicle-responsible-dto";
 export * from "@/application/dtos/course-dto";
 export * from "@/application/dtos/user-login-dto";
 export * from "@/application/dtos/authenticated-dto";
+export * from "@/application/dtos/statistics-user-dto";
+export * from "@/application/dtos/statistics-vehicle-dto";

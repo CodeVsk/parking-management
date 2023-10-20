@@ -1,0 +1,18 @@
+.container-fluid,
+.row,
+.l-col-1,
+.l-col-2 {
+  height: 100% !important;
+}
+
+.l-col-1 {
+  background: #101a33;
+  width: 100%;
+  max-width: 250px;
+}
+
+.l-col-2 {
+  background: #f5f5f5 !important;
+  overflow: hidden;
+  overflow-y: auto;
+}

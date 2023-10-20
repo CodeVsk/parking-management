@@ -3,6 +3,7 @@ import { GarageDto } from "../../../../application/dtos/garage-dto";
 import { Result } from "../../../../core/domain/result";
 import { mapper } from "@/application/mappers/mapper-config";
 import { Garage } from "@/domain/entities";
+import { randomUUID } from "crypto";
 
 export class CreateGarageUseCase {
   constructor(private garageRepository: IGarageRepository) {}

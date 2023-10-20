@@ -6,10 +6,12 @@ import { findByIdGarageController } from "../../../domain/use-cases/garage/find-
 import { deleteGarageController } from "../../../domain/use-cases/garage/delete";
 import { authMiddleware } from "@/infra/factory/auth-factory";
 import { getAllGarageController } from "@/domain/use-cases/garage/get-all";
+import { countInsideGarageController } from "@/domain/use-cases/garage/count-inside";
+import { latestUpdatedGarageController } from "@/domain/use-cases/garage/latest-updated";
 
 export default (router: Router): void => {
   router.get(
-    "/garage/:id",
+    "/garage/id/:id",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(findByIdGarageController)
   );
@@ -17,6 +19,16 @@ export default (router: Router): void => {
     "/garage/get-all",
     (req, res, next) => authMiddleware.isLogged(req, res, next),
     adaptRoute(getAllGarageController)
+  );
+  router.get(
+    "/garage/count-inside",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(countInsideGarageController)
+  );
+  router.get(
+    "/garage/latest-updated",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(latestUpdatedGarageController)
   );
   router.put(
     "/garage",
@@ -29,7 +41,7 @@ export default (router: Router): void => {
     adaptRoute(createGarageController)
   );
   router.delete(
-    "/garage/:id",
+    "/garage/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteGarageController)
   );

@@ -8,9 +8,10 @@ export class PrismaVehicleResponsibleRepository
   async create(
     vehicleResponsible: VehicleResponsible
   ): Promise<VehicleResponsible> {
+    const { user, vehicle, ...vehicleResponsibleData } = vehicleResponsible;
     const result = await prisma.vehicleResponsible.create({
       data: {
-        ...vehicleResponsible,
+        ...vehicleResponsibleData,
       },
     });
 
@@ -20,12 +21,13 @@ export class PrismaVehicleResponsibleRepository
   async update(
     vehicleResponsible: VehicleResponsible
   ): Promise<VehicleResponsible> {
+    const { user, vehicle, ...vehicleResponsibleData } = vehicleResponsible;
     const result = await prisma.vehicleResponsible.update({
       where: {
         id: vehicleResponsible.id,
       },
       data: {
-        ...vehicleResponsible,
+        ...vehicleResponsibleData,
       },
     });
 
@@ -43,9 +45,50 @@ export class PrismaVehicleResponsibleRepository
   }
 
   async findById(id: string): Promise<VehicleResponsible> {
-    const result = await prisma.vehicleResponsible.findUnique({
+    const result = await prisma.vehicleResponsible.findFirst({
       where: {
         id: id,
+      },
+      include: {
+        user: true,
+        vehicle: true,
+      },
+    });
+
+    return result;
+  }
+
+  async findByIdToken(id: string, userId: string): Promise<VehicleResponsible> {
+    const result = await prisma.vehicleResponsible.findFirst({
+      where: {
+        id: id,
+        vehicle: {
+          userId: userId,
+        },
+      },
+      include: {
+        user: true,
+        vehicle: true,
+      },
+    });
+
+    return result;
+  }
+
+  async findByVehicleUserId(
+    id: string,
+    userId: string
+  ): Promise<VehicleResponsible[]> {
+    const result = await prisma.vehicleResponsible.findMany({
+      where: {
+        vehicleId: id,
+        vehicle: {
+          userId: userId,
+        },
+      },
+      include: {
+        user: true,
+        vehicle: true,
       },
     });
 

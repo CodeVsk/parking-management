@@ -7,7 +7,11 @@
     "dev": "set NODE_ENV=development&& ts-node-dev --respawn --exit-child --transpile-only -r tsconfig-paths/register --ignore-watch node_modules src/presentation/server.ts",
     "start": "node dist/presentation/server.js",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "test": "jest"
+    "test": "jest",
+    "migratedev:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migratedev:deploy": "dotenv -e .env.development -- npx prisma migrate deploy",
+    "migrateprod:dev": "dotenv -e .env.production -- npx prisma migrate dev",
+    "migrateprod:deploy": "dotenv -e .env.production -- npx prisma migrate deploy"
   },
   "devDependencies": {
     "@swc/core": "^1.3.70",
@@ -31,12 +35,14 @@
     "@automapper/classes": "^8.7.7",
     "@automapper/core": "^8.7.7",
     "@prisma/client": "^5.0.0",
+    "@types/qrcode": "^1.5.4",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.1",
+    "qrcode": "^1.5.3",
     "reflect-metadata": "^0.1.13",
     "tscpaths": "^0.0.9"
   }

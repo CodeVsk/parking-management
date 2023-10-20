@@ -1,0 +1,44 @@
+#statistics-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #fff;
+  width: 60%;
+  height: 100%;
+}
+
+#statistics-wrapper .statistics-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0px;
+  gap: 10px;
+}
+
+#statistics-wrapper .statistics-header .statistics-title {
+  width: 90%;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#statistics-wrapper .statistics-header .statistics-divisor {
+  width: 90%;
+  border-bottom: #f0f0f0 2px solid;
+}
+
+#statistics-wrapper .statistics-content {
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #202020;
+}
+
+#statistics-wrapper .statistics-content .statistics-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,48 @@
+#qrcode-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #fff;
+  width: 60%;
+  height: 100%;
+}
+
+#qrcode-wrapper .qrcode-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0px;
+  gap: 10px;
+}
+
+#qrcode-wrapper .qrcode-header .qrcode-title {
+  width: 90%;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#qrcode-wrapper .qrcode-header .qrcode-divisor {
+  width: 90%;
+  border-bottom: #f0f0f0 2px solid;
+}
+
+#qrcode-wrapper .qrcode-content {
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #202020;
+}
+
+#qrcode-wrapper .qrcode-content .qrcode-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#qrcode-wrapper .qrcode-content .qrcode-list img {
+  max-width: 300px;
+}

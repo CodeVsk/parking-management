@@ -1,0 +1,15 @@
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+tbody td {
+  font-weight: 500;
+  color: #999999;
+}
+
+.table-action i {
+  margin-right: 5px;
+  cursor: pointer;
+}

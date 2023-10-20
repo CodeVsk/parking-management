@@ -14,7 +14,7 @@ export class GetAllCollegeUseCase {
 
     return new Result<CollegeDto[]>({
       content: collegesDto,
-      message: "Universidade encontrada.",
+      message: "Universidades encontradas.",
     });
   }
 }

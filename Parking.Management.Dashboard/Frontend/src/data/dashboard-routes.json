@@ -1,0 +1,51 @@
+{
+  "ADMIN": [
+    {
+      "uri": "/dashboard/admin",
+      "text": "Inicio",
+      "icon": "bi bi-house-door-fill"
+    },
+    {
+      "uri": "/dashboard/admin/user",
+      "text": "Usuários",
+      "icon": "bi bi-person-add"
+    },
+    {
+      "uri": "/dashboard/admin/college",
+      "text": "Universidades",
+      "icon": "bi bi-building-add"
+    },
+    {
+      "uri": "/dashboard/admin/course",
+      "text": "Cursos",
+      "icon": "bi bi-journal-plus"
+    },
+    {
+      "uri": "/dashboard/admin/vehicle",
+      "text": "Veiculos",
+      "icon": "bi bi-car-front-fill"
+    },
+    {
+      "uri": "/logout",
+      "text": "Logout",
+      "icon": "bi bi-box-arrow-left"
+    }
+  ],
+  "DEFAULT": [
+    {
+      "uri": "/dashboard/user",
+      "text": "Inicio",
+      "icon": "bi bi-house-door-fill"
+    },
+    {
+      "uri": "/dashboard/user/vehicle",
+      "text": "Veiculos",
+      "icon": "bi bi-car-front-fill"
+    },
+    {
+      "uri": "/logout",
+      "text": "Logout",
+      "icon": "bi bi-box-arrow-left"
+    }
+  ]
+}

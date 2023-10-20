@@ -4,9 +4,11 @@ import { prisma } from "../../database/Prisma";
 
 export class PrismaGarageRepository implements IGarageRepository {
   async create(garage: Garage): Promise<Garage> {
+    const { userDeparture, userEntry, vehicle, ...garageData } = garage;
+
     const result = await prisma.garage.create({
       data: {
-        ...garage,
+        ...garageData,
       },
     });
 
@@ -14,12 +16,14 @@ export class PrismaGarageRepository implements IGarageRepository {
   }
 
   async update(garage: Garage): Promise<Garage> {
+    const { userDeparture, userEntry, vehicle, ...garageData } = garage;
+
     const result = await prisma.garage.update({
       where: {
         id: garage.id,
       },
       data: {
-        ...garage,
+        ...garageData,
       },
     });
 
@@ -48,6 +52,32 @@ export class PrismaGarageRepository implements IGarageRepository {
 
   async getAll(): Promise<Garage[]> {
     const result = await prisma.garage.findMany();
+
+    return result;
+  }
+
+  async countInside(): Promise<number> {
+    const result = await prisma.garage.count({
+      where: {
+        departureTime: null,
+      },
+    });
+
+    return result;
+  }
+
+  async getLatestUpdated(): Promise<Garage[]> {
+    const result = await prisma.garage.findMany({
+      include: {
+        userEntry: true,
+        userDeparture: true,
+        vehicle: true,
+      },
+      orderBy: {
+        updated_at: "desc",
+      },
+      take: 5,
+    });
 
     return result;
   }

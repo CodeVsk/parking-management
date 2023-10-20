@@ -10,6 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model QrCode {
+  id String @id @default(uuid())
+
+  code String
+
+  user   User   @relation(name: "iQrCode", fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  userId String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("qrcode")
+}
+
 model College {
   id         String   @id @default(uuid())
   name       String
@@ -59,41 +73,44 @@ model User {
   collegeId          String
   course             Course               @relation(name: "iUser", fields: [courseId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   courseId           String
+  QrCode             QrCode[]             @relation(name: "iQrCode")
 
   @@map("users")
 }
 
 model Garage {
-  id            String   @id @default(uuid())
-  status        Status   @default(INSIDE)
+  id            String    @id @default(uuid())
+  status        Status    @default(INSIDE)
   entryTime     DateTime
-  departureTime DateTime
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+  departureTime DateTime?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
 
   //FK keys relations
   userEntry   User   @relation(name: "iGarageEntry", fields: [userEntryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userEntryId String
 
-  userDeparture   User   @relation(name: "iGarageDeparture", fields: [userDepartureId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userDepartureId String
+  userDeparture   User?   @relation(name: "iGarageDeparture", fields: [userDepartureId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userDepartureId String?
 
   college   College @relation(name: "iGarage", fields: [collegeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   collegeId String
 
-  vehicle   Vehicle @relation(name: "iGarage", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicle   Vehicle @relation(name: "iGarage", fields: [vehicleId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   vehicleId String
 
   @@map("garage")
 }
 
 model Vehicle {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   model      String
-  type       String
+  color      String      @default("N/A")
+  brand      String      @default("N/A")
+  type       VehicleType @default(AUTOMOBILE)
   plate      String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
 
   //FK keys relations
   user   User   @relation(name: "iVehicle", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -119,7 +136,7 @@ model VehicleResponsible {
   user   User   @relation(name: "iVehicleResponsible", fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userId String
 
-  vehicle   Vehicle @relation(name: "iVehicleResponsible", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicle   Vehicle @relation(name: "iVehicleResponsible", fields: [vehicleId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   vehicleId String
 
   @@map("vehicle_responsibles")
@@ -132,7 +149,7 @@ model VehicleNote {
   updated_at  DateTime @updatedAt
 
   //FK keys relations
-  vehicle   Vehicle @relation(name: "iVehicleNote", fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicle   Vehicle @relation(name: "iVehicleNote", fields: [vehicleId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   vehicleId String
 
   @@map("vehicle_notes")
@@ -173,4 +190,8 @@ enum Gender {
   M
   F
   O
+}
+
+enum VehicleType {
+  AUTOMOBILE
 }

@@ -56,6 +56,17 @@ export class PrismaUserRepository implements IUserRepository {
     return result;
   }
 
+  async findByEnrollment(enrollment: string): Promise<User> {
+    console.log(enrollment);
+    const result = await prisma.user.findFirst({
+      where: {
+        enrollment: enrollment,
+      },
+    });
+
+    return result;
+  }
+
   async findByEmail(email: string): Promise<User> {
     const result = await prisma.user.findUnique({
       where: {
@@ -68,6 +79,25 @@ export class PrismaUserRepository implements IUserRepository {
 
   async getAll(): Promise<User[]> {
     const result = await prisma.user.findMany();
+
+    return result;
+  }
+
+  async count(): Promise<number> {
+    const result = await prisma.user.count();
+
+    return result;
+  }
+
+  async countByDate(startDate: Date, endDate: Date): Promise<number> {
+    const result = await prisma.user.count({
+      where: {
+        created_at: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+    });
 
     return result;
   }

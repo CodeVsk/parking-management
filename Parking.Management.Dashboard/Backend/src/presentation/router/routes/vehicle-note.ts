@@ -5,11 +5,12 @@ import { updateVehicleNoteController } from "../../../domain/use-cases/vehicle-n
 import { findByIdVehicleNoteController } from "../../../domain/use-cases/vehicle-note/find-by-id";
 import { deleteVehicleNoteController } from "../../../domain/use-cases/vehicle-note/delete";
 import { authMiddleware } from "@/infra/factory/auth-factory";
+import { findByIdTokenVehicleNoteController } from "@/domain/use-cases/vehicle-note/find-by-id-token";
 
 export default (router: Router): void => {
   router.get(
-    "/vehicle-note/:id",
-    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    "/vehicle-note/id/:id",
+    (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(findByIdVehicleNoteController)
   );
   router.put(
@@ -23,8 +24,14 @@ export default (router: Router): void => {
     adaptRoute(createVehicleNoteController)
   );
   router.delete(
-    "/vehicle-note/:id",
+    "/vehicle-note/id/:id",
     (req, res, next) => authMiddleware.isLoggedAdmin(req, res, next),
     adaptRoute(deleteVehicleNoteController)
+  );
+
+  router.get(
+    "/vehicle-note/user/id/:id",
+    (req, res, next) => authMiddleware.isLogged(req, res, next),
+    adaptRoute(findByIdTokenVehicleNoteController)
   );
 };
