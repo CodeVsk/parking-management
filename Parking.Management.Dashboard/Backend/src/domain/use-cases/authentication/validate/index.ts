@@ -4,8 +4,7 @@ import { AuthValidateUseCase } from "./auth-validate-usecase";
 import { AuthProvider } from "@/infra/providers";
 
 const provider = new AuthProvider();
-const repository = new PrismaUserRepository();
-const loader = new AuthValidateUseCase(provider, repository);
+const loader = new AuthValidateUseCase(provider);
 
 const authValidateController = new AuthValidateController(loader);
 

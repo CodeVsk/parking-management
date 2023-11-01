@@ -1,22 +1,28 @@
+import { PrismaUserRepository } from "@/infra/repositories";
 import { VehicleDto } from "../../../../application/dtos/vehicle-dto";
 import { VehicleMapper } from "../../../../application/mappers/vehicle-mapper";
 import { PrismaVehicleRepository } from "../../../../infra/repositories/prisma/vehicle-repository";
-import { UpdateVehicleUseCase } from "./update-vehicle-usecase";
+import { UpdateByTokenVehicleUseCase } from "./update-by-token-vehicle-usecase";
 
 describe("Create vehicle usecase", () => {
   it("Should be able to create a new vehicle", async () => {
-    const repository = new PrismaVehicleRepository();
-    const sut = new UpdateVehicleUseCase(repository);
+    const vehicleRepository = new PrismaVehicleRepository();
+
+    const sut = new UpdateByTokenVehicleUseCase(vehicleRepository);
 
     const dataSource: VehicleDto = {
       model: "",
-      type: "",
+      type: "AUTOMOBILE",
+      brand: "",
+      color: "",
       plate: "",
       userId: "",
       collegeId: "",
     };
 
-    const response = sut.execute(dataSource);
+    const userId: string = "";
+
+    const response = sut.execute(dataSource, userId);
 
     expect(response).toBeTruthy();
   });

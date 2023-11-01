@@ -10,7 +10,9 @@ describe("Create vehicle usecase", () => {
 
     const dataSource: VehicleDto = {
       model: "",
-      type: "",
+      type: "AUTOMOBILE",
+      brand: "",
+      color: "",
       plate: "",
       userId: "",
       collegeId: "",
