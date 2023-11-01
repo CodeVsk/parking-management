@@ -16,17 +16,21 @@ export class UpdateCourseUseCase {
       });
     }
 
-    const courseModel = {
-      ...course,
+    let courseDto = mapper.map(course, Course, CourseDto);
+
+    courseDto = {
+      ...courseDto,
       ...data,
     };
 
+    const courseModel = mapper.map(courseDto, CourseDto, Course);
+
     const result = await this.courseRepository.update(courseModel);
 
-    const courseDto = mapper.map(result, Course, CourseDto);
+    const resultDto = mapper.map(result, Course, CourseDto);
 
     return new Result<CourseDto>({
-      content: courseDto,
+      content: resultDto,
       message: "Curso atualizado com sucesso.",
     });
   }

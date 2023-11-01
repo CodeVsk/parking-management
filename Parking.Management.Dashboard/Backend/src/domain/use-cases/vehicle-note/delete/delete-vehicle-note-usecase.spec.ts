@@ -1,5 +1,5 @@
 import { PrismaVehicleNoteRepository } from "../../../../infra/repositories/prisma/vehicle-note-repository";
-import { DeleteVehicleNoteUseCase } from "./DeleteVehicleNoteUseCase";
+import { DeleteVehicleNoteUseCase } from "./delete-vehicle-note-usecase";
 
 describe("Create vehicleNote usecase", () => {
   it("Should be able to create a new vehicleNote", async () => {

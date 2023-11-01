@@ -44,10 +44,10 @@ export class PrismaVehicleResponsibleRepository
     return result;
   }
 
-  async findById(id: string): Promise<VehicleResponsible> {
-    const result = await prisma.vehicleResponsible.findFirst({
+  async findById(id: string): Promise<VehicleResponsible[]> {
+    const result = await prisma.vehicleResponsible.findMany({
       where: {
-        id: id,
+        vehicleId: id,
       },
       include: {
         user: true,
