@@ -2,9 +2,9 @@ import {
   PrismaUserRepository,
   PrismaVehicleRepository,
 } from "@/infra/repositories";
-import { VehicleResponsibleDto } from "../../../../application/dtos/vehicle-responsible-dto";
 import { PrismaVehicleResponsibleRepository } from "../../../../infra/repositories/prisma/vehicle-responsible-repository";
 import { CreateVehicleResponsibleByTokenUseCase } from "./create-vehicle-responsible-by-token-usecase";
+import { VehicleResponsibleUserDto } from "@/application/dtos/vehicle-responsible-user-dto";
 
 describe("Create vehicleResponsible usecase", () => {
   it("Should be able to create a new vehicleResponsible", async () => {
@@ -18,12 +18,15 @@ describe("Create vehicleResponsible usecase", () => {
       userRepository
     );
 
-    const dataSource: VehicleResponsibleDto = {
-      userId: "",
+    const dataSource: VehicleResponsibleUserDto = {
+      enrollment: "",
       vehicleId: "",
+      id: "",
     };
 
-    const response = sut.execute(dataSource, dataSource.userId);
+    const userId: string = "";
+
+    const response = sut.execute(dataSource, userId);
 
     expect(response).toBeTruthy();
   });

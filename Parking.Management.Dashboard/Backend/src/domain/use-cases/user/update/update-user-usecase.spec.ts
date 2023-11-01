@@ -1,6 +1,4 @@
 import { UserDto } from "../../../../application/dtos/user-dto";
-import { mapper } from "@/application/mappers/mapper-config";
-
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
 import { UpdateUserUseCase } from "./update-user-usecase";
 
@@ -16,8 +14,10 @@ describe("Create user usecase", () => {
       address: "",
       rg: "",
       cpf: "",
-      gender: "",
-      course: "",
+      gender: "M",
+      city: "",
+      state: "",
+      courseId: "",
       enrollment: "",
       status: true,
       collegeId: "",

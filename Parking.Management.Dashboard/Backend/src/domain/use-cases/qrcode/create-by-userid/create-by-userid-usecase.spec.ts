@@ -1,36 +1,23 @@
+import { AuthProvider, QRCodeProvider } from "@/infra/providers";
 import { UserDto } from "../../../../application/dtos/user-dto";
-import { mapper } from "@/application/mappers/mapper-config";
-
 import { PrismaUserRepository } from "../../../../infra/repositories/prisma/user-repository";
-import { CreateUserUseCase } from "./create-user-usecase";
-import { UserRoles } from "../../../enums";
+import { CreateByUserIdUseCase } from "./create-by-userid-usecase";
 
 describe("Create user usecase", () => {
   it("Should be able to create a new user", async () => {
     const repository = new PrismaUserRepository();
-    const sut = new CreateUserUseCase(repository);
+    const authProvider = new AuthProvider();
+    const qrCodeProvider = new QRCodeProvider();
 
-    const dataSource: UserDto = {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      city: "",
-      password: "",
-      permissions: "DEFAULT",
-      state: "",
-      rg: "",
-      cpf: "",
-      gender: "O",
-      courseId: "",
-      enrollment: "",
-      status: true,
-      collegeId: "",
-      birthdate: null,
-      role: "EMPLOYEE",
-    };
+    const sut = new CreateByUserIdUseCase(
+      repository,
+      authProvider,
+      qrCodeProvider
+    );
 
-    const response = sut.execute(dataSource);
+    const token: string = "";
+
+    const response = sut.execute(token);
 
     expect(response).toBeTruthy();
   });
