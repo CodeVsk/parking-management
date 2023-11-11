@@ -13,11 +13,11 @@ Parking management design using artificial intelligence for study purposes.
 
 **Front-end:** React
 
-**Back-end:** NodeJS, Express, Prisma
+**Back-end:** NodeJS, Express, Prisma, Typescript
 
 **DeepLearning:** Python
 
-**Infrastructure** Docker, Kubernetes
+**Infrastructure** Docker
 
 **Database** PostgreSQL
 
