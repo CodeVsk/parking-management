@@ -8,7 +8,7 @@ const app = express();
 mapper.createMapper();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "*" }));
 
 setupRoutes(app);
 
