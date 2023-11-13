@@ -26,6 +26,8 @@ services:
       POSTGRES_PASSWORD: pm_dev
     networks:
       - parking-management-network
+    ports:
+      - "5432:5432"
 
 networks:
   parking-management-network:

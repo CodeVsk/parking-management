@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Login from "../pages/Authentication/Login";
 import PrivateRoute from "../components/common/PrivateRouter";
 
@@ -141,6 +141,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/",
+    element: <Navigate replace to="/login" />,
   },
   {
     path: "/logout",
